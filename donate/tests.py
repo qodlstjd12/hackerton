@@ -3,3 +3,6 @@ from django.test import TestCase
 # Create your tests here.
 def asd():
     pass
+
+def defdasf():
+    pass
