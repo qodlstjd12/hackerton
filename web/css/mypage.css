@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.myPageWhole {
+    height: 92vh;
+    overflow-y: scroll;
+}
+
+.userProfile {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    align-items: center;
+    margin: 10px 0 10px 0;
+}
+
+.userProfile span {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #519cfe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-right: 15px;
+}
+
+span .userIcon {
+    font-size: 45px;
+
+}
+
+.userInfo h2 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.userInfo h2:nth-child(2) {
+    font-weight: 300;
+}
+
+.graph {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.graph h2 {
+    font-size: 1.1rem;
+    font-weight: 300;
+
+}
+
+.graph .graphContent {
+    height: 80%
+}
+
+.coin {
+    display: flex;
+    flex-direction: column;
+}
+
+.line {
+    height: 2px;
+    width: 100%;
+    background: #bdbdbd;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.coin .coinTitle {
+    font-size: 1.1rem;
+    font-weight: 300
+}
+
+.coin .coinAmount {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3rem;
+    font-weight: 200;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+.coin .coinIcon {
+    font-size: 1.3rem;
+    font-weight: 200;
+}
+
+.cashInput {
+    text-align: right;
+}
+
+.chargeBtn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.chargeBtn button {
+    width: 30%;
+    height: 38px;
+    background: #519cfe;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    border: none;
+    border-radius: 8px;
+}
+
+.donateList {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.donateTitle {
+    font-size: 1.1rem;
+    font-weight: 300
+}
+
+.donateHistory {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 90vw;
+}
+
+.donateHistory img {
+    width: 45%;
+    height: 100%;
+
+}
+
+.area {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+
+}
+
+.area h2, .recentBtn {
+    width: 100%;
+}
+
+.area h2 {
+    font-weight: 200;
+    font-size: 0.8rem;
+}
+
+.recentBtn {
+    width: 100%;
+    border: none;
+    background: #519cfe;
+    color: white;
+    height: 30px;
+    font-size: 1rem;
+    font-weight: 200;
+    border-radius: 8px;
+}
+
+
+.footerContent {
+    width: 90vw;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerContent ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footerContent li {
+    display: inline;
+    color: #bdbdbd;
+    font-size: 1.8rem;
+}
+
+
+/* SLIDE */
+.slideContainer {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    animation: slide 8s infinite;
+}
+
+@keyframes slide {
+    0% {
+        margin-left: 0;
+    }
+    /* 0 ~ 10  : 정지 */
+    10% {
+        margin-left: 0;
+    }
+    /* 10 ~ 25 : 변이 */
+    25% {
+        margin-left: -100%;
+    }
+    /* 25 ~ 35 : 정지 */
+    35% {
+        margin-left: -100%;
+    }
+    /* 35 ~ 50 : 변이 */
+    50% {
+        margin-left: -200%;
+    }
+    60% {
+        margin-left: -200%;
+    }
+    75% {
+        margin-left: -300%;
+    }
+    85% {
+        margin-left: -300%;
+    }
+    100% {
+        margin-left: 0;
+    }
+}

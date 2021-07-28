@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/mypage.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+</head>
+<body>
+<div class="myPageWhole">
+    <div class="userProfile">
+        <span><i class="fa fa-user userIcon"></i></span>
+        <div class="userInfo"><h2>55555</h2>
+            <h2>ojm0915@gmail.com</h2></div>
+    </div>
+
+    <div class="graph">
+        <h2><i class="fa fa-thermometer-empty"></i> 당신의 따뜻함</h2>
+        <div class="graphContent">
+            <canvas id="radar-chart" width="250" height="250"></canvas>
+
+        </div>
+    </div>
+
+    <div class="coin">
+        <span class="line"></span>
+        <h2 class="coinTitle">당신이 가진 따뜻함</h2>
+
+        <h2 class="coinAmount"><span>&#8361</span><span>7600 coin</span></h2>
+
+        <h2 class="coinAmount"><span>충전금액</span><input class="cashInput"></h2>
+        <!--        <div class="chargeBtn"><button>충전하기</button></div>-->
+    </div>
+
+    <div class="donateList">
+        <span class="line"></span>
+        <h2 class="donateTitle">후원 목록</h2>
+        <div class="slideContainer">
+            <div class="donateHistory"><img
+                    src="https://ww.namu.la/s/50ec79e07868dd8be7c62f3ca97267517b4f7b8d43b05470c645b336541fdd3593e3a3469a82a8c904f050382ff3c8551606ac7de623941d726582f74a03670a410e212fd9b5e2c25c3e554b96aca714fee665dd03b0171fa3b09a2a44d99bc9f8881f7ca05f4a69229b1094489c2d87">
+                <div class="area">
+                    <h2>Lorem Ipsum is simply dummy text of</h2>
+                    <button class="recentBtn">근황 보기</button>
+                </div>
+            </div>
+            <div class="donateHistory"><img
+                    src="https://ww.namu.la/s/50ec79e07868dd8be7c62f3ca97267517b4f7b8d43b05470c645b336541fdd3593e3a3469a82a8c904f050382ff3c8551606ac7de623941d726582f74a03670a410e212fd9b5e2c25c3e554b96aca714fee665dd03b0171fa3b09a2a44d99bc9f8881f7ca05f4a69229b1094489c2d87">
+                <div class="area">
+                    <h2>Lorem Ipsum is simply dummy text of</h2>
+                    <button class="recentBtn">근황 보기</button>
+                </div>
+            </div>
+            <div class="donateHistory"><img
+                    src="https://ww.namu.la/s/50ec79e07868dd8be7c62f3ca97267517b4f7b8d43b05470c645b336541fdd3593e3a3469a82a8c904f050382ff3c8551606ac7de623941d726582f74a03670a410e212fd9b5e2c25c3e554b96aca714fee665dd03b0171fa3b09a2a44d99bc9f8881f7ca05f4a69229b1094489c2d87">
+                <div class="area">
+                    <h2>Lorem Ipsum is simply dummy text of</h2>
+                    <button class="recentBtn">근황 보기</button>
+                </div>
+            </div>
+            <div class="donateHistory"><img
+                    src="https://ww.namu.la/s/50ec79e07868dd8be7c62f3ca97267517b4f7b8d43b05470c645b336541fdd3593e3a3469a82a8c904f050382ff3c8551606ac7de623941d726582f74a03670a410e212fd9b5e2c25c3e554b96aca714fee665dd03b0171fa3b09a2a44d99bc9f8881f7ca05f4a69229b1094489c2d87">
+                <div class="area">
+                    <h2>Lorem Ipsum is simply dummy text of</h2>
+                    <button class="recentBtn">근황 보기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footerContent">
+    <ul>
+        <li>
+            <i class="fa fa-home"></i>
+        </li>
+        <li>
+            <i class="fa fa-search"></i>
+        </li>
+        <li>
+            <i class="fa fa-shopping-basket"></i>
+        </li>
+        <li>
+            <i class="fa fa-user"></i>
+        </li>
+    </ul>
+</div>
+<script>
+    new Chart(document.getElementById("radar-chart"), {
+        type: 'radar',
+        data: {
+            labels: ["독거노인", "결식아동", "유기동물", "한부모 가정", "소년소녀가장"],
+            datasets: [
+                {
+                    label: "이번달",
+                    fill: true,
+                    backgroundColor: "rgba(81,156,254,0.8)",
+                    borderColor: "rgba(81,156,254,0.8)",
+                    pointBorderColor: "#fff",
+                    pointBackgroundColor: "rgba(81,156,254,0.8)",
+                    pointBorderColor: "#fff",
+                    data: [55.48, 54.16, 49.61, 58.06, 44.45]
+                }
+            ]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
