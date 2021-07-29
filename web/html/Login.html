@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            background: linear-gradient(#519CFE, #8DA1FE,#C291FE) fixed;
+            text-align: center;
+            margin: 0px auto;
+        }
+        .LOGOBox{
+            width:300px;
+            height: 190px;
+            text-align: center;
+            margin: 0px auto;
+        }
+        .LOGO{
+            color: white;
+            line-height: 190px;
+            font-size: 30px;
+        }
+        .Box{
+            background-color: white;
+            height: 380px;
+            width: 300px;
+            text-align: center;
+            margin: 0px auto;
+            border-radius: 15px;
+            box-shadow: 7px 14px 42px 3px rgba(153, 153, 153, 0.7);
+        }
+        .Login-form{
+            text-align: center;
+            margin: 0px auto;
+            padding-top: 15%;
+        }
+        .Login-form span{
+            color: black;
+            font-size: 12px;
+        }
+        .Login-form input{
+            border: none;
+        }
+        .Login-table-text{
+            text-align: left;
+            width: 50px;
+            border-bottom: 1px solid rgb(212, 212, 212);
+            padding: 10px;
+        }
+        .Login-table-input{
+            width: 160px;
+            border-bottom: 1px solid rgb(212, 212, 212);
+            padding: 10px;
+        }
+        .btn {
+            position:relative;
+            margin-top: 15px;
+            width: 258px;
+            height: 40px;
+            background: linear-gradient(125deg,#519CFE, #C291FE,#8DA1FE);
+            background-position: left;
+            background-size: 200%;
+            color:white;
+            font-weight: bold;
+            border:none;
+            cursor:pointer;
+            display:inline;
+        }
+        .new-login{
+            position:relative;
+            width: 258px;
+            text-align: center;
+            margin: 0px auto;
+            font-size: 11px;
+            margin-top: 20px;
+        }
+        .new-login td{
+            width: 33%;
+        }
+        .new-login a{
+            color: black;
+            text-decoration: none;
+        }
+        .kakao{
+            width: 50px;
+            height: 50px;
+            border-radius: 70%;
+            overflow: hidden;
+        }
+        .google{
+            width: 50px;
+            height: 50px;
+            border-radius: 70%;
+            border: black;
+            overflow: hidden;
+        }
+        .site-img td{
+            width: 80px;
+        }
+       
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
+<body>
+    <div class="LOGOBox">
+        <div class="LOGO">LOGO</div>
+    </div>
+    <div class="Box">
+        <table class="Login-form">
+            <tr class="Login-table-content">
+                <td class="Login-table-text">
+                    <span><b>이메일</b></span>
+                </td>
+                <td class="Login-table-input">
+                    <input placeholder="email@naver.com" type="email">
+                </td>
+            </tr>
+            <tr class="Login-table-content">
+                <td class="Login-table-text">
+                    <span><b>비밀번호</b></span>
+                </td>
+                <td class="Login-table-input">
+                    <input placeholder="●●●●●●●" type="Password">
+                </td>
+            </tr>
+
+        </table>
+        <button type="button" class="btn" >로그인</button>
+        <table class="new-login" border="1" bordercolor="black" frame="void" rules="cols">
+            <tr>
+                <td>
+                    <a href="#">회원가입</a>
+                </td>
+                <td>
+                    <a href="#">아이디찾기</a>
+                </td>
+                <td>
+                    <a href="#">비밀번호찾기</a>
+                </td>
+            </tr>
+        </table>
+        <table class="site-img" align="center" style="padding-top: 40px; ">
+            <tr>
+                <td>
+                    <a href="#">
+                        <img src="https://pbs.twimg.com/profile_images/770139154898382848/ndFg-IDH_400x400.jpg" class="google">
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <img src="https://w.namu.la/s/059f8bf3e629d3f2e343fe3f3f10809022d58800962db675d233429660bf98d9ceccd60e23b1324d090c87485833b10c2c4503c93a230003ba67d5fcafa52793725e7202a2e7c4344283d8e7013f4fc77ba02179d32f4fd77403449ddd9de70e" class="kakao">
+                    </a>
+                </td>
+                <td>
+                    <a href="#">
+                        <img src="https://play-lh.googleusercontent.com/Kbu0747Cx3rpzHcSbtM1zDriGFG74zVbtkPmVnOKpmLCS59l7IuKD5M3MKbaq_nEaZM=s360-rw" class="google">
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+</html>
