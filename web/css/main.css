@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+body, section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    height: 92vh;
+    width: 100vw;
+    overflow-y: scroll;
+}
+
+.slideContainer {
+    width: 100%;
+    height: 40vh;
+    margin-bottom: 20px;
+}
+
+ul, li {
+    list-style: none;
+}
+
+.slide {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.slide ul {
+    width: calc(100% * 4);
+    display: flex;
+    transition: 0.5s;
+}
+
+.slide li {
+    width: calc(100% / 4);
+    height: 40vh;
+}
+
+.slide li img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+.slide input {
+    display: none;
+}
+
+.slide .bullet {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+}
+
+.slide .bullet label {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    border: 2px solid #519cfe;
+    display: inline-block;
+    background: #fff;
+    font-size: 0;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+/* 슬라이드 조작 */
+#pos1:checked ~ ul {
+    margin-left: 0;
+}
+
+#pos2:checked ~ ul {
+    margin-left: -100%;
+}
+
+#pos3:checked ~ ul {
+    margin-left: -200%;
+}
+
+#pos4:checked ~ ul {
+    margin-left: -300%;
+}
+
+/* bullet 조작 */
+#pos1:checked ~ .bullet label:nth-child(1),
+#pos2:checked ~ .bullet label:nth-child(2),
+#pos3:checked ~ .bullet label:nth-child(3),
+#pos4:checked ~ .bullet label:nth-child(4) {
+    background: #519cfe;
+}
+
+.introContainer {
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.introContainer h2:nth-child(1) {
+    color: #519cfe;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.introContainer h2:nth-child(2) {
+    color: #519cfe;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.helpContainer {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.helpContainer .helpTitle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.helpContainer .helpTitle h2:nth-child(1) {
+    color: #519cfe;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.helpContainer .helpTitle h2:nth-child(2) {
+    color: #519cfe;
+    font-size: 0.8rem;
+    font-weight: 200;
+}
+
+.helpContainer .helpSlide {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.helpContainer .helpSlide .helpBox {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.helpContainer .helpSlide .helpBox img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.helpContainer .helpSlide .helpBox h2:nth-child(2) {
+    color: #519cfe;
+    font-size: 1rem;
+    font-weight: 400;
+
+}
+
+.helpContainer .helpSlide .helpBox h2:nth-child(3) {
+    color: #519cfe;
+    font-size: 0.8rem;
+    font-weight: 200;
+}
+
+.marketContainer {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.marketContainer .marketTitle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.marketContainer .marketTitle h2:nth-child(1) {
+    color: #519cfe;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.marketContainer .marketTitle h2:nth-child(2) {
+    color: #519cfe;
+    font-size: 0.8rem;
+    font-weight: 200;
+}
+
+.marketContainer .marketSlide {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.marketContainer .marketSlide .marketBox {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.marketContainer .marketSlide .marketBox img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.marketContainer .marketSlide .marketBox h2:nth-child(2) {
+    color: #519cfe;
+    font-size: 1rem;
+    font-weight: 400;
+
+}
+
+.marketContainer .marketSlide .marketBox h2:nth-child(3) {
+    color: #519cfe;
+    font-size: 0.8rem;
+    font-weight: 200;
+}
+
+.footerContent {
+    width: 90vw;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerContent ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footerContent li {
+    display: inline;
+    color: #bdbdbd;
+    font-size: 1.8rem;
+}
