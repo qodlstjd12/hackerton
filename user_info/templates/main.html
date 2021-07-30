@@ -1,0 +1,106 @@
+<!doctype html>
+{% load static %}
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+<section class="contextContainer">
+    <div class="slideContainer">
+        <div class="slide">
+            <input type="radio" name="pos" id="pos1" checked>
+            <input type="radio" name="pos" id="pos2">
+            <input type="radio" name="pos" id="pos3">
+            <input type="radio" name="pos" id="pos4">
+            <ul>
+                <li><img src="https://www.childfund.or.kr/resources/images/campaign/cpView20000270/visual_img01.jpg">
+                </li>
+                <li><img src="https://www.unicef.or.kr/drtv/power/asset/images/meta.jpg">
+                </li>
+                <li><img src="https://i.ytimg.com/vi/PC8b0AuukjM/maxresdefault.jpg">
+                </li>
+                <li><img
+                        src="https://www.redcross.or.kr/images/donation_participation_v2/membership-div-img01.jpg?v=20201202001">
+                </li>
+            </ul>
+            <p class="bullet">
+                <label for="pos1"></label>
+                <label for="pos2"></label>
+                <label for="pos3"></label>
+                <label for="pos4"></label>
+            </p>
+        </div>
+    </div>
+    <div class="introContainer">
+        <h2>십시일반 (十匙一飯)</h2>
+        <h2>밥 열 술이 한 그릇이 된다는 뜻으로, 여러 사람이 조금씩 힘을 합하면 한 사람을 돕기 쉬움을 이르는 말입니다</h2>
+        <h2>
+            {% if user.is_authenticated %}
+            {% csrf_token %}
+            사용자 : 
+            {{request.user.email}}
+            {% endif %}
+        </h2>
+    </div>
+    <div class="helpContainer">
+        <div class="helpTitle">
+            <h2>도움이 필요해요!</h2>
+            <h2>더보기</h2>
+        </div>
+        <div class="helpSlide">
+            <div class="helpBox">
+                <img src="https://www.sc.or.kr/upload/Editor/2021/editor_1626167975242.jpg">
+                <h2>우리 엄마, 아프지 말고 오래오래, 그후</h2>
+                <h2>마미증후군과 복합통증증후군으로 몸이 아파 일을 할 수 없는 엄마. 그리고 10살 고은이. 기초생활 수급비만으로는...</h2>
+            </div>
+            <div class="helpBox">
+                <img src="https://www.sc.or.kr/upload/Editor/2021/editor_1626167975242.jpg">
+                <h2>우리 엄마, 아프지 말고 오래오래, 그후</h2>
+                <h2>마미증후군과 복합통증증후군으로 몸이 아파 일을 할 수 없는 엄마. 그리고 10살 고은이. 기초생활 수급비만으로는...</h2>
+            </div>
+
+        </div>
+    </div>
+    <div class="marketContainer">
+        <div class="marketTitle">
+            <h2>재능기부</h2>
+            <h2>더보기</h2>
+        </div>
+        <div class="marketSlide">
+            <div class="marketBox">
+                <img src="https://www.jaenung.net/ceoalba/list_img2/kyk0512_20210107172757523117.jpg">
+                <h2>원하는 컨셉으로 맞춤 PPT 디자인 제작</h2>
+                <h2>원하는 컨셉으로 1:1 맞춤 PPT 디자인 제작해드립니다. 어떤 디자인이든 제작 가능</h2>
+            </div>
+            <div class="marketBox">
+                <img src="https://www.jaenung.net/ceoalba/list_img2/kyk0512_20210107172757523117.jpg">
+                <h2>원하는 컨셉으로 맞춤 PPT 디자인 제작</h2>
+                <h2>원하는 컨셉으로 1:1 맞춤 PPT 디자인 제작해드립니다. 어떤 디자인이든 제작 가능</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="footerContent">
+    <ul>
+        <li>
+            <i class="fa fa-home"></i>
+        </li>
+        <li>
+            <i class="fa fa-search"></i>
+        </li>
+        <li>
+            <i class="fa fa-shopping-basket"></i>
+        </li>
+        <li>
+            <i class="fa fa-user"></i>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
