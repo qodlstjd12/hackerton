@@ -45,6 +45,7 @@
             {% csrf_token %}
             사용자 : 
             {{request.user.email}}
+            <a href="{% url 'list:list_view' %}">리스트 보기</a>
             {% endif %}
         </h2>
     </div>
