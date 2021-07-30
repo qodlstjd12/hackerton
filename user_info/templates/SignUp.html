@@ -14,64 +14,64 @@
             <span class="title1">회원가입</span><br>
             <span class="title2">아래의 정보를 입력해주세요</span>
         </div>
-        <table class="Login-form">
-            <tr>
-                <td class="Login-table-text">
-                    <span><b>이름</b></span>
-                </td>
-                <td class="Login-table-input">
-                    <input placeholder="홍길동" type="text">
-                </td>
-            </tr>
-            <tr>
-                <td class="Login-table-text">
-                    <span><b>아이디</b></span>
-                </td>
-                <td class="Login-table-input">
-                    <input placeholder="email@naver.com" type="text">
-                </td>
-            </tr>
-            <tr>
-                <td class="Login-table-text">
-                    <span><b>비밀번호</b></span>
-                </td>
-                <td class="Login-table-input">
-                    <input placeholder="8자리 이상" type="password">
-                </td>
-            </tr>
-            <tr>
-                <td class="Login-table-text">
-                    <span><b>비밀번호확인</b></span>
-                </td>
-                <td class="Login-table-input">
-                    <input placeholder="8자리 이상" type="password">
-                </td>
-            </tr>
-            <tr>
-                <td class="Login-table-text">
-                    <span><b>연락처</b></span>
-                </td>
-                <td class="Login-table-input">
-                    <input placeholder="010-0000-0000" type="text">
-                </td>
-            </tr>
-        </table>
-        <div class="help-btn">
-            <button>도움을 원해요</button>
-            <button>도움을 줄래요</button>
-            <div class="file-upload">
-                <input type='file' accept='image/jpg,image/png,image/jpeg,image/gif' id='profile_img_upload'/>
-                <label for='profile_img_upload'><i class="far fa-file-image"/>&nbsp;파일 선택</label>
+        <form action="{% url 'user_info:SignUp' %}" method="POST">
+            {% csrf_token %}
+            <table class="Login-form">
+                <tr>
+                    <td class="Login-table-text">
+                        <span><b>이름</b></span>
+                    </td>
+                    <td class="Login-table-input">
+                        <input placeholder="홍길동" type="text" name = "user_name">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Login-table-text">
+                        <span><b>아이디</b></span>
+                    </td>
+                    <td class="Login-table-input">
+                        <input placeholder="email@naver.com" type="text" name = "user_email">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Login-table-text">
+                        <span><b>비밀번호</b></span>
+                    </td>
+                    <td class="Login-table-input">
+                        <input placeholder="8자리 이상" type="password" name = "user_pw1">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Login-table-text">
+                        <span><b>비밀번호확인</b></span>
+                    </td>
+                    <td class="Login-table-input" z>
+                        <input placeholder="8자리 이상" type="password" name = "user_pw2">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Login-table-text">
+                        <span><b>연락처</b></span>
+                    </td>
+                    <td class="Login-table-input">
+                        <input placeholder="010-0000-0000" type="text" name = "user_num">
+                    </td>
+                    <td class="Login-table-text">
+                        <span><b>계좌번호</b></span>
+                    </td>
+                    <td class="Login-table-input">
+                        <input placeholder="은행이름" type="text" name = "user_acname">
+                        <input placeholder="000-00000-00000" type="text" name = "user_acnum">
+                    </td>
+                </tr>
+            </table>
+
+            <div class="agree">
+                <input type="checkbox">
+                <span>개인정보 수집 및 이용에 동의합니다.</span>
             </div>
-        </div>
-
-
-        <div class="agree">
-            <input type="checkbox">
-            <span>개인정보 수집 및 이용에 동의합니다.</span>
-        </div>
-        <button type="button" class="btn" >가입완료</button>
-
+            <button type="submit" class="btn" >가입완료</button>
+        </form>
 
 
     </div>

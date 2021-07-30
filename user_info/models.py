@@ -50,3 +50,11 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
+
+class UserInfo(models.Model):
+    user_email = models.CharField(null=True, max_length = 30)
+    user_phone = models.CharField(null=True, max_length = 30)
+    user_name = models.CharField(null=True, max_length = 20)
+    user_account_name = models.CharField(null=True, max_length = 20)
+    user_account = models.CharField(null=True, max_length = 30)

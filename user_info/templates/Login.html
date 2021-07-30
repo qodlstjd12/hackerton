@@ -108,7 +108,7 @@
         <div class="LOGO">LOGO</div>
     </div>
     <div class="Box">
-        <form method="POST" action="{% url 'login_view' %}">
+        <form method="POST" action="{% url 'user_info:login_view' %}">
             {% csrf_token %}
             <table class="Login-form">
                 <tr class="Login-table-content">

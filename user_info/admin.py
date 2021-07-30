@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-
+from .models import UserInfo
 from .models import CustomUser
 
+admin.site.register(UserInfo)
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
