@@ -14,9 +14,11 @@
 <div class="searchContent">
     <input type="text" class="searchText" placeholder="Search Bar"/><i class="fa fa-search searchIcon"></i>
 </div>
- {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
             <a href="{% url 'user_info:home' %}">뒤로 가기</a>
+            <a href="{% url 'list:new' %}">글 쓰기</a>
             {% endif %}
+
 <div class="feedBox">
     <div class="feedContent">
         <img class="feedImage"
@@ -60,6 +62,17 @@
             <button class="btn">후원하기</button>
         </div>
     </div>
+        {% for post in post %}
+        <br>
+        <h3>{{post.title}}</h3>
+        <br>
+        {{post.body}}
+        <br>
+            {% if post.photo %}
+            <img src='{{post.photo.url}}'}}>
+            {% endif %}
+        <a href="{% url 'list:delete' post.id %}">삭제</a>
+        {% endfor %}
 </div>
 <div class="footerContent">
     <ul>

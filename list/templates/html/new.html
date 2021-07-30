@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>글쓰기 view</h1>
+    <form action="{% url 'list:new' %}" method="POST" enctype='multipart/form-data'>
+       {% csrf_token %}
+       제목 : <input type="text" name="title" id=""> 
+       본문 : <textarea name="body" cols="30" rows="10"></textarea>
+       <input type="file" name='image'>
+       <input type="submit" value="등록">
+       <a href="{% url 'list:list_view' %}">뒤로 가기</a>
+    </form>
+</body>
+</html>

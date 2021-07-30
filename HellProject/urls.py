@@ -17,6 +17,8 @@ from django import urls
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
+from django.conf.urls.static import static
+from HellProject import settings
 import user_info.views
 
 urlpatterns = [
@@ -24,3 +26,4 @@ urlpatterns = [
     path('', include('user_info.urls'), name = 'user_info'),
     path('listview/', include('list.urls'), name='list'),
 ]
+urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
