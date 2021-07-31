@@ -20,7 +20,7 @@
             {% endif %}
 
 <div class="feedBox">
-    <div class="feedContent">
+    {% comment %} <div class="feedContent">
         <img class="feedImage"
              src="https://ww.namu.la/s/50ec79e07868dd8be7c62f3ca97267517b4f7b8d43b05470c645b336541fdd3593e3a3469a82a8c904f050382ff3c8551606ac7de623941d726582f74a03670a410e212fd9b5e2c25c3e554b96aca714fee665dd03b0171fa3b09a2a44d99bc9f8881f7ca05f4a69229b1094489c2d87">
         <h2 class="feedTitle">아버지 잠깐 쉬게 해드리고싶네요.</h2>
@@ -61,16 +61,21 @@
             <button class="btn">더 알아보기</button>
             <button class="btn">후원하기</button>
         </div>
-    </div>
+    </div> {% endcomment %}
         {% for post in post %}
+
+            {% for image in photo %}
+                {% if image.post == post %}
+                <img src= '{{image.image.url}}'> 
+                {% endif %}
+            {% endfor %}
         <br>
         <h3>{{post.title}}</h3>
         <br>
         {{post.body}}
         <br>
-            {% if post.photo %}
-            <img src='{{post.photo.url}}'}}>
-            {% endif %}
+        <a href="#">더 알아보기</a>
+        <a href="#">후원하기</a>
         <a href="{% url 'list:delete' post.id %}">삭제</a>
         {% endfor %}
 </div>

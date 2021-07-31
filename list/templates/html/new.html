@@ -12,7 +12,7 @@
        {% csrf_token %}
        제목 : <input type="text" name="title" id=""> 
        본문 : <textarea name="body" cols="30" rows="10"></textarea>
-       <input type="file" name='image'>
+       <input type="file" name='images' multiple>
        <input type="submit" value="등록">
        <a href="{% url 'list:list_view' %}">뒤로 가기</a>
     </form>
