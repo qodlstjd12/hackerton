@@ -4,6 +4,8 @@ from django.utils import timezone  # pub_date를 위해 import
 from django.contrib import auth
 from .models import UserInfo, CustomUser
 
+
+
 def home(request):
     return render(request, 'index.html')
 

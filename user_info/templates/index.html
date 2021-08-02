@@ -15,7 +15,7 @@
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
         <li><a href="{% url 'list:list_view' %}" class="navItem">후원하기</a></li>
         <li><a href="#" class="navItem">재능마켓</a></li>
-        <li><a href="#" class="navItem">문의하기</a></li>
+        <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
         <li><a href="#" class="navItem">마이페이지</a></li>
         {% if not user.is_authenticated %}
             <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
@@ -23,7 +23,7 @@
             <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
         {% endif %}
     </ul>
-</div>s
+</div>
 <div class="banner">
     <div class="content">
         <h2>나의 소중한 후원을<br>수수료 없이 다이렉트로, 후원트</h2>
@@ -67,7 +67,7 @@
         <li><a href="#" class="navItem">기업소개</a></li>
         <li><a href="#" class="navItem">이용약관</a></li>
         <li><a href="#" class="navItem">개인정보 처리방침</a></li>
-        <li><a href="#" class="navItem">고객센터</a></li>
+        <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">고객센터</a></li>
     </ul>
     <span class="line"></span>
     <h2>(주)후원트 (대표이사:후대표) | 대구광역시 수성구 범어천로20 두산위브더제니스 4202호 | 통신판매번호 : 00-00-00-00

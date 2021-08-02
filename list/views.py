@@ -32,6 +32,7 @@ def new(request):
     else:
         form = PostForm()
         return render(request, 'html/new.html',{'post':form})
+        
 def delete(request, id):
     post = Post.objects.get(id=id)
     post.delete()
