@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.header {
+    width: 70vw;
+    height: 50px;
+    margin-bottom: 20px
+}
+
+.header ul {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.header .logo {
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+.header ul li a span {
+    color: #f14a60;
+}
+
+.header .navItem {
+    font-size: 1em;
+    font-weight: 700;
+}
+
+h2 {
+    text-align: center;
+}
+
+.underLine {
+    size: 10px;
+}
+
+.inputArea {
+    width: 70vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.inputArea form {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    border: none;
+    font-size: 1rem;
+    margin-top: 20px;
+
+}
+
+.title {
+    height: 35px;
+    font-size: 0.8rem;
+    font-weight: 300;
+
+}
+
+.formText {
+    height: 60vh;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.attach {
+    margin: 10px 5px;
+
+}
+
+.diarySubmit {
+    width: 70vw;
+    height: 64px;
+    border-radius: 32px;
+    background-color: #f14a60;
+    color: white;
+    font-size: 20px;
+    border: none;
+    margin: 50px 0 50px 0;
+}
