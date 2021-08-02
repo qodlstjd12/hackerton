@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+body {
+    height: 100vh;
+    text-align: center;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.LOGO {
+    font-size: 3em;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.LOGO span {
+    color: #f14a60;
+}
+
+.Box {
+    background-color: white;
+    height: 380px;
+    width: 300px;
+    text-align: center;
+    margin: 0px auto;
+    border-radius: 15px;
+    /*box-shadow: 3px 7px 21px 2px rgba(153, 153, 153, 0.7);*/
+}
+
+.Login-form {
+    text-align: center;
+    margin: 0px auto;
+}
+
+.Login-form span {
+    color: black;
+    font-size: 12px;
+}
+
+.Login-form input {
+    border: none;
+    width: 100%;
+}
+
+.Login-table-text {
+    text-align: left;
+    width: 50px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    padding: 10px;
+}
+
+.Login-table-input {
+    width: 260px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    padding: 10px;
+}
+
+.btn {
+    position: relative;
+    margin-top: 15px;
+    width: 258px;
+    height: 40px;
+    background: #f14a60;
+    border-radius: 15px;
+    background-size: 200%;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    display: inline;
+}
+
+.new-login {
+    position: relative;
+    width: 258px;
+    text-align: center;
+    margin: 0px auto;
+    font-size: 11px;
+    margin-top: 20px;
+}
+
+.new-login td {
+    width: 33%;
+}
+
+.new-login a {
+    color: black;
+    text-decoration: none;
+}
+
+.kakao {
+    width: 50px;
+    height: 50px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.google {
+    width: 50px;
+    height: 50px;
+    border-radius: 70%;
+    border: black;
+    overflow: hidden;
+}
+
+.site-img td {
+    width: 80px;
+}

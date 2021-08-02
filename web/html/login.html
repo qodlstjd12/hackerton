@@ -1,24 +1,32 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="kor">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
     <title>Login Form</title>
 </head>
 <body>
+    {% if messages %}
+    {% for message in messages %}
+        {{ message.message }}
+    {% endfor %}
+    {% endif %}
 <div class="LOGOBox">
     <div class="LOGO">Who<span>Want</span></div>
 </div>
 <div class="Box">
+    <form method="POST" action="{% url 'user_info:login_view' %}">
+        {% csrf_token %}
     <table class="Login-form">
         <tr class="Login-table-content">
             <td class="Login-table-text">
                 <span><b>이메일</b></span>
             </td>
             <td class="Login-table-input">
-                <input placeholder="email@email.com" type="email">
+                <input placeholder="email@naver.com" type="email" name="userid">
             </td>
         </tr>
         <tr class="Login-table-content">
@@ -26,16 +34,16 @@
                 <span><b>비밀번호</b></span>
             </td>
             <td class="Login-table-input">
-                <input placeholder="●●●●●●●" type="Password">
+                <input placeholder="●●●●●●●" type="Password" name="userpw">
             </td>
         </tr>
-
     </table>
     <button type="button" class="btn">로그인</button>
+    </form>
     <table class="new-login" border="1" bordercolor="black" frame="void" rules="cols">
         <tr>
             <td>
-                <a href="#">회원가입</a>
+                <a href="{% url 'user_info:SignUp' %}">회원가입</a>
             </td>
             <td>
                 <a href="#">아이디찾기</a>
