@@ -5,7 +5,7 @@ from django.contrib import auth
 from .models import UserInfo, CustomUser
 
 def home(request):
-    return render(request, 'main.html')
+    return render(request, 'index.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -16,15 +16,15 @@ def login_view(request):
             auth.login(request, user)
             return redirect('user_info:home')
         else:
-            return render(request, 'Login.html', {'error': "username or passowrd is incorrect"})
+            return render(request, 'login.html', {'error': "username or passowrd is incorrect"})
     else:
-        return render(request, 'Login.html')
+        return render(request, 'login.html')
 
 
 def mypage(request):
     return render(request, 'mypage.html')
 
-def SignUp(request):
+def signup(request):
     if request.method == "POST":
         if request.POST["user_pw1"] == request.POST["user_pw2"]:
             user = CustomUser.objects.create_user(
@@ -38,5 +38,10 @@ def SignUp(request):
             user_contents.user_account_name = request.POST['user_acnum']
             user_contents.save()
             return redirect('user_info:home')
-        return render(request, 'SignUp.html')
-    return render(request, 'SignUp.html')
+        return render(request, 'signup.html')
+    return render(request, 'signup.html')
+
+
+def logout_view(request):
+    auth.logout(request)
+    return redirect('user_info:home')
