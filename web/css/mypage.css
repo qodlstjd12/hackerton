@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+}
+
+.header {
+    width: 70vw;
+    height: 50px;
+}
+
+.header ul {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.header .logo {
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+.header ul li a span {
+    color: #f14a60;
+}
+
+.header .navItem {
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.profile_box{
+    width: 100%;
+    height: 180px;
+    background-color: #ffd0d6;
+}
+
+.profile_box .profile{
+    height: 70px;
+    border-radius: 50%;
+    margin-top: 15px;
+}
+
+
+.profile_box .nickname{
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+}
+
+.profile_box .email{
+    font-size: 15px;
+    color: white;
+}
+
+.inner_box1{
+    width: 35%;
+    height: 450px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 10px 10px 35px rgb(214, 214, 214);
+    float: left;
+    margin-left: 14.5%;
+    margin-right: 1%;
+}
+
+.inner_box2{
+    width: 35%;
+    height: 450px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 10px 10px 35px rgb(214, 214, 214);
+    float: left;
+    margin-right: 14.5%;
+}
+
+.table_1 p{
+    font-size: 16px;
+    font-weight: bold;
+}
+.table_1{
+    margin-top: 5px;
+    padding-top: 20px;
+}
+
+.inner_box1 img{
+    width: 60px;
+    height: auto;
+}
+
+.inner_box2 img{
+    width: 50px;
+    height: auto;
+}
+
+.inner_box1 .first_img{
+    width: 100px;
+    text-align: center;
+}
+
+.inner_box2 .second_img{
+    width: 100px;
+    text-align: center;
+}
+
+
+.inner_box1 .first_text{
+    width: 250px;
+}
+
+.inner_box2 .second_text{
+    width: 250px;
+}
+
+
+.graph {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.graph h2 {
+    font-size: 1.1rem;
+    font-weight: 300;
+
+}
+
+.graph .graphContent {
+    height: 80%
+}
+
+.money-list{
+    margin-top: 2px;
+}
+
+.money{
+    width: 248px;
+    height: 45px;
+}
+
+.money span{
+    font-size: 14px;
+    width: 300px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.money-user{
+    height: 100px;
+}
+
+.money-user input{
+    height: 35px;
+    width: 248px;
+    border: none;
+}
+
+.money-btn button{
+    background-color: white;
+    border: 2px solid #f14a60;
+    color: #f14a60;
+    font-weight: bold;
+    border-radius: 20px;
+    width: 100px;
+    height: 35px;
+    transition: .3s;
+    overflow: hidden;
+}
+
+
+.money-btn button:hover{
+    background-color: #f14a60;
+    border: 2px solid white;
+    color: white;
+}
+
+.inner_box3{
+    width: 71%;
+    height: 470px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 10px 10px 35px rgb(214, 214, 214);
+    float: left;
+    margin-left: 14.5%;
+    margin-right: 1%;
+}
+
+
+.donate-title{
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.donate-table{
+    align-items: center;
+}
+
+.image-card{
+    width: 250px;
+    height: 200px;
+    margin-top: 10px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    float: left;
+    margin-left: 5px;
+}
+
+.image-card img{
+    width: 250px;
+    height: 110px;
+    border-radius: 5px;
+}
+
+.image-card .title{
+    font-size: 14px;
+    margin: 5px;
+    font-weight: 600;
+    align-items: center;
+}
+.image-card .content{
+    font-size: 10px;
+    margin: 5px;
+}
+
+.image-card button{
+    width: 100px;
+    height: 25px;
+    background-color: #f14a60;
+    border: none;
+    color: white;
+    font-size: 12px;
+}
+
+.image-card button:hover{
+    width: 100px;
+    height: 25px;
+    background-color: #f0a1ac;
+    border: none;
+    color: white;
+    font-size: 12px;
+}
