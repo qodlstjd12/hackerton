@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'user_info',
     'inquiry',
     'imagekit',
+    'market',
 ]
 
 MIDDLEWARE = [
