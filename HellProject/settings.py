@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'list',
     'user_info',
     'inquiry',
+    'imagekit',
 ]
 
 MIDDLEWARE = [

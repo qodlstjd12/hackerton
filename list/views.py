@@ -18,16 +18,16 @@ def new(request):
             print(post.writer)
             post.post_time = timezone.now()
             print(post.post_time)
-            post.save()
             images = request.FILES.getlist('images')
+            post.thumbnail = images[0]
+            print(post.thumbnail.url)
+            post.save()
             for image in images:
                 photo = Photo.objects.create(
                     post=post,
                     image=image,
-                    description='photo_test'
+                    description='photo_test',
                 )
-                print(photo.image.url)
-
             return redirect('list:list_view')
     else:
         form = PostForm()

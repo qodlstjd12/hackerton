@@ -1,8 +1,10 @@
 from django.db import models
 from django.db.models.base import Model
 from django.db.models.deletion import CASCADE
-
 from user_info.models import CustomUser
+
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 # Create your models here.
 
 class Post(models.Model):
@@ -11,7 +13,7 @@ class Post(models.Model):
     # photo = models.ImageField(verbose_name='사진',upload_to='list/',blank=True, null=True)
     post_time = models.DateField(auto_now_add=True)
     body = models.CharField(max_length=500)
-    
+    thumbnail = models.ImageField(verbose_name='썸네일', upload_to='thumbnail/')
     def __str__(self):
         return self.title
 
@@ -21,6 +23,8 @@ class Post(models.Model):
 class Photo(models.Model):
     post = models.ForeignKey(Post,on_delete=CASCADE, null=True, blank=True)
     image = models.ImageField(verbose_name='사진', upload_to='list/',null=True, blank=True)
+#    image_thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(120,80)])
+#    thumbnail = models.ImageField(verbose_name='썸네일')
     description = models.TextField()
     def __str__(self):
         return self.description

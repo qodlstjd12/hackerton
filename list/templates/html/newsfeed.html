@@ -63,16 +63,17 @@
         </div>
     </div> {% endcomment %}
         {% for post in post %}
-
-            {% for image in photo %}
+        <br>
+            {% comment %} {% for image in photo %}
                 {% if image.post == post %}
-                <img src= '{{image.image.url}}'> 
+                <img src= '{{image.thumbnail.url}}'> 
                 {% endif %}
-            {% endfor %}
+            {% endfor %} {% endcomment %}
+            <img src = '{{post.thumbnail.url}}'>
         <br>
-        <h3>{{post.title}}</h3>
+        <h3>제목 : {{post.title}}</h3>
         <br>
-        {{post.body}}
+        본문 : {{post.body}}
         <br>
         <a href="#">더 알아보기</a>
         <a href="#">후원하기</a>
