@@ -26,10 +26,11 @@
 </div>
 <div class="inputArea">
     <h2>재능 마켓 게시글 작성</h2>
-    <form>
-        <textarea placeholder="제목." class="title"></textarea>
-        <textarea placeholder="내용을 입력해주세요." class="formText"></textarea>
-        <input type="file">
+    <form action='{% url 'market:market_Write'%}' method='POST' enctype='multipart/form-data'>
+        {% csrf_token %}
+        <textarea name="title" placeholder="제목." class="title"></textarea>
+        <textarea name="body" placeholder="내용을 입력해주세요." class="formText"></textarea>
+        <input name='image' type="file" multiple>
         <input type="submit" value="제출하기" class="csSubmit">
     </form>
 </div>

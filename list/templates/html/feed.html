@@ -35,6 +35,27 @@
             <a href="{% url 'list:helpWrite' %}">사연 쓰러가기!</a>
         </div>
     </div>
+    
+    {% for post in posts %}
+        <br>
+        <h3>제목 : {{post.title}}</h3>
+        <br>
+        {% if post.created_string == False %}
+        {{post.created|date:'m월 d일'}}
+        {% else %}
+        {{post.created_string}}
+        {% endif %}
+        <br>
+        본문 : {{post.body}}
+        <br>
+        <img src = '{{post.thumbnail.url}}'/>
+        <br>
+        <a href="{% url 'list:feed_Detail' post.id%}">더 알아보기</a>
+        <a href="#">후원하기</a>
+        <a href="{% url 'list:delete' post.id %}">삭제</a>
+        <br>
+        <br>
+    {% endfor %}
     <div class="content">
         <div class="title">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -51,8 +72,6 @@
         </div>
         <div class="btnBox">
             <button type="button">더 알아보기 >></button>
-            <a href="{% url 'list:feed_Detail'%}">Go Detail</a>
-            <a href="{% url 'list:recentView' user_info:UserInfo.id %}">Go Detail</a> 
         </div>
     </div>
     <div class="content">
