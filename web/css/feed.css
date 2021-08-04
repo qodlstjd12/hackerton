@@ -155,7 +155,7 @@ body {
     justify-content: flex-end;
 }
 
-.contentBox .content .btnBox button {
+.contentBox .content .btnBox a {
     height: 50px;
     background: white;
     border-radius: 15px;
@@ -163,6 +163,7 @@ body {
     color: #f14a60;
     font-size: 1.3em;
     font-weight: 800;
+    text-decoration: none;
 }
 
 .footer {
