@@ -22,11 +22,15 @@
 </div>
 <div class="inputArea">
   <h2>후원 게시글 작성</h2>
-  <form>
-    <textarea placeholder="제목." class="title"></textarea>
-    <textarea placeholder="내용을 입력해주세요." class="formText"></textarea>
-    <input type="file">
+  <form action='{% url 'list:helpWrite' %}' method='POST' enctype='multipart/form-data'>
+    {% csrf_token %}
+    
+    <textarea placeholder="제목." class="title" name = 'title'></textarea>
+    <textarea placeholder="내용을 입력해주세요." class="formText" name = 'body'></textarea>
+    
+    <input type="file" name = 'images' multiple>
     <input type="submit" value="제출하기" class="csSubmit">
+
   </form>
 </div>
 </body>
