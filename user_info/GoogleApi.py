@@ -6,6 +6,27 @@ from google.cloud import vision
 from google.cloud.vision_v1 import types
 
 def google_api(t_path):
+
+    area = [
+    "강원",
+    "경기",
+    "충남",
+    "충북",
+    "전북",
+    "전남",
+    "경북",
+    "경남",
+    "제주",
+    "서울",
+    "인천",
+    "대전",
+    "울산",
+    "부산",
+    "대구",
+    "광주",
+    "세종"
+    ]
+
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:\\Users\\LGPC\\Desktop\\LikeLion\\hackerton\\dulcet-iterator-320723-e838186e72f3.json"
 
     # Instantiates a client
@@ -29,42 +50,31 @@ def google_api(t_path):
     text = ""
     for label in labels:
         text = label.description + text
-    
+        
+    text = text.replace("\n", "")
     phoneNumRegex1 = re.compile(r'\d{3}-\d{4}-\d{4}') # ^는 문장의 시작을 의미
     phoneNumRegex2 = re.compile(r'(?P<NAME>\w+)+님') # ~님 이름 뽑는 정규표현식
     phoneRegex = re.compile(r'''(
         (\d{2}|\(\d{2}\)|\d{3}|\(\d{3}\))?      # 지역번호 : 2자리 또는 3자리, () 포함, 0번또는 1번  
-        (|-|\.)?                                # 구분자 : 하이푼 또는 . 0번 또는 1번  
+        (-)?                                # 구분자 : 하이푼 또는 . 0번 또는 1번  
         (\d{3}|\d{4})                           # 3자리 또는 4자리 숫자  
-        (\s|-|\.)                               # 구분자  
+        (-)                               # 구분자  
         (\d{4})                                 # 4자리 숫자  
         )''', re.VERBOSE)
-    area = [
-    "강원도",
-    "경기도",
-    "충청남도",
-    "충청북도",
-    "전라북도",
-    "전라남도",
-    "경상북도",
-    "경상남도",
-    "제주특별자치도",
-    "서울특별시",
-    "인천광역시",
-    "대전광역시",
-    "울산광역시",
-    "부산광역시",
-    "대구광역시",
-    "광주광역시",
-    "세종특별자치시"
-    ]
+ 
+    print(text)
+
     if phoneNumRegex1.findall(text) != [] :
-        return False
-    elif phoneNumRegex2.findall(text) != [] :
+        print("phoneNumRegex1")
         return False
     elif phoneRegex.findall(text) != [] :
-        return False
-    elif text in area:
+        print(phoneRegex.findall(text))
         return False
     else:
-        return True
+       for i in area:
+            print(text.find(i))
+            if text.find(i) != -1:
+                print("area")
+                return False
+    return True
+        

@@ -5,6 +5,7 @@ from django.contrib import auth
 from .models import UserInfo, CustomUser, whodonate, Post1
 from .form import PostForm
 from .GoogleApi import google_api
+import os
 
 def home(request):
     return render(request, 'index.html')
@@ -46,8 +47,12 @@ def logout_view(request):
     return redirect('user_info:home')
 
 def mypage(request):
-    user = CustomUser.objects.get(email=request.user.email)
-    userinfo = UserInfo.objects.get(user_email=user)
+    try:
+        user = CustomUser.objects.get(email=request.user.email)
+        userinfo = UserInfo.objects.get(user_email=user)
+    except:
+        return render(request, 'mypage.html')
+
     if userinfo.qua == "yes":
         return redirect('user_info:sponserpage')
 
@@ -85,8 +90,8 @@ def recentWrite(request):
             post.writer = request.user
             post.post_time = timezone.now()
             post.photo=request.FILES.get('image')
-            print(post.photo.path)
             path = str(post.photo.path).split('\\')
+            post.save()
             t_path  = ''
             for i in path:
                 if i == 'media':
@@ -96,9 +101,10 @@ def recentWrite(request):
                 else:    
                     t_path = t_path + i + '\\'
             if google_api(t_path):
-                post.save()
                 return redirect('user_info:home')
             else:
+                post.delete()
+                os.remove(t_path)
                 return render(request, 'recentWrite.html',{'error': "error"})
             
     else:
