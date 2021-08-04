@@ -13,12 +13,16 @@
 <body>
 <div class="header">
     <ul>
-        <li><a href="#" class="logo">WHO<span>WANT</span></a></li>
-        <li><a href="#" class="navItem">후원하기</a></li>
-        <li><a href="#" class="navItem">재능마켓</a></li>
-        <li><a href="#" class="navItem">문의하기</a></li>
-        <li><a href="#" class="navItem">마이페이지</a></li>
-        <li><a href="#" class="navItem">로그인</a></li>
+        <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
+        <li><a href="{% url 'list:list_view' %}" class="navItem">후원하기</a></li>
+        <li><a href="{% url 'market:market_view' %}" class="navItem">재능마켓</a></li>
+        <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
+        <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
+        {% if not user.is_authenticated %}
+            <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
+        {% else %}
+            <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
+        {% endif %}
     </ul>
 </div>
 
@@ -28,31 +32,8 @@
         <div class="verticalTextBox">
             <h2>도움을 주고싶나요?</h2>
             <h3>내가 가진 재능을 다른사람에게 공유해 주세요!</h3>
-            <a href="{% url 'market:market_Write' %}">사연 쓰러가기!</a>
         </div>
     </div>
-    {% for post in posts %}
-        <br>
-        <h3>제목 : {{post.title}}</h3>
-        <br>
-        {% if post.created_string == False %}
-        {{post.created|date:'m월 d일'}}
-        {% else %}
-        {{post.created_string}}
-        {% endif %}
-        <br>
-        본문 : {{post.body}}
-        <br>
-        <img src ='{{post.thumbnail.url}}' />
-        <br>
-        <a href="{% url 'market:market_Detail' post.id%}">더 알아보기</a>
-        <a href="#">후원하기</a>
-        {% if user == post.writer%}
-        <a href="{% url 'market:market_Delete' post.id %}">삭제</a>
-        {% endif %}
-        <br>
-        <br>
-    {% endfor %}
     <div class="content">
         <div class="title">
             <i class="fa fa-user-circle" aria-hidden="true"></i>

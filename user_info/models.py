@@ -58,3 +58,6 @@ class UserInfo(models.Model):
     user_name = models.CharField(null=True, max_length = 20)
     user_account_name = models.CharField(null=True, max_length = 20)
     user_account = models.CharField(null=True, max_length = 30)
+    cash = models.CharField(null=True, max_length = 30)
+    donate = models.CharField(null=True, max_length = 999)
+    

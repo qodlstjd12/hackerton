@@ -12,21 +12,24 @@
 <body>
 <div class="header">
     <ul>
-        <li><a href="#" class="logo">Who<span>Want</span></a></li>
-        <li><a href="#" class="navItem">후원하기</a></li>
-        <li><a href="#" class="navItem">재능마켓</a></li>
-        <li><a href="#" class="navItem">문의하기</a></li>
-        <li><a href="#" class="navItem">마이페이지</a></li>
-        <li><a href="#" class="navItem">로그인</a></li>
+        <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
+        <li><a href="{% url 'list:list_view' %}" class="navItem">후원하기</a></li>
+        <li><a href="{% url 'market:market_view' %}" class="navItem">재능마켓</a></li>
+        <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
+        <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
+        {% if not user.is_authenticated %}
+            <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
+        {% else %}
+            <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
+        {% endif %}
     </ul>
 </div>
 <div class="inputArea">
     <h2>재능 마켓 게시글 작성</h2>
-    <form action='{% url 'market:market_Write'%}' method='POST' enctype='multipart/form-data'>
-        {% csrf_token %}
-        <textarea name="title" placeholder="제목." class="title"></textarea>
-        <textarea name="body" placeholder="내용을 입력해주세요." class="formText"></textarea>
-        <input name='image' type="file" multiple>
+    <form>
+        <textarea placeholder="제목." class="title"></textarea>
+        <textarea placeholder="내용을 입력해주세요." class="formText"></textarea>
+        <input type="file">
         <input type="submit" value="제출하기" class="csSubmit">
     </form>
 </div>

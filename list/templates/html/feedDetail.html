@@ -10,15 +10,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>후원을 다이렉트로, 후원트</title>
 </head>
+
 <body>
 <div class="header">
     <ul>
-        <li><a href="#" class="logo">WHO<span>WANT</span></a></li>
-        <li><a href="#" class="navItem">후원하기</a></li>
-        <li><a href="#" class="navItem">재능마켓</a></li>
-        <li><a href="#" class="navItem">문의하기</a></li>
-        <li><a href="#" class="navItem">마이페이지</a></li>
-        <li><a href="#" class="navItem">로그인</a></li>
+        <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
+        <li><a href="{% url 'list:list_view' %}" class="navItem">후원하기</a></li>
+        <li><a href="{% url 'market:market_view' %}" class="navItem">재능마켓</a></li>
+        <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
+        <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
+        {% if not user.is_authenticated %}
+            <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
+        {% else %}
+            <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
+        {% endif %}
     </ul>
 </div>
 
@@ -31,22 +36,6 @@
             <h3>후원자의 따듯한 마음을 전해드릴게요</h3>
         </div>
     </div>
-
-    <<여기서 부터 >>
-
-    <br>
-    제목 : {{post.title}}
-    <br>
-    작성자 : {{post.writer}}
-    <br>
-    본문 : {{post.body}}
-    <br>
-    사진 : <img src = "{{post.thumbnail.url}}" />
-    <br>
-    <a href="#" onclick="history.back();">뒤로 가기</a>
-
-    <<여기까지>> -배인성-
-
     <div class="content">
         <div class="title">
             <i class="fa fa-user-circle" aria-hidden="true"></i>

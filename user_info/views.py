@@ -22,10 +22,6 @@ def login_view(request):
     else:
         return render(request, 'login.html')
 
-
-def mypage(request):
-    return render(request, 'mypage.html')
-
 def signup(request):
     if request.method == "POST":
         if request.POST["user_pw1"] == request.POST["user_pw2"]:
@@ -44,6 +40,29 @@ def signup(request):
     return render(request, 'signup.html')
 
 
+
 def logout_view(request):
     auth.logout(request)
     return redirect('user_info:home')
+
+def mypage(request):
+    if request.method == 'POST':
+        money = request.POST['mine']
+        try:
+            money = int(money)
+        except:
+            return render(request, 'mypage.html', {"error" : "failed"})
+        user = CustomUser.objects.get(email=request.user.email)
+        userinfo = UserInfo.objects.get(user_email=user)
+        try:
+            save_money = int(userinfo.cash)
+            print(save_money)
+            print(money)
+            userinfo.cash = money + save_money
+        except:
+            userinfo.cash = money
+        userinfo.save()
+        return render(request, 'mypage.html', {"money" : userinfo.cash})
+       
+
+    return render(request, 'mypage.html')

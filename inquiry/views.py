@@ -11,6 +11,7 @@ def FAQ(request):
     post1 = Post1.objects.filter(writer=user) # 내가 쓴글만
     return render(request, 'FAQ.html', {'post1': post1})
 
+
 def CS(request):
     if request.method == 'POST':
         post1 = Post1()

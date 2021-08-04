@@ -13,15 +13,18 @@
 <body>
 <div class="header">
     <ul>
-        <li><a href="{% url 'user_info:home' %}" class="logo">Who<span>Want</span></a></li>
-        <li><a href="{% url 'list:list_view'%}" class="navItem">후원하기</a></li>
-        <li><a href="#" class="navItem">재능마켓</a></li>
-        <li><a href="#" class="navItem">문의하기</a></li>
-        <li><a href="#" class="navItem">마이페이지</a></li>
-        <li><a href="#" class="navItem">로그인</a></li>
+        <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
+        <li><a href="{% url 'list:list_view' %}" class="navItem">후원하기</a></li>
+        <li><a href="{% url 'market:market_view' %}" class="navItem">재능마켓</a></li>
+        <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
+        <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
+        {% if not user.is_authenticated %}
+            <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
+        {% else %}
+            <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
+        {% endif %}
     </ul>
 </div>
-
 
 <div class="contentBox">
     <div class="makeDonate">
@@ -29,30 +32,9 @@
         <div class="verticalTextBox">
             <h2>후원이 필요 하신가요?</h2>
             <h3>사진과 사연을 통해 후원 요청글을 등록해 보세요!</h3>
-            <a href="{% url 'list:helpWrite' %}">사연 등록하기!!</a>
+            <a href="{% url 'list:helpWrite' %}">사연 쓰러가기!</a>
         </div>
     </div>
-
-    {% for post in posts %}
-        <br>
-        <h3>제목 : {{post.title}}</h3>
-        <br>
-        {% if post.created_string == False %}
-        {{post.created|date:'m월 d일'}}
-        {% else %}
-        {{post.created_string}}
-        {% endif %}
-        <br>
-        본문 : {{post.body}}
-        <br>
-        <img src = '{{post.thumbnail.url}}'/>
-        <br>
-        <a href="{% url 'list:feed_Detail' post.id%}">더 알아보기</a>
-        <a href="#">후원하기</a>
-        <a href="{% url 'list:delete' post.id %}">삭제</a>
-        <br>
-        <br>
-    {% endfor %}
     <div class="content">
         <div class="title">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -61,6 +43,7 @@
                 <h3 class="time">3시간전</h3>
             </div>
         </div>
+        
         <h2 class="contents">저는 어려서 부모님을 잃고, 홀로 동생과 살아가고 있습니다.<br>동생이 이제 초등학교를 들어가는데 옷도 못사주고 너무 힘듭니다.<br>앞으로 어떻게 살아가야 될지
             너무 막막합니다. 제발 도와주세요..</h2>
         <div class="imgBox">
@@ -68,6 +51,8 @@
         </div>
         <div class="btnBox">
             <button type="button">더 알아보기 >></button>
+            <a href="{% url 'list:feed_Detail'%}">Go Detail</a>
+            <a href="{% url 'list:recentView' user_info:UserInfo.id %}">Go Detail</a> 
         </div>
     </div>
     <div class="content">
@@ -119,10 +104,5 @@
         유료직업소개사업등록번호 : (국내) 제000-00000-00000 | (국외) 000-0000-0000 | 사업자등록번호 : 0000-0000-0000
         © WhoWantLab, Inc.</h2>
 </div>
-<script>
-    function moveDetail(index) {
-
-    }
-</script>
 </body>
 </html>
