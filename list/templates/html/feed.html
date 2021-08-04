@@ -14,9 +14,10 @@
 <div class="header">
     <ul>
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
-        <li><a href="{% url 'list:list_view' %}" class="navItem">후원하기</a></li>
+        <li><a href="{% url 'list:helpWrite' %}" class="navItem">후원받기</a></li>
         <li><a href="{% url 'market:market_view' %}" class="navItem">재능마켓</a></li>
         <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
+        <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">FAQ</a></li>
         <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
         {% if not user.is_authenticated %}
             <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
@@ -68,7 +69,7 @@
         <h2 class="contents">저는 어려서 부모님을 잃고, 홀로 동생과 살아가고 있습니다.<br>동생이 이제 초등학교를 들어가는데 옷도 못사주고 너무 힘듭니다.<br>앞으로 어떻게 살아가야 될지
             너무 막막합니다. 제발 도와주세요..</h2>
         <div class="imgBox">
-            <img class="contentImg" src="../img/child.jpg">
+            <img class="contentImg" src="{% static 'img/child.jpg' %}">
         </div>
         <div class="btnBox">
             <button type="button">더 알아보기 >></button>
@@ -85,7 +86,7 @@
         <h2 class="contents">저는 결식 아동입니다. 매일 끼니를 어떻게 떼울지 걱정을 합니다.<br>어제는 결식아동 급식카드에 돈이 제대로 입금되지 않아 저녁도 먹지 못했습니다.<br>오늘도
             여전히 돈이 제대로 들어오지 않았습니다. 오늘도 굶으면 정말 죽을거 같아요 제발 저를 도와주세요...</h2>
         <div class="imgBox">
-            <img class="contentImg" src="../img/hungry.jpg">
+            <img class="contentImg" src="{% static 'img/hungry.jpg' %}">
         </div>
         <div class="btnBox">
             <button type="button">더 알아보기 >></button>
@@ -103,7 +104,7 @@
             지병이 있어 많이 편찮으십니다. 어려서부터 가난하여 남들이 다 먹어보고 즐겨먹는 치킨조차 한번도 못먹어 봤습니다. <br>제발 할머니랑 좋은 추억도 만들고 치킨도 한마리 먹게 해주세요ㅠㅠ
         </h2>
         <div class="imgBox">
-            <img class="contentImg" src="../img/chicken.png">
+            <img class="contentImg" src="{% static 'img/chicken.png' %}">
         </div>
         <div class="btnBox">
             <button type="button">더 알아보기 >></button>

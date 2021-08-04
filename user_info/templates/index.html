@@ -2,6 +2,11 @@
 {% load static %}
 <html lang="kor">
 <head>
+    <script>
+    function newPage()  {
+        window.location.href = "{% url 'list:list_view' %}"
+    }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -9,14 +14,14 @@
     <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
     <title>후원을 다이렉트로, 후원트</title>
 </head>
-
 <body>
-<div class="header">
+<div class="header1">
     <ul>
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
-        <li><a href="{% url 'list:list_view' %}" class="navItem">후원하기</a></li>
+        <li><a href="{% url 'list:helpWrite' %}" class="navItem">후원받기</a></li>
         <li><a href="{% url 'market:market_view' %}" class="navItem">재능마켓</a></li>
         <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
+        <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">FAQ</a></li>
         <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
         {% if not user.is_authenticated %}
             <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
@@ -29,7 +34,7 @@
     <div class="content">
         <h2>나의 소중한 후원을<br>수수료 없이 다이렉트로, 후원트</h2>
         <h3>지금 후원트와 함께 행복을 나눠보세요.</h3>
-        <button type="button" class="startBtn">지금 시작하기</button>
+        <button type="button" class="startBtn" onclick='newPage()' >지금 시작하기</button>
     </div>
 </div>
 <div class="intro">
@@ -68,7 +73,7 @@
         <li><a href="#" class="navItem">기업소개</a></li>
         <li><a href="#" class="navItem">이용약관</a></li>
         <li><a href="#" class="navItem">개인정보 처리방침</a></li>
-        <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">고객센터</a></li>
+        <li><a href="#" class="navItem">고객센터</a></li>
     </ul>
     <span class="line"></span>
     <h2>(주)후원트 (대표이사:후대표) | 대구광역시 수성구 범어천로20 두산위브더제니스 4202호 | 통신판매번호 : 00-00-00-00

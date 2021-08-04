@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
-
+from django.db.models.deletion import CASCADE
 
 class CustomUserManager(BaseUserManager):
     """
@@ -58,6 +58,27 @@ class UserInfo(models.Model):
     user_name = models.CharField(null=True, max_length = 20)
     user_account_name = models.CharField(null=True, max_length = 20)
     user_account = models.CharField(null=True, max_length = 30)
-    cash = models.CharField(null=True, max_length = 30)
-    donate = models.CharField(null=True, max_length = 999)
+    cash = models.CharField(null=True, max_length = 30, blank=True)
+    qua = models.CharField(null=True, max_length = 30, blank=True)
+
+class whodonate(models.Model):
+    whogetmoney = models.CharField(null=True, max_length = 30)
+    givemoney = models.CharField(null=True, max_length = 30)
+    whogivemoney = models.CharField(null=True, max_length = 30)
+    date = models.CharField(null=True, max_length = 30)
+## abas@naver.com 후원받는사람
+## kim@naver.com, tony1234@naver.com 후원하는사람
+
+
+class Post1(models.Model):
+    title = models.CharField(max_length=100)
+    writer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='users1')
+    photo = models.ImageField(verbose_name='사진',upload_to='userinfo/',blank=True, null=True)
+    post_time = models.DateField(auto_now_add=True)
+    body = models.CharField(max_length=500)
     
+    def __str__(self):
+        return self.title
+
+    def summary(self):
+        return self.body[:100]

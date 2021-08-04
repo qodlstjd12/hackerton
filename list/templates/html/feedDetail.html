@@ -2,6 +2,11 @@
 {% load static %}
 <html lang="kor">
 <head>
+    <script>
+        function newPage()  {
+            window.location.href = "{% url 'user_info:recentWrite' %}"
+          }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -15,9 +20,10 @@
 <div class="header">
     <ul>
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
-        <li><a href="{% url 'list:list_view' %}" class="navItem">후원하기</a></li>
+        <li><a href="{% url 'list:helpWrite' %}" class="navItem">후원받기</a></li>
         <li><a href="{% url 'market:market_view' %}" class="navItem">재능마켓</a></li>
         <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
+        <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">FAQ</a></li>
         <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
         {% if not user.is_authenticated %}
             <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
@@ -45,6 +51,7 @@
     사진 : <img src = "{{post.thumbnail.url}}" />
     <br>
     <a href="#" onclick="history.back();">뒤로 가기</a>
+    <a href="{% url 'user_info:recentView' %}" >근황 보기</a>
 
     <<여기까지>> -배인성-
 

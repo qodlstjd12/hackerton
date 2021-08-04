@@ -7,7 +7,11 @@ from django.contrib.auth.models import User
 from user_info.models import UserInfo, CustomUser
 
 def FAQ(request):
-    user = CustomUser.objects.get(email=request.user.email)
+    try:
+        user = CustomUser.objects.get(email=request.user.email)
+    except:
+        return render(request, 'FAQ.html')
+        
     post1 = Post1.objects.filter(writer=user) # 내가 쓴글만
     return render(request, 'FAQ.html', {'post1': post1})
 

@@ -2,6 +2,11 @@
 {% load static %}
 <html lang="kor">
 <head>
+    <script>
+        function newPage()  {
+            window.location.href = "{% url 'inquiry:CS' %}"
+          }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -73,7 +78,7 @@
         {% endfor %}
     </div>
 {% endif %}
-<input type="submit" value="1:1 문의하기" class="askBtn">
+<input type="submit" value="1:1 문의하기" class="askBtn"  onclick='newPage()'>
 
 
 <script>

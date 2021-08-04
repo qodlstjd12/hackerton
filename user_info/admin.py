@@ -1,9 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import UserInfo
-from .models import CustomUser
+from .models import CustomUser, whodonate, Post1
 
 admin.site.register(UserInfo)
+admin.site.register(CustomUser)
+admin.site.register(whodonate)
+admin.site.register(Post1)
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
