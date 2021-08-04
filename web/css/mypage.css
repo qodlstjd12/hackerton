@@ -13,6 +13,7 @@ body {
     align-items: center;
     min-height: 100vh;
     width: 100vw;
+    background: #f6f9f6;
 }
 
 .header {
@@ -48,219 +49,256 @@ body {
     font-weight: 700;
 }
 
-.profile_box{
-    width: 100%;
-    height: 180px;
-    background-color: #ffd0d6;
-}
-
-.profile_box .profile{
-    height: 70px;
-    border-radius: 50%;
-    margin-top: 15px;
-}
-
-
-.profile_box .nickname{
-    font-size: 18px;
-    color: white;
-    font-weight: bold;
-}
-
-.profile_box .email{
-    font-size: 15px;
-    color: white;
-}
-
-.inner_box1{
-    width: 35%;
-    height: 450px;
-    margin-top: 10px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 10px 10px 35px rgb(214, 214, 214);
-    float: left;
-    margin-left: 14.5%;
-    margin-right: 1%;
-}
-
-.inner_box2{
-    width: 35%;
-    height: 450px;
-    margin-top: 10px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 10px 10px 35px rgb(214, 214, 214);
-    float: left;
-    margin-right: 14.5%;
-}
-
-.table_1 p{
-    font-size: 16px;
-    font-weight: bold;
-}
-.table_1{
-    margin-top: 5px;
-    padding-top: 20px;
-}
-
-.inner_box1 img{
-    width: 60px;
-    height: auto;
-}
-
-.inner_box2 img{
-    width: 50px;
-    height: auto;
-}
-
-.inner_box1 .first_img{
-    width: 100px;
-    text-align: center;
-}
-
-.inner_box2 .second_img{
-    width: 100px;
-    text-align: center;
-}
-
-
-.inner_box1 .first_text{
-    width: 250px;
-}
-
-.inner_box2 .second_text{
-    width: 250px;
-}
-
-
-.graph {
-    width: 350px;
+.userProfile {
+    width: 70vw;
+    height: 159px;
     display: flex;
     flex-direction: column;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    align-items: center;
     justify-content: center;
-
+    box-shadow: 0 4px 4px -4px black;
+    margin-bottom: 30px;
 }
 
-.graph h2 {
-    font-size: 1.1rem;
-    font-weight: 300;
-
+i {
+    margin: 0 0 10px 0 !important;
 }
 
-.graph .graphContent {
-    height: 80%
+i::before {
+    color: #f14a60;
+    font-size: 50px;
 }
 
-.money-list{
-    margin-top: 2px;
+.userProfile h2 {
+    font-size: 1.5em;
+    font-weight: 400;
 }
 
-.money{
-    width: 248px;
-    height: 45px;
+.userProfile h3 {
+    font-size: 1em;
+    font-weight: 400;
 }
 
-.money span{
-    font-size: 14px;
-    width: 300px;
-    text-align: left;
-    font-weight: bold;
+.horizontalBox {
+    width: 70vw;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
-.money-user{
+.pointBox {
+    width: 34vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    align-items: center;
+    box-shadow: 0 4px 4px -4px black;
+    margin-bottom: 15px;
+}
+
+.titleBox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+i {
+    margin: 0 20px 0 0;
+}
+
+.titleText {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+.titleText h2 {
+    font-size: 1.2em;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.titleText h3 {
+    font-size: 1.5em;
+    font-weight: 400;
+    color: #f14a60;
+}
+
+.pointBox .inputArea {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.tempBox .inputArea {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.inputArea input[type="number"] {
+    border-bottom: #cccccc 1px solid;
+    border-left: medium none;
+    border-right: medium none;
+    border-top: medium none;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    width: 25%;
+}
+
+.inputArea button {
+    width: 27%;
+    height: 35px;
+    background: #f14a60;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.tempBox {
+    width: 34vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 4px -4px black;
+    margin-bottom: 15px;
+}
+
+.donateList {
+    width: 70vw;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    align-items: center;
+    box-shadow: 0 4px 4px -4px black;
+    margin-bottom: 30px;
+}
+
+.donateList h2 {
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    width: 30%;
+    height: 30%;
+    border: solid 1px #cccccc;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 50%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.swiper-slide h2 {
+    font-size: 1em;
+    font-weight: 800;
+}
+
+.swiper-slide h3 {
+    font-size: 0.8em;
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.swiper-slide button {
+    width: 60%;
+    height: 40px;
+    border-radius: 15px;
+    background: #f14a60;
+    color: white;
+    font-size: 1em;
+    font-weight: 400;
+    border: none;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #000;
+}
+
+
+.footer {
+    width: 70vw;
     height: 100px;
 }
 
-.money-user input{
-    height: 35px;
-    width: 248px;
-    border: none;
+.footer .line {
+    display: block;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    margin: 20px 0 20px 0;
 }
 
-.money-btn button{
-    background-color: white;
-    border: 2px solid #f14a60;
+.footer ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.footer .logo {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.footer ul li a span {
     color: #f14a60;
-    font-weight: bold;
-    border-radius: 20px;
-    width: 100px;
-    height: 35px;
-    transition: .3s;
-    overflow: hidden;
 }
 
-
-.money-btn button:hover{
-    background-color: #f14a60;
-    border: 2px solid white;
-    color: white;
+.footer .navItem {
+    font-size: 1em;
+    font-weight: 400;
 }
 
-.inner_box3{
-    width: 71%;
-    height: 470px;
-    margin-top: 10px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 10px 10px 35px rgb(214, 214, 214);
-    float: left;
-    margin-left: 14.5%;
-    margin-right: 1%;
-}
-
-
-.donate-title{
-    margin-top: 20px;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.donate-table{
-    align-items: center;
-}
-
-.image-card{
-    width: 250px;
-    height: 200px;
-    margin-top: 10px;
-    border: 1px solid gainsboro;
-    border-radius: 5px;
-    float: left;
-    margin-left: 5px;
-}
-
-.image-card img{
-    width: 250px;
-    height: 110px;
-    border-radius: 5px;
-}
-
-.image-card .title{
-    font-size: 14px;
-    margin: 5px;
-    font-weight: 600;
-    align-items: center;
-}
-.image-card .content{
-    font-size: 10px;
-    margin: 5px;
-}
-
-.image-card button{
-    width: 100px;
-    height: 25px;
-    background-color: #f14a60;
-    border: none;
-    color: white;
-    font-size: 12px;
-}
-
-.image-card button:hover{
-    width: 100px;
-    height: 25px;
-    background-color: #f0a1ac;
-    border: none;
-    color: white;
-    font-size: 12px;
+.footer h2 {
+    color: #cccccc;
+    font-size: 0.8em;
+    font-width: 400;
 }
