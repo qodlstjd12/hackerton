@@ -35,7 +35,11 @@
         <br>
         <h3>제목 : {{post.title}}</h3>
         <br>
-        글 적은 시간 : {{post.post_time}}
+        {% if post.created_string == False %}
+        {{post.created|date:'m월 d일'}}
+        {% else %}
+        {{post.created_string}}
+        {% endif %}
         <br>
         본문 : {{post.body}}
         <br>
