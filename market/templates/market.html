@@ -33,6 +33,7 @@
         <div class="verticalTextBox">
             <h2>도움을 주고싶나요?</h2>
             <h3>내가 가진 재능을 다른사람에게 공유해 주세요!</h3>
+            <a href="{% url 'market:market_Write' %}"> 재능기부하러가기 </a>
         </div>
     </div>
     {% for post in posts %}
@@ -51,14 +52,30 @@
             </div>
         </div>
         <h2 class="contents">{{post.body}}</h2>
+        {% if post.thumbnail %}
         <div class="imgBox">
             <img class="contentImg" src="{{post.thumbnail.url}}">
         </div>
+        {% endif %}
         <div class="btnBox">
             <button type="button" onclick="location.href='{% url 'market:market_Detail' post.id%}'">더 알아보기 >></button>
         </div>
     </div>
     {% endfor %}
+    <!-- 이전 페이지가 있을때만 보이도록 -->
+    {% if posts.has_previous %} 
+    <a href="?page=1">처음</a>
+    <a href="?page={{posts.previous_page_number}}">이전</a>
+    {% endif %}
+<!-- 현재 몇번째 페이지인지 -->
+    <span>{{posts.number}}</span>
+    <span>of</span>
+    <span>{{posts.paginator.num_pages}}</span>
+<!-- 다음 페이지가 있을때만 보이도록 -->
+    {% if posts.has_next %}
+    <a href="?page={{posts.next_page_number}}">다음</a>
+    <a href="?page={{posts.paginator.num_pages}}">마지막</a>
+    {% endif %}
 </div>
 <div class="footer">
     <ul>

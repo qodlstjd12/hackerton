@@ -2,11 +2,6 @@
 {% load static %}
 <html lang="kor">
 <head>
-    <script>
-        function newPage()  {
-            window.location.href = "{% url 'user_info:recentWrite' %}"
-          }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -102,7 +97,7 @@
                         <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}'">자세히보기</button>
                     </div>
                 {% endfor %}
-                    <button type="button" class="write-btn" onclick="location.href = '{% url 'user_info:recentWrite'%}'">글작성하기</button>
+                    <button type="button" class="write-btn" onclick="location.href = '{% url 'list:helpWrite'%}'">글작성하기</button>
                 </section>
 
                 <section id="content2">
@@ -114,7 +109,7 @@
                         <button type="button" onclick="location.href = '{% url 'user_info:recentView' post.id %}'">자세히보기</button>
                     </div>
                 {% endfor %}
-                    <button type="button" class="write-btn" onclick='newPage()'>글작성하기</button>
+                    <button type="button" class="write-btn" onclick="location.href = '{% url 'user_info:recentWrite'%}'">글작성하기</button>
                 </section>
             </div>
         </div>

@@ -1,4 +1,5 @@
-from datetime import time
+from datetime import timedelta
+from django.contrib import messages
 from django.http.response import HttpResponse
 from .models import Post, Photo
 from .forms import PostForm
@@ -6,14 +7,27 @@ from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from user_info.models import CustomUser, UserInfo, whodonate
+from django.core.paginator import Paginator
 # Create your views here.
 
 def list_view(request):
     post = Post.objects.all().order_by('-id')
+    paginator = Paginator(post, 2)
+    page = request.GET.get('page')
+    post = paginator.get_page(page)
     return render(request, 'html/feed.html', {'posts':post})
 
 @csrf_exempt
 def helpWrite(request):
+    if not request.user.is_authenticated:
+        messages.warning(request, "로그인부터 하고오세요")
+        return redirect('user_info:home')
+    
+    userinfo = UserInfo.objects.get(user_email=request.user.email)
+    if userinfo.qua != "yes":
+        messages.warning(request, "기초수급자만 글쓸수 있습니다^^")
+        return redirect('user_info:home')
+
     if request.method == 'POST':
         post = Post()
         post.title = request.POST.get('title')

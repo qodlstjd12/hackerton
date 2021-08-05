@@ -14,7 +14,22 @@
     <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
     <title>후원을 다이렉트로, 후원트</title>
 </head>
+<script>
+    window.setTimeout(function() {
+        $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 4000);
+</script>
 <body>
+{% for message in messages %}
+    <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+    </div>
+{% endfor %}
 <div class="header1">
     <ul>
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
@@ -80,4 +95,5 @@
         유료직업소개사업등록번호 : (국내) 제000-00000-00000 | (국외) 000-0000-0000 | 사업자등록번호 : 0000-0000-0000
         © WhoWantLab, Inc.</h2>
 </div>
+
 </body>

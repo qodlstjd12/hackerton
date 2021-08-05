@@ -113,17 +113,15 @@ def recentWrite(request):
             # else:
             #     post.delete()
             #     os.remove(t_path)
-            print('세이브 안됨?')
             post.save()
-            print('세이브 안됨?ㄹㅇ?')
             return redirect('user_info:sponserpage')
         return redirect('user_info:sponserpage')
     return render(request, 'recentWrite.html')
 def sponserpage(request):
     user = CustomUser.objects.get(email=request.user.email)
     whos = whodonate.objects.filter(whogetmoney=user)
-    posts = Post.objects.all()
-    recent_posts = Post1.objects.all()
+    posts = Post.objects.filter(writer=request.user)
+    recent_posts = Post1.objects.filter(writer=request.user)
 
     return render(request, 'sponserpage.html', {'whos' : whos, 'posts': posts, 'recent_posts':recent_posts})
 

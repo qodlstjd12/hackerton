@@ -1,12 +1,18 @@
+from django.core import paginator
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from .models import MarketPost
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 def market_view(request):
-    post = MarketPost.objects.all()
+    post = MarketPost.objects.all().order_by('-id')
+    paginator = Paginator(post, 3)
+    page = request.GET.get('page')
+    post = paginator.get_page(page)
+
     return render(request, 'market.html', {'posts':post})
 
 def market_Detail(request,id):
@@ -22,7 +28,6 @@ def market_Write(request):
         post.post_time = timezone.now()
         post.body = request.POST.get('body')
         post.thumbnail = request.FILES.get('image')
-        print(post.thumbnail.url)
         post.save()
         return redirect('market:market_view')
     return render(request, 'marketWrite.html')

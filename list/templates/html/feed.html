@@ -54,7 +54,7 @@
         <h2 class="contents">{{post.body}}</h2>
         {% if post.thumbnail %}
         <div class="imgBox">
-            <img class="contentImg" src="{{post.thumbnail.url}}">
+            <img class="contentImg" src="{{post.thumbnail.url}}" width='700px' height='700px'>
         </div>
         {% endif %}
         <div class="btnBox">
@@ -63,6 +63,20 @@
         <a href="{% url 'list:delete' post.id %}">삭제</a>
     </div>
     {% endfor %}
+    <!-- 이전 페이지가 있을때만 보이도록 -->
+    {% if posts.has_previous %} 
+    <a href="?page=1">처음</a>
+    <a href="?page={{posts.previous_page_number}}">이전</a>
+    {% endif %}
+<!-- 현재 몇번째 페이지인지 -->
+    <span>{{posts.number}}</span>
+    <span>of</span>
+    <span>{{posts.paginator.num_pages}}</span>
+<!-- 다음 페이지가 있을때만 보이도록 -->
+    {% if posts.has_next %}
+    <a href="?page={{posts.next_page_number}}">다음</a>
+    <a href="?page={{posts.paginator.num_pages}}">마지막</a>
+    {% endif %}
 </div>
 <div class="footer">
     <ul>
