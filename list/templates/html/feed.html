@@ -38,78 +38,31 @@
     </div>
     
     {% for post in posts %}
-        <br>
-        <h3>제목 : {{post.title}}</h3>
-        <br>
-        {% if post.created_string == False %}
-        {{post.created|date:'m월 d일'}}
-        {% else %}
-        {{post.created_string}}
+    <div class="content">
+        <div class="title">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            <div class="titleTextBox">
+                <h2 class="userName">{{post.writer}}</h2>
+                <h3 class="time">
+                {% if post.created_string == False %}
+                {{post.created|date:'m월 d일'}}
+                {% else %}
+                {{post.created_string}}
+                {% endif %}</h3>
+            </div>
+        </div>
+        <h2 class="contents">{{post.body}}</h2>
+        {% if post.thumbnail %}
+        <div class="imgBox">
+            <img class="contentImg" src="{{post.thumbnail.url}}">
+        </div>
         {% endif %}
-        <br>
-        본문 : {{post.body}}
-        <br>
-        <img src = '{{post.thumbnail.url}}'/>
-        <br>
-        <a href="{% url 'list:feed_Detail' post.id%}">더 알아보기</a>
-        <a href="#">후원하기</a>
+        <div class="btnBox">
+            <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}'">더 알아보기 >></button>
+        </div>
         <a href="{% url 'list:delete' post.id %}">삭제</a>
-        <br>
-        <br>
+    </div>
     {% endfor %}
-    <div class="content">
-        <div class="title">
-            <i class="fa fa-user-circle" aria-hidden="true"></i>
-            <div class="titleTextBox">
-                <h2 class="userName">헬프미닷</h2>
-                <h3 class="time">3시간전</h3>
-            </div>
-        </div>
-        
-        <h2 class="contents">저는 어려서 부모님을 잃고, 홀로 동생과 살아가고 있습니다.<br>동생이 이제 초등학교를 들어가는데 옷도 못사주고 너무 힘듭니다.<br>앞으로 어떻게 살아가야 될지
-            너무 막막합니다. 제발 도와주세요..</h2>
-        <div class="imgBox">
-            <img class="contentImg" src="{% static 'img/child.jpg' %}">
-        </div>
-        <div class="btnBox">
-            <button type="button">더 알아보기 >></button>
-        </div>
-    </div>
-    <div class="content">
-        <div class="title">
-            <i class="fa fa-user-circle" aria-hidden="true"></i>
-            <div class="titleTextBox">
-                <h2 class="userName">젭발알</h2>
-                <h3 class="time">5시간전</h3>
-            </div>
-        </div>
-        <h2 class="contents">저는 결식 아동입니다. 매일 끼니를 어떻게 떼울지 걱정을 합니다.<br>어제는 결식아동 급식카드에 돈이 제대로 입금되지 않아 저녁도 먹지 못했습니다.<br>오늘도
-            여전히 돈이 제대로 들어오지 않았습니다. 오늘도 굶으면 정말 죽을거 같아요 제발 저를 도와주세요...</h2>
-        <div class="imgBox">
-            <img class="contentImg" src="{% static 'img/hungry.jpg' %}">
-        </div>
-        <div class="btnBox">
-            <button type="button">더 알아보기 >></button>
-        </div>
-    </div>
-    <div class="content">
-        <div class="title">
-            <i class="fa fa-user-circle" aria-hidden="true"></i>
-            <div class="titleTextBox">
-                <h2 class="userName">할머니를도와주세요</h2>
-                <h3 class="time">8시간전</h3>
-            </div>
-        </div>
-        <h2 class="contents">어려서 부모님이 저를 버린걸 할머니가 저를 데리고 키워주셨습니다. 그런 할머니한테 한번도 제대로 선물도 못드려봤습니다..<br>저희 할머니가 이제 나이가 많고
-            지병이 있어 많이 편찮으십니다. 어려서부터 가난하여 남들이 다 먹어보고 즐겨먹는 치킨조차 한번도 못먹어 봤습니다. <br>제발 할머니랑 좋은 추억도 만들고 치킨도 한마리 먹게 해주세요ㅠㅠ
-        </h2>
-        <div class="imgBox">
-            <img class="contentImg" src="{% static 'img/chicken.png' %}">
-        </div>
-        <div class="btnBox">
-            <button type="button">더 알아보기 >></button>
-        </div>
-    </div>
 </div>
 <div class="footer">
     <ul>

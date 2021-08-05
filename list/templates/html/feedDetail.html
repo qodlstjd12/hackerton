@@ -17,6 +17,21 @@
 </head>
 
 <body>
+<div class="popCmmn">
+    <div class="popBg" data-num="1"></div>
+    <div class="popInnerBox">
+        <div class="popHead">후원 금액 입력</div>
+        <form action="{% url 'list:donate' user.id post.writer.id%}" method ='POST'>
+        {% csrf_token %}
+            <div class="popBody">
+                <input name='cash' type="number" class="donateAmount">
+            </div>
+            <div class="popFoot">
+                <button class="popCloseBtnCmmn" type="submit" data-num="1" >확인</button>
+            </div>
+        </form>
+    </div>
+</div>
 <div class="header">
     <ul>
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
@@ -32,29 +47,6 @@
         {% endif %}
     </ul>
 </div>
-
-    <<여기서 부터 >>
-
-    <br>
-    제목 : {{post.title}}
-    <br>
-        {% if post.created_string == False %}
-        {{post.created|date:'m월 d일'}}
-        {% else %}
-        {{post.created_string}}
-        {% endif %}
-    <br>
-    작성자 : {{post.writer}}
-    <br>
-    본문 : {{post.body}}
-    <br>
-    사진 : <img src = "{{post.thumbnail.url}}" />
-    <br>
-    <a href="#" onclick="history.back();">뒤로 가기</a>
-    <a href="{% url 'user_info:recentView' %}" >근황 보기</a>
-
-    <<여기까지>> -배인성-
-
 <div class="contentBox">
     <div class="makeDonate">
         <!--    <i class="fa fa-plus-circle" aria-hidden="true"></i>-->
@@ -65,21 +57,29 @@
         </div>
     </div>
     <div class="content">
+    
         <div class="title">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
             <div class="titleTextBox">
-                <h2 class="userName">헬프미닷</h2>
-                <h3 class="time">3시간전</h3>
+                <h2 class="userName">{{post.writer}}</h2>
+                <h3 class="time">
+                {% if post.created_string == False %}
+                {{post.created|date:'m월 d일'}}
+                {% else %}
+                {{post.created_string}}
+                {% endif %}
+                </h3>
             </div>
         </div>
-        <h2 class="contents">저는 어려서 부모님을 잃고, 홀로 동생과 살아가고 있습니다.<br>동생이 이제 초등학교를 들어가는데 옷도 못사주고 너무 힘듭니다.<br>앞으로 어떻게 살아가야 될지
-            너무 막막합니다. 제발 도와주세요..</h2>
+        <h2 class="contents">{{post.body}}</h2>
+        {% if post.thumbnail %}
         <div class="imgBox">
-            <img class="contentImg" src="../img/child.jpg">
+            <img class="contentImg" src="{{post.thumbnail.url}}">
         </div>
         <div class="btnBox">
-            <button type="button">후원하기</button>
+            <button type="button" class="donate">후원하기</button>
         </div>
+        {% endif %}
     </div>
     <div class="info">
         <h2>거주지역 : 대구광역시</h2>
@@ -102,4 +102,24 @@
         © WhoWantLab, Inc.</h2>
 </div>
 </body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        setPop();
+    });
+
+    function setPop() {
+        var popOpenBtn = $('.donate');
+
+        popOpenBtn.on('click', function () {
+            var clickNum = $(this).attr('data-num');
+
+            $('.popCmmn').fadeIn(200);
+        })
+
+        $('.popBg, .popCloseBtnCmmn').on('click', function () {
+            $('.popCmmn').fadeOut(200);
+        })
+    }
+</script>
 </html>

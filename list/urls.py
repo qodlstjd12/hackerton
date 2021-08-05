@@ -14,5 +14,6 @@ urlpatterns =[
     path('recentView/', views.recentview, name='recentView'),
     path('recentWrite/', views.recentWrite, name='recentWrite'),
     path('feed_Deatil/<str:id>', views.feed_Detail, name='feed_Detail'),
+    path('donate/<str:id1> <str:id2>', views.donate, name='donate'),
 ]
 

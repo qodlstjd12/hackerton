@@ -5,7 +5,7 @@ from .forms import PostForm
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-
+from user_info.models import CustomUser, UserInfo, whodonate
 # Create your views here.
 
 def list_view(request):
@@ -40,6 +40,39 @@ def delete(request, id):
     post = Post.objects.get(id=id)
     post.delete()
     return redirect('list:list_view')
+
+#id1 = 주는사람
+#id2 = 받는사람
+@csrf_exempt
+def donate(request, id1, id2):
+    if request.method == 'POST':
+        donator = CustomUser.objects.get(id=id1)
+        receiver = CustomUser.objects.get(id=id2)
+        cash = int(request.POST.get('cash'))
+
+        donator_info = UserInfo.objects.get(user_email=donator.email)
+        receiver_info = UserInfo.objects.get(user_email=receiver.email)
+
+        if cash > int(donator_info.cash):
+            return HttpResponse("돈 더 충전하고 오세요")
+
+        relation = whodonate.objects.create(
+            whogetmoney= receiver.email,
+            givemoney= str(cash),
+            whogivemoney= donator.email,
+            date = timezone.now()
+        )
+        print("Before : " + str(donator_info.cash))
+        print("Before : " + str(receiver_info.cash))
+        donator_info.cash = int(donator_info.cash) - cash
+        receiver_info.cash = int(receiver_info.cash) + cash
+        print("After : " + str(donator_info.cash))
+        print("After : " + str(receiver_info.cash))
+
+        donator_info.save()
+        receiver_info.save()
+    return redirect('list:list_view')
+
 
 def ask(request):
     return render(request, 'html/ask.html')

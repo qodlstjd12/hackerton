@@ -36,32 +36,23 @@
             <h3>재능마켓에서 재능을 요청해 보세요!</h3>
         </div>
     </div>
-    <<여기서 부터 >>
-
-    <br>
-    제목 : {{post.title}}
-    <br>
-    작성자 : {{post.writer}}
-    <br>
-    본문 : {{post.body}}
-    <br>
-    사진 : <img src = "{{post.thumbnail.url}}" />
-    <br>
-    <a href="#" onclick="history.back();">뒤로 가기</a>
-
-    <<여기까지>> -배인성-
     <div class="content">
         <div class="title">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
             <div class="titleTextBox">
-                <h2 class="userName">손글씨 장인</h2>
-                <h3 class="time">1시간전</h3>
+                <h2 class="userName">{{post.writer}}</h2>
+                <h3 class="time">
+                 {% if post.created_string == False %}
+                {{post.created|date:'m월 d일'}}
+                {% else %}
+                {{post.created_string}}
+                {% endif %}
+                </h3>
             </div>
         </div>
-        <h2 class="contents">손글씨, 이쁜글씨 쓰기를 배우고 싶으신 분이 있을지 모르겠지만 제가 도와 드릴게요.<br>취미가 글씨를 이쁘게 쓰고 꾸미는걸 좋아해서 엄청 이쁘게 잘
-            씁니다.<br>이런 재능을 원하는 사람이 있을지 모르겠지만 필요하면 연락주세요</h2>
+        <h2 class="contents">{{post.body}}</h2>
         <div class="imgBox">
-            <img class="contentImg" src="../img/letter.png">
+            <img class="contentImg" src="{{post.thumbnail.url}}">
         </div>
         <div class="btnBox">
             <button type="button">신청하기</button>

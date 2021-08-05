@@ -65,7 +65,7 @@ class whodonate(models.Model):
     whogetmoney = models.CharField(null=True, max_length = 30)
     givemoney = models.CharField(null=True, max_length = 30)
     whogivemoney = models.CharField(null=True, max_length = 30)
-    date = models.CharField(null=True, max_length = 30)
+    date = models.DateTimeField(auto_now_add=True)
 ## abas@naver.com 후원받는사람
 ## kim@naver.com, tony1234@naver.com 후원하는사람
 
