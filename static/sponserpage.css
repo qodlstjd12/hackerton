@@ -267,3 +267,15 @@ body {
     color: white;
     font-size: 12px;
 }
+.profile_box i {
+    margin: 10px 0 10px 0 !important;
+}
+
+.profile_box i::before {
+    color: #f14a60;
+    font-size: 50px;
+}
+
+.credit::before{
+    font-size: 20px !important;
+}
