@@ -64,7 +64,11 @@
                         {% for who in whos %}
                         <tr>
                             <td id="spon-date">
-                                {{ who.date }}
+                            {% if who.created_string == False %}
+                            {{who.created|date:'m월 d일'}}
+                            {% else %}
+                            {{who.created_string}}
+                            {% endif %}</h3>
                             </td>
                             <td id="spon-nickname">
                                 {{ who.whogivemoney }}
@@ -89,61 +93,27 @@
         
                 <input id="tab2" type="radio" name="tabs">
                 <label for="tab2">보여주세요</label>
-        
                 <section id="content1">
+                {% for post in posts %}
                     <div class="image-card">
-                        <img src="https://www.worldvision.or.kr/images/contents/201712/support_main_img02.jpg">
-                        <p class="title">어린 아이를 도와주세요</p>
-                        <p class="content">기초수급자 생활로 10살 어린이가 힘들어 하고 있습니다.
-                            여러분의 도움이 필요합니다.
-                        </p>
-                        <button type="button">자세히보기</button>
+                        <img src="{{post.thumbnail.url}}">
+                        <p class="title">{{post.title}}</p>
+                        <p class="content">{{post.body}}</p>
+                        <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}'">자세히보기</button>
                     </div>
-
-                    <div class="image-card">
-                        <img src="https://www.worldvision.or.kr/images/contents/201712/support_main_img01.jpg">
-                        <p class="title">어린 아이를 도와주세요</p>
-                        <p class="content">기초수급자 생활로 10살 어린이가 힘들어 하고 있습니다.
-                            여러분의 도움이 필요합니다.
-                        </p>
-                        <button type="button">자세히보기</button>
-                    </div>
-                    <div class="image-card">
-                        <img src="http://www.sommeliertimes.com/news/photo/202012/17783_39158_1838.jpg">
-                        <p class="title">어린 아이를 도와주세요</p>
-                        <p class="content">기초수급자 생활로 10살 어린이가 힘들어 하고 있습니다.
-                            여러분의 도움이 필요합니다.
-                        </p>
-                        <button type="button">자세히보기</button>
-                    </div>
-                    <button type="button" class="write-btn">글작성하기</button>
+                {% endfor %}
+                    <button type="button" class="write-btn" onclick="location.href = '{% url 'user_info:recentWrite'%}'">글작성하기</button>
                 </section>
 
                 <section id="content2">
+                {% for post in recent_posts %}
                     <div class="image-card">
-                        <img src="https://www.worldvision.or.kr/images/contents/201712/support_main_img02.jpg">
-                        <p class="title">어린 아이를 도와주세요</p>
-                        <p class="content">기초수급자 생활로 10살 어린이가 힘들어 하고 있습니다.
-                            여러분의 도움이 필요합니다.
-                        </p>
-                        <button type="button">자세히보기</button>
+                        <img src="{{post.photo.url}}">
+                        <p class="title">{{post.title}}</p>
+                        <p class="content">{{post.body}}</p>
+                        <button type="button" onclick="location.href = '{% url 'user_info:recentView' post.id %}'">자세히보기</button>
                     </div>
-                    <div class="image-card">
-                        <img src="https://www.worldvision.or.kr/images/contents/201712/support_main_img01.jpg">
-                        <p class="title">친구들과 잘지내며 잘 살고있어요</p>
-                        <p class="content">기초수급자 생활로 10살 어린이가 힘들어 하고 있습니다.
-                            여러분의 도움이 필요합니다.
-                        </p>
-                        <button type="button">자세히보기</button>
-                    </div>
-                    <div class="image-card">
-                        <img src="http://www.sommeliertimes.com/news/photo/202012/17783_39158_1838.jpg">
-                        <p class="title">저희 강아지가 이렇게 자랐어요</p>
-                        <p class="content">기초수급자 생활로 10살 어린이가 힘들어 하고 있습니다.
-                            여러분의 도움이 필요합니다.
-                        </p>
-                        <button type="button">자세히보기</button>
-                    </div>
+                {% endfor %}
                     <button type="button" class="write-btn" onclick='newPage()'>글작성하기</button>
                 </section>
             </div>

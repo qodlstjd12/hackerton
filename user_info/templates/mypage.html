@@ -88,20 +88,22 @@
             </div>
         </div>
     </div>
+    {% for post in posts %}
     <div class="donateList">
         <h2>나의 후원 목록</h2>
         <div class="swiper-container mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="{% static 'img/child.jpg' %}">
-                    <h2>어린 아이를 도와주세요</h2>
-                    <h3>기초수급자 생활로 10살 어린이가 힘들어 하고 있습니다.<br>여러분의 도움이 필요합니다.</h3>
-                    <button type="button" onclick='newPage()'>근황보기</button>
+                    <img src="{{post.thumbnail.url}}">
+                    <h2>{{post.title}}</h2>
+                    <h3>{{post.body}}</h3>
+                    <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}'">근황보기</button>
                 </div>
                 </div>
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>
 
 <div class="footer">
@@ -118,7 +120,7 @@
         © WhoWantLab, Inc.</h2>
 </div>
 
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+{% comment %} <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
     var swiper = new Swiper(".mySwiper", {
         slidesPerView: 3,
@@ -127,5 +129,5 @@
         freeMode: true,
 
     });
-</script>
+</script> {% endcomment %}
 </body>

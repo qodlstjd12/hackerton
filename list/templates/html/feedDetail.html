@@ -21,7 +21,7 @@
     <div class="popBg" data-num="1"></div>
     <div class="popInnerBox">
         <div class="popHead">후원 금액 입력</div>
-        <form action="{% url 'list:donate' user.id post.writer.id%}" method ='POST'>
+        <form action="{% url 'list:donate' user.id post.writer.id post.id%}" method ='POST'>
         {% csrf_token %}
             <div class="popBody">
                 <input name='cash' type="number" class="donateAmount">

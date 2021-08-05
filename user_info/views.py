@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.utils import timezone  # pub_date를 위해 import
@@ -5,6 +6,8 @@ from django.contrib import auth
 from .models import UserInfo, CustomUser, whodonate, Post1
 from .form import PostForm
 from .GoogleApi import google_api
+from list.models import Post
+
 import os
 
 def home(request):
@@ -50,10 +53,16 @@ def mypage(request):
     try:
         user = CustomUser.objects.get(email=request.user.email)
         userinfo = UserInfo.objects.get(user_email=user)
+        my_donate_relation = whodonate.objects.filter(whogivemoney=request.user.email).distinct().order_by('what_post') #내가 후원한 기록
+        posts = []
+        for post in my_donate_relation:
+            posts.append(Post.objects.get(id=post.what_post.id))
+
     except:
-        return render(request, 'mypage.html')
+        return HttpResponse("DB저장 에러")
 
     if userinfo.qua == "yes":
+        
         return redirect('user_info:sponserpage')
 
     if request.method == 'POST':
@@ -74,15 +83,14 @@ def mypage(request):
             userinfo.cash = money
         userinfo.save()
         return render(request, 'mypage.html', {"money" : userinfo.cash, "success": "success"})
-       
+    
+    return render(request, 'mypage.html', {'money' : userinfo.cash, 'posts':posts})
 
-    return render(request, 'mypage.html')
-
-def recentView(request):
-    return render(request, 'recentView.html')
+def recentView(request, id):
+    post = Post1.objects.get(id=id)
+    return render(request, 'recentView.html', {'post': post})
 
 def recentWrite(request):
-    
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -90,31 +98,32 @@ def recentWrite(request):
             post.writer = request.user
             post.post_time = timezone.now()
             post.photo=request.FILES.get('image')
-            path = str(post.photo.path).split('\\')
+            # path = str(post.photo.path).split('\\')
+            # post.save()
+            # t_path  = ''
+            # for i in path:
+            #     if i == 'media':
+            #         t_path = t_path + i + '\\' + 'userinfo' + '\\'
+            #     elif i.find('jpg') != -1 :
+            #         t_path = t_path + i
+            #     else:    
+            #         t_path = t_path + i + '\\'
+            # if google_api(t_path):
+            #     return redirect('user_info:home')
+            # else:
+            #     post.delete()
+            #     os.remove(t_path)
+            print('세이브 안됨?')
             post.save()
-            t_path  = ''
-            for i in path:
-                if i == 'media':
-                    t_path = t_path + i + '\\' + 'userinfo' + '\\'
-                elif i.find('jpg') != -1 :
-                    t_path = t_path + i
-                else:    
-                    t_path = t_path + i + '\\'
-            if google_api(t_path):
-                return redirect('user_info:home')
-            else:
-                post.delete()
-                os.remove(t_path)
-                return render(request, 'recentWrite.html',{'error': "error"})
-            
-    else:
-        form = PostForm()
-        return render(request, 'recentWrite.html',{'post':form})
-
+            print('세이브 안됨?ㄹㅇ?')
+            return redirect('user_info:sponserpage')
+        return redirect('user_info:sponserpage')
+    return render(request, 'recentWrite.html')
 def sponserpage(request):
-    total_money = 0
     user = CustomUser.objects.get(email=request.user.email)
     whos = whodonate.objects.filter(whogetmoney=user)
+    posts = Post.objects.all()
+    recent_posts = Post1.objects.all()
 
-    return render(request, 'sponserpage.html', {'whos' : whos})
+    return render(request, 'sponserpage.html', {'whos' : whos, 'posts': posts, 'recent_posts':recent_posts})
 

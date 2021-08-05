@@ -9,7 +9,7 @@ from user_info.models import CustomUser, UserInfo, whodonate
 # Create your views here.
 
 def list_view(request):
-    post = Post.objects.all()
+    post = Post.objects.all().order_by('-id')
     return render(request, 'html/feed.html', {'posts':post})
 
 @csrf_exempt
@@ -43,8 +43,9 @@ def delete(request, id):
 
 #id1 = 주는사람
 #id2 = 받는사람
+#id3 = 당시 포스트id
 @csrf_exempt
-def donate(request, id1, id2):
+def donate(request, id1, id2, id3):
     if request.method == 'POST':
         donator = CustomUser.objects.get(id=id1)
         receiver = CustomUser.objects.get(id=id2)
@@ -60,6 +61,7 @@ def donate(request, id1, id2):
             whogetmoney= receiver.email,
             givemoney= str(cash),
             whogivemoney= donator.email,
+            what_post = Post.objects.get(id=id3),
             date = timezone.now()
         )
         print("Before : " + str(donator_info.cash))

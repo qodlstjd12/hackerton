@@ -32,10 +32,11 @@
     <div class="content">
         <div class="title">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
+            {{post.title}}
         </div>
-        <h2 class="contents">후원해주신 금액으로 정말 알차게 밥을 먹었습니다. 이렇게 맛도 좋고 양도 많은 질 좋은 식사를 하는게 정말 얼마만인지 모르겠습니다.<br>아직 어리고 아는게 많이 없지만 나중에 커서 꼭 이 은혜를 갚겟습니다.</h2>
+        <h2 class="contents">{{post.body}}</h2>
         <div class="imgBox">
-            <img class="contentImg" src="../img/food.jpg">
+            <img class="contentImg" src="{{post.photo.url}}">
         </div>
     </div>
 </div>

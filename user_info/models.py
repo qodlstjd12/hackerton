@@ -37,7 +37,8 @@ class CustomUserManager(BaseUserManager):
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext_lazy as _
-
+from datetime import datetime, timedelta
+from django.utils import timezone
 
 class CustomUser(AbstractUser):
     username = None
@@ -65,7 +66,24 @@ class whodonate(models.Model):
     whogetmoney = models.CharField(null=True, max_length = 30)
     givemoney = models.CharField(null=True, max_length = 30)
     whogivemoney = models.CharField(null=True, max_length = 30)
+    what_post = models.ForeignKey("list.Post", on_delete=CASCADE, related_name="posts")
     date = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def created_string(self):
+        time = datetime.now(tz=timezone.utc) - self.date
+
+        if time < timedelta(minutes=1):
+            return '방금 전'
+        elif time < timedelta(hours=1):
+            return str(int(time.seconds / 60)) + '분 전'
+        elif time < timedelta(days= 1):
+            return str(int(time.seconds / 3600)) + '시간 전'
+        elif time < timedelta(days= 7):
+            time = datetime.now(tz=timezone.utc).date() - self.date.date()
+            return str(time.days) + '일 전'
+        else:
+            return False
 ## abas@naver.com 후원받는사람
 ## kim@naver.com, tony1234@naver.com 후원하는사람
 
