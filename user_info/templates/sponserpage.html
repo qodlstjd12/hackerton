@@ -98,6 +98,20 @@
                     </div>
                 {% endfor %}
                     <button type="button" class="write-btn" onclick="location.href = '{% url 'list:helpWrite'%}'">글작성하기</button>
+                    <!-- 이전 페이지가 있을때만 보이도록 -->
+    {% if posts.has_previous %} 
+    <a href="?page=1">처음</a>
+    <a href="?page={{posts.previous_page_number}}">이전</a>
+    {% endif %}
+<!-- 현재 몇번째 페이지인지 -->
+    <span>{{posts.number}}</span>
+    <span>of</span>
+    <span>{{posts.paginator.num_pages}}</span>
+<!-- 다음 페이지가 있을때만 보이도록 -->
+    {% if posts.has_next %}
+    <a href="?page={{posts.next_page_number}}">다음</a>
+    <a href="?page={{posts.paginator.num_pages}}">마지막</a>
+    {% endif %}
                 </section>
 
                 <section id="content2">
@@ -108,10 +122,25 @@
                     {% endif %}
                         <p class="title">{{post.title}}</p>
                         <p class="content">{{post.body}}</p>
-                        <button type="button" onclick="location.href = '{% url 'user_info:recentView' post.id %}'">자세히보기</button>
+                        <button type="button" onclick="location.href = '{% url 'user_info:recentDetail' post.id %}'">자세히보기</button>
                     </div>
                 {% endfor %}
                     <button type="button" class="write-btn" onclick="location.href = '{% url 'user_info:recentWrite'%}'">글작성하기</button>
+                    <!-- 이전 페이지가 있을때만 보이도록 -->
+                    <br>
+    {% if recent_posts.has_previous %} 
+    <a href="?page=1">처음</a>
+    <a href="?page={{recent_posts.previous_page_number}}">이전</a>
+    {% endif %}
+<!-- 현재 몇번째 페이지인지 -->
+    <span>{{recent_posts.number}}</span>
+    <span>of</span>
+    <span>{{recent_posts.paginator.num_pages}}</span>
+<!-- 다음 페이지가 있을때만 보이도록 -->
+    {% if recent_posts.has_next %}
+    <a href="?page={{recent_posts.next_page_number}}">다음</a>
+    <a href="?page={{recent_posts.paginator.num_pages}}">마지막</a>
+    {% endif %}
                 </section>
             </div>
         </div>

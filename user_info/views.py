@@ -1,3 +1,4 @@
+from django.core import paginator
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
@@ -34,6 +35,7 @@ def signup(request):
             auth.login(request, user)
             user_contents = UserInfo()
             user_contents.user_email = request.POST['user_email']
+            user_contents.user_nickname = request.POST['user_nickname']
             user_contents.user_phone = request.POST['user_num']
             user_contents.user_name = request.POST['user_name']
             user_contents.user_account = request.POST['user_acname']
@@ -52,40 +54,56 @@ def logout_view(request):
 def mypage(request):
     user = CustomUser.objects.get(email=request.user.email)
     userinfo = UserInfo.objects.get(user_email=user)
+    #돈을 준 사람이 현재 유저인 사람과 같을때, 그니까 현재 유저한테 후원받은사람들 필터링
     my_donate_relation = whodonate.objects.filter(whogivemoney=request.user.email)
-    mdr = my_donate_relation.values_list('whogetmoney', flat=True).distinct() #내가 후원한 기록
-
+    #거기서 중복 제거
+    mdr = my_donate_relation.values_list('whogetmoney', flat=True).distinct()
     my_receiver = []
+    msg = ""
     for m in mdr:
-        my_receiver.append(CustomUser.objects.get(email=m))
-    print(my_receiver)
+        my_receiver.append(UserInfo.objects.get(user_email=m))
 
 
     if userinfo.qua == "yes":
-        
         return redirect('user_info:sponserpage')
-
     if request.method == 'POST':
         money = request.POST['mine']
-        print(money)
         try:
             money = int(money)
         except:
-            return render(request, 'mypage.html', {"error" : "failed"})
-        user = CustomUser.objects.get(email=request.user.email)
-        userinfo = UserInfo.objects.get(user_email=user)
-        try:
-            save_money = int(userinfo.cash)
-            print(save_money)
-            print(money)
-            userinfo.cash = money + save_money
-        except:
-            userinfo.cash = money
-        userinfo.save()
-        return render(request, 'mypage.html', {"money" : userinfo.cash, "success": "success"})
-    
-    return render(request, 'mypage.html', {'money' : userinfo.cash, 'receivers':my_receiver})
+            msg = "failed"
+            return render(request, 'mypage.html', {"error" : msg})
 
+        save_money = int(userinfo.cash)
+        userinfo.cash = money + save_money
+        userinfo.user_totalcash += money
+        userinfo.save()
+        return redirect('user_info:mypage')
+    return render(request, 'mypage.html', {"money" : userinfo.cash, 'receivers':my_receiver ,"temperature" : str(0.1 * (userinfo.user_totalcash / 1000))})
+# def cash_fill(request):
+#     if request.method == 'POST':
+#         user = CustomUser.objects.get(email=request.user.email)
+#         userinfo = UserInfo.objects.get(user_email=user)
+#         money = request.POST['mine']
+#         print(money)
+#         try:
+#             money = int(money)
+#         except:
+#             return render(request, 'mypage.html', {"error" : "failed"})
+
+#         try:
+#             save_money = int(userinfo.cash)
+#             userinfo.cash = money + save_money
+#             userinfo.user_totalcash += money
+#         except:
+#             userinfo.cash = money
+#         userinfo.save()
+#     return render(request, 'mypage.html', {"money" : userinfo.cash, "success": "success", "temperature" : str(0.1 * (userinfo.user_totalcash / 1000))})
+    
+
+def recentDetail(request, id):
+    post = Post1.objects.get(id=id)
+    return render(request, 'recentDetail.html', {'post':post})
 def recentWrite(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -113,16 +131,26 @@ def recentWrite(request):
             return redirect('user_info:sponserpage')
         return redirect('user_info:sponserpage')
     return render(request, 'recentWrite.html')
+
+from django.core.paginator import Paginator
 def sponserpage(request):
     user = CustomUser.objects.get(email=request.user.email)
     whos = whodonate.objects.filter(whogetmoney=user)
     posts = Post.objects.filter(writer=request.user)
-    recent_posts = Post1.objects.filter(writer=request.user)
+    paginator = Paginator(posts, 8)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+
+    recent_posts = Post1.objects.filter(writer=request.user).order_by('-post_time')
+    recent_paginator = Paginator(recent_posts, 8)
+    recent_page = request.GET.get('page')
+    recent_posts = recent_paginator.get_page(recent_page)
 
     return render(request, 'sponserpage.html', {'whos' : whos, 'posts': posts, 'recent_posts':recent_posts})
 
-def recentView(request, id):
-    user = CustomUser.objects.get(id=id)
-    posts = Post1.objects.filter(writer=user)
-    print(posts)
-    return render(request, 'recentView.html', {'posts': posts})
+def recentView(request, email):
+    user = CustomUser.objects.get(email=email)
+    userinfo = UserInfo.objects.get(user_email = email)
+    posts = Post1.objects.filter(writer=user).order_by('post_time')
+
+    return render(request, 'recentView.html', {'posts': posts, 'receiver' : userinfo})

@@ -55,7 +55,7 @@
                 <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                 <div class="titleText">
                     <h2>당신의 보유 포인트</h2>
-                    {% if money is None %}
+                    {% if money is 0 %}
                         <h3>금액이 하나도 없어요!</h3>
                     {% else %}
                         <h3>{{money}}</h3>
@@ -75,7 +75,7 @@
                 <i class="fa fa-thermometer-empty" aria-hidden="true"></i>
                 <div class="titleText">
                     <h2>당신의 마음의 온도는 </h2>
-                    <h3>47도</h3>
+                    <h3>{{temperature}}</h3>
                 </div>
             </div>
             <div class="inputArea">
@@ -91,12 +91,12 @@
             {% for receiver in receivers %}
                 <div class="swiper-slide">
 
-                    <h2>{{receiver.email}}</h2>
-                    <img src="{{post.thumbnail.url}}">
-                    <h2>{{post.title}}</h2>
-                    <h3>{{post.body}}</h3>
-                    <button type="button" onclick="location.href = '{% url 'user_info:recentView' receiver.id %}'">근황보기</button>
-
+                    <h2>{{receiver.user_nickname}}</h2>
+                    {{receiver.id}}
+                    <img src="{{receiver.user_image.url}}">
+                    <h3>{{receiver.user_description}}</h3>
+                    <button type="button" onclick="location.href = '{% url 'user_info:recentView' receiver.user_email %}'">근황보기</button>
+ 
                 </div>
             {% endfor %}
             </div>
