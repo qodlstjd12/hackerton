@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'feed.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'feed.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>후원을 다이렉트로, 후원트</title>
 </head>
@@ -35,47 +35,52 @@
             <h3>사진과 사연을 통해 후원 요청글을 등록해 보세요!</h3>
         </div>
     </div>
-    
+
     {% for post in posts %}
-    <div class="content">
-        <div class="title">
-            <i class="fa fa-user-circle" aria-hidden="true"></i>
-            <div class="titleTextBox">
-                <h2 class="userName">{{post.writer}}</h2>
-                <h3 class="time">
-                {% if post.created_string == False %}
-                {{post.created|date:'m월 d일'}}
-                {% else %}
-                {{post.created_string}}
-                {% endif %}</h3>
+        <div class="content">
+            <div class="title">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                <div class="titleTextBox">
+                    <h2 class="userName">{{ post.writer }}</h2>
+                    <h3 class="time">
+                        {% if post.created_string == False %}
+                            {{ post.created|date:'m월 d일' }}
+                        {% else %}
+                            {{ post.created_string }}
+                        {% endif %}</h3>
+                </div>
             </div>
+            <h2 class="contents">{{ post.body }}</h2>
+            {% if post.thumbnail %}
+                <div class="imgBox">
+                    <img class="contentImg" src="{{ post.thumbnail.url }}" width='700px' height='700px'>
+                </div>
+            {% endif %}
+            <div class="btnBox">
+                <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id %}'">더 알아보기 >>
+                </button>
+            </div>
+            <a href="{% url 'list:delete' post.id %}">삭제</a>
         </div>
-        <h2 class="contents">{{post.body}}</h2>
-        {% if post.thumbnail %}
-        <div class="imgBox">
-            <img class="contentImg" src="{{post.thumbnail.url}}" width='700px' height='700px'>
-        </div>
-        {% endif %}
-        <div class="btnBox">
-            <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}'">더 알아보기 >></button>
-        </div>
-        <a href="{% url 'list:delete' post.id %}">삭제</a>
-    </div>
     {% endfor %}
-    <!-- 이전 페이지가 있을때만 보이도록 -->
-    {% if posts.has_previous %} 
-    <a href="?page=1">처음</a>
-    <a href="?page={{posts.previous_page_number}}">이전</a>
-    {% endif %}
-<!-- 현재 몇번째 페이지인지 -->
-    <span>{{posts.number}}</span>
-    <span>of</span>
-    <span>{{posts.paginator.num_pages}}</span>
-<!-- 다음 페이지가 있을때만 보이도록 -->
-    {% if posts.has_next %}
-    <a href="?page={{posts.next_page_number}}">다음</a>
-    <a href="?page={{posts.paginator.num_pages}}">마지막</a>
-    {% endif %}
+    <div class="pager">
+        <div class="pagerBox">
+            <!-- 이전 페이지가 있을때만 보이도록 -->
+            {% if posts.has_previous %}
+                <a href="?page=1">처음</a>
+                <a href="?page={{ posts.previous_page_number }}">이전</a>
+            {% endif %}
+            <!-- 현재 몇번째 페이지인지 -->
+            <span>{{ posts.number }}</span>
+            <span>of</span>
+            <span>{{ posts.paginator.num_pages }}</span>
+            <!-- 다음 페이지가 있을때만 보이도록 -->
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">다음</a>
+                <a href="?page={{ posts.paginator.num_pages }}">마지막</a>
+            {% endif %}
+        </div>
+    </div>
 </div>
 <div class="footer">
     <ul>

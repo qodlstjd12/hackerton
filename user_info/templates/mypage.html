@@ -65,7 +65,7 @@
         <form action = "{% url 'user_info:mypage' %}" method="POST" >
             {% csrf_token %}
             <div class="inputArea">
-                <input type="number" placeholder="금액 입력" name = "mine">
+                <input type="number" placeholder="금액 입력" name = "mine" class="pointInput">
                 <button input="submit">충전하기</button>
             </div>
         </form>
