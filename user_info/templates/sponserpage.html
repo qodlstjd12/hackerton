@@ -36,7 +36,7 @@
 
     <div class="profile_box" align=middle>
         <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-        <p class="email">email@naver.com</p>
+        <p class="email">{{request.user.email}}</p>
 
         <div class="inner_box1">
          
@@ -103,7 +103,9 @@
                 <section id="content2">
                 {% for post in recent_posts %}
                     <div class="image-card">
+                    {% if post.photo %}
                         <img src="{{post.photo.url}}">
+                    {% endif %}
                         <p class="title">{{post.title}}</p>
                         <p class="content">{{post.body}}</p>
                         <button type="button" onclick="location.href = '{% url 'user_info:recentView' post.id %}'">자세히보기</button>

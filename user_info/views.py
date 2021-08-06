@@ -50,16 +50,16 @@ def logout_view(request):
     return redirect('user_info:home')
 
 def mypage(request):
-    try:
-        user = CustomUser.objects.get(email=request.user.email)
-        userinfo = UserInfo.objects.get(user_email=user)
-        my_donate_relation = whodonate.objects.filter(whogivemoney=request.user.email).distinct().order_by('what_post') #내가 후원한 기록
-        posts = []
-        for post in my_donate_relation:
-            posts.append(Post.objects.get(id=post.what_post.id))
+    user = CustomUser.objects.get(email=request.user.email)
+    userinfo = UserInfo.objects.get(user_email=user)
+    my_donate_relation = whodonate.objects.filter(whogivemoney=request.user.email)
+    mdr = my_donate_relation.values_list('whogetmoney', flat=True).distinct() #내가 후원한 기록
 
-    except:
-        return HttpResponse("DB저장 에러")
+    my_receiver = []
+    for m in mdr:
+        my_receiver.append(CustomUser.objects.get(email=m))
+    print(my_receiver)
+
 
     if userinfo.qua == "yes":
         
@@ -84,11 +84,7 @@ def mypage(request):
         userinfo.save()
         return render(request, 'mypage.html', {"money" : userinfo.cash, "success": "success"})
     
-    return render(request, 'mypage.html', {'money' : userinfo.cash, 'posts':posts})
-
-def recentView(request, id):
-    post = Post1.objects.get(id=id)
-    return render(request, 'recentView.html', {'post': post})
+    return render(request, 'mypage.html', {'money' : userinfo.cash, 'receivers':my_receiver})
 
 def recentWrite(request):
     if request.method == 'POST':
@@ -125,3 +121,8 @@ def sponserpage(request):
 
     return render(request, 'sponserpage.html', {'whos' : whos, 'posts': posts, 'recent_posts':recent_posts})
 
+def recentView(request, id):
+    user = CustomUser.objects.get(id=id)
+    posts = Post1.objects.filter(writer=user)
+    print(posts)
+    return render(request, 'recentView.html', {'posts': posts})

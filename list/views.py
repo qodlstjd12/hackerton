@@ -78,10 +78,11 @@ def donate(request, id1, id2, id3):
             what_post = Post.objects.get(id=id3),
             date = timezone.now()
         )
+        print(receiver_info.cash)
         print("Before : " + str(donator_info.cash))
         print("Before : " + str(receiver_info.cash))
         donator_info.cash = int(donator_info.cash) - cash
-        receiver_info.cash = int(receiver_info.cash) + cash
+        receiver_info.cash = str(int(receiver_info.cash) + cash)
         print("After : " + str(donator_info.cash))
         print("After : " + str(receiver_info.cash))
 
