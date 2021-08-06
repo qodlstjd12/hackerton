@@ -27,7 +27,7 @@
         <form action="{% url 'list:donate' user.id post.writer.id post.id %}" method='POST'>
             {% csrf_token %}
             <div class="popBody">
-                <input name='cash' type="number" class="donateAmount">
+                <input name='cash' type="number" class="donateAmount"><h2>원</h2>
             </div>
             <div class="popFoot">
                 <button class="popCloseBtnCmmn" type="submit" data-num="1">확인</button>
