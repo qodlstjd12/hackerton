@@ -78,8 +78,8 @@ def mypage(request):
         userinfo.cash = money + save_money
         userinfo.user_totalcash += money
         userinfo.save()
-        return redirect('user_info:mypage')
-    return render(request, 'mypage.html', {"money" : userinfo.cash, 'receivers':my_receiver ,"temperature" : str(0.1 * (userinfo.user_totalcash / 1000))})
+        msg = "success"
+    return render(request, 'mypage.html', {"money" : userinfo.cash,"success":msg ,'receivers':my_receiver ,"temperature" : str(0.1 * (userinfo.user_totalcash / 1000))})
 # def cash_fill(request):
 #     if request.method == 'POST':
 #         user = CustomUser.objects.get(email=request.user.email)
