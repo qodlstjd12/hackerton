@@ -52,6 +52,9 @@ def logout_view(request):
     return redirect('user_info:home')
 
 def mypage(request):
+    if not request.user.is_authenticated:
+        msg = "Do Login"
+        return render(request, "mypage.html", {'msg':msg})
     user = CustomUser.objects.get(email=request.user.email)
     userinfo = UserInfo.objects.get(user_email=user)
     #돈을 준 사람이 현재 유저인 사람과 같을때, 그니까 현재 유저한테 후원받은사람들 필터링

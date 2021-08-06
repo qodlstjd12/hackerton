@@ -90,16 +90,3 @@ def donate(request, id1, id2, id3):
         donator_info.save()
         receiver_info.save()
     return redirect('list:list_view')
-
-
-def ask(request):
-    return render(request, 'html/ask.html')
-
-def feed(request):
-    return render(request, 'html/feed.html')
-
-def recentview(request):
-    return render(request, 'html/recentView.html')
-
-def recentWrite(request):
-    return render(request, 'html/recentWrite.html')
