@@ -33,7 +33,6 @@
         <div class="verticalTextBox">
             <h2>도움을 주고싶나요?</h2>
             <h3>내가 가진 재능을 다른사람에게 공유해 주세요!</h3>
-            <a href="{% url 'market:market_Write' %}"> 재능기부하러가기 </a>
         </div>
     </div>
     {% for post in posts %}
@@ -95,5 +94,11 @@
         유료직업소개사업등록번호 : (국내) 제000-00000-00000 | (국외) 000-0000-0000 | 사업자등록번호 : 0000-0000-0000
         © WhoWantLab, Inc.</h2>
 </div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".makeDonate").click(function () {
+        $(location).attr("href", "http://127.0.0.1:8000/market/marketWrite/");
+    });
+</script>
 </body>
 </html>
