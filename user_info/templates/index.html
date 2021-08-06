@@ -4,7 +4,12 @@
 <head>
     <script>
     function newPage()  {
-        window.location.href = "{% url 'list:list_view' %}"
+        {% if not user.is_authenticated %}
+            alert("로그인 후 이용할 수 있습니다.") 
+            window.location.href = "{% url 'user_info:login_view' %}"            
+        {% else %}
+            window.location.href = "{% url 'list:list_view' %}"
+        {% endif %}
     }
     </script>
     <meta charset="UTF-8">
