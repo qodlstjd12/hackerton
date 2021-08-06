@@ -79,7 +79,7 @@ def mypage(request):
         userinfo.user_totalcash += money
         userinfo.save()
         msg = "success"
-    return render(request, 'mypage.html', {"money" : userinfo.cash,"success":msg ,'receivers':my_receiver ,"temperature" : str(0.1 * (userinfo.user_totalcash / 1000))})
+    return render(request, 'mypage.html', {"money" : userinfo.cash,"success":msg ,'receivers':my_receiver ,"temperature" : str(0.1 * (userinfo.user_totaldonate / 1000))})
 # def cash_fill(request):
 #     if request.method == 'POST':
 #         user = CustomUser.objects.get(email=request.user.email)
@@ -112,23 +112,23 @@ def recentWrite(request):
             post.writer = request.user
             post.post_time = timezone.now()
             post.photo=request.FILES.get('image')
-            # path = str(post.photo.path).split('\\')
-            # post.save()
-            # t_path  = ''
-            # for i in path:
-            #     if i == 'media':
-            #         t_path = t_path + i + '\\' + 'userinfo' + '\\'
-            #     elif i.find('jpg') != -1 :
-            #         t_path = t_path + i
-            #     else:    
-            #         t_path = t_path + i + '\\'
-            # if google_api(t_path):
-            #     return redirect('user_info:home')
-            # else:
-            #     post.delete()
-            #     os.remove(t_path)
+            path = str(post.photo.path).split('\\')
             post.save()
-            return redirect('user_info:sponserpage')
+            t_path  = ''
+            if path!=[]:
+                for i in path:
+                    if i == 'media':
+                        t_path = t_path + i + '\\' + 'userinfo' + '\\'
+                    elif i.find('jpg') != -1 :
+                        t_path = t_path + i
+                    else:    
+                        t_path = t_path + i + '\\'
+                if google_api(t_path):
+                    return redirect('user_info:sponserpage')
+                else:
+                    post.delete()
+                    os.remove(t_path)
+                return render(request, 'recentWrite.html', {"error" : "error"})
         return redirect('user_info:sponserpage')
     return render(request, 'recentWrite.html')
 

@@ -78,6 +78,7 @@ def donate(request, id1, id2, id3):
             what_post = Post.objects.get(id=id3),
             date = timezone.now()
         )
+        donator_info.user_totaldonate += cash
         print(receiver_info.cash)
         print("Before : " + str(donator_info.cash))
         print("Before : " + str(receiver_info.cash))
