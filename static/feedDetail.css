@@ -271,10 +271,18 @@ body {
 }
 
 .popHead {
+    display: flex;
+    justify-content: space-between;
     padding: 15px;
     background: #f14a60;
     color: #fff;
     font-size: 18px;
+}
+
+.popHead h2 {
+    font-size: 1em;
+    font-weight: 400;
+    cursor: pointer;
 }
 
 .popBody {

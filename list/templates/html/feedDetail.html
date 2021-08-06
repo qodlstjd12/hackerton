@@ -3,15 +3,15 @@
 <html lang="kor">
 <head>
     <script>
-        function newPage()  {
+        function newPage() {
             window.location.href = "{% url 'user_info:recentWrite' %}"
-          }
+        }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'feedDetail.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'feedDetail.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>후원을 다이렉트로, 후원트</title>
 </head>
@@ -20,14 +20,17 @@
 <div class="popCmmn">
     <div class="popBg" data-num="1"></div>
     <div class="popInnerBox">
-        <div class="popHead">후원 금액 입력</div>
-        <form action="{% url 'list:donate' user.id post.writer.id post.id%}" method ='POST'>
-        {% csrf_token %}
+        <div class="popHead">
+            <h2></h2>
+            <h2>후원할 금액 입력</h2>
+            <h2 class="close">X</h2></div>
+        <form action="{% url 'list:donate' user.id post.writer.id post.id %}" method='POST'>
+            {% csrf_token %}
             <div class="popBody">
                 <input name='cash' type="number" class="donateAmount">
             </div>
             <div class="popFoot">
-                <button class="popCloseBtnCmmn" type="submit" data-num="1" >확인</button>
+                <button class="popCloseBtnCmmn" type="submit" data-num="1">확인</button>
             </div>
         </form>
     </div>
@@ -57,29 +60,29 @@
         </div>
     </div>
     <div class="content">
-    
+
         <div class="title">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
             <div class="titleTextBox">
-                <h2 class="userName">{{post.writer}}</h2>
+                <h2 class="userName">{{ post.writer }}</h2>
                 <h3 class="time">
-                {% if post.created_string == False %}
-                {{post.created|date:'m월 d일'}}
-                {% else %}
-                {{post.created_string}}
-                {% endif %}
+                    {% if post.created_string == False %}
+                        {{ post.created|date:'m월 d일' }}
+                    {% else %}
+                        {{ post.created_string }}
+                    {% endif %}
                 </h3>
             </div>
         </div>
-        <h2 class="contents">{{post.body}}</h2>
+        <h2 class="contents">{{ post.body }}</h2>
         {% if post.thumbnail %}
-        <div class="imgBox">
-            <img class="contentImg" src="{{post.thumbnail.url}}">
-        </div>
-        <div class="btnBox">
-        
-            <button type="button" class="donate">후원하기</button>
-        </div>
+            <div class="imgBox">
+                <img class="contentImg" src="{{ post.thumbnail.url }}">
+            </div>
+            <div class="btnBox">
+
+                <button type="button" class="donate">후원하기</button>
+            </div>
         {% endif %}
     </div>
     <div class="info">
@@ -118,7 +121,7 @@
             $('.popCmmn').fadeIn(200);
         })
 
-        $('.popBg, .popCloseBtnCmmn').on('click', function () {
+        $('.popBg, .popCloseBtnCmmn, .close').on('click', function () {
             $('.popCmmn').fadeOut(200);
         })
     }

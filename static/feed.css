@@ -165,6 +165,39 @@ body {
     font-weight: 800;
 }
 
+
+.pager {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pager .pagerBox {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.pager .pagerBox a, .pager .pagerBox span {
+    margin: 10px;
+}
+
+.pager .pagerBox a {
+    text-decoration: none;
+}
+
+.pager .pagerBox {
+    color: black;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.pager .pagerBox a {
+    color: #f14a60;
+    font-size: 1em;
+    font-weight: 700;
+}
+
 .footer {
     width: 70vw;
     height: 100px;

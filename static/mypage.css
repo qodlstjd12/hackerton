@@ -142,6 +142,11 @@ i {
     justify-content: space-between;
 }
 
+.pointBox form {
+    width: 100%;
+}
+
+
 .tempBox .inputArea {
     display: flex;
     flex-direction: row;
@@ -157,7 +162,7 @@ i {
     justify-content: center;
     align-items: center;
     font-size: 1em;
-    width: 25%;
+    width: 40%;
 }
 
 .inputArea button {
