@@ -23,9 +23,9 @@ from HellProject import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('user_info.urls'), name = 'user_info'),
-    path('listview/', include('list.urls'), name='list'),
-    path('inquiry/', include('inquiry.urls'), name='inquiry'),
-    path('market/', include('market.urls'), name='market'),
+    path('', include('user_info.urls')),
+    path('listview/', include('list.urls')),
+    path('inquiry/', include('inquiry.urls')),
+    path('market/', include('market.urls')),
 ]
 urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
