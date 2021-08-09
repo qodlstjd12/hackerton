@@ -1,3 +1,4 @@
+from user_info.models import CustomUser
 from django.core import paginator
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
@@ -24,6 +25,7 @@ def market_Write(request):
     if request.method == 'POST':
         post = MarketPost()
         post.title = request.POST.get('title')
+        print(request.user)
         post.writer= request.user
         post.post_time = timezone.now()
         post.body = request.POST.get('body')

@@ -68,15 +68,21 @@
 {% if user.is_authenticated %}
     <h2>1:1 문의 내역</h2>
     <div class="accordionFrequent">
-        {% for post in post1 %}   
-        <div class="contentBx">
-            <div class="label">{{post.body}}</div>
+        {% if not post1 %}
             <div class="content">
-                <p>작성일 기준 남은 잔액은 1만5천원입니다.</p>
+                <p style= "text-align: center;">문의하신 내역이 없습니다!</p>
             </div>
-            <span class="line"></span>
-        </div>
-        {% endfor %}
+        {% else %}
+            {% for post in post1 %}   
+            <div class="contentBx">
+                <div class="label">{{post.body}}</div>
+                <div class="content">
+                    <p>작성일 기준 남은 잔액은 1만5천원입니다.</p>
+                </div>
+                <span class="line"></span>
+            </div>
+            {% endfor %}
+        {% endif %}
     </div>
 {% endif %}
 <input type="submit" value="1:1 문의하기" class="askBtn"  onclick='newPage()'>

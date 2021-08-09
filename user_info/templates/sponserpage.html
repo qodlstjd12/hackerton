@@ -85,7 +85,11 @@
                 <section id="content1">
                 {% for post in posts %}
                     <div class="image-card">
+                        {% if post.thumbnail %}
                         <img src="{{post.thumbnail.url}}">
+                        {% else %}
+                        <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
+                        {% endif %}
                         <p class="title">{{post.title}}</p>
                         <p class="content">{{post.body}}</p>
                         <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}'">자세히보기</button>
@@ -113,6 +117,8 @@
                     <div class="image-card">
                     {% if post.photo %}
                         <img src="{{post.photo.url}}">
+                    {% else %}
+                        <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
                     {% endif %}
                         <p class="title">{{post.title}}</p>
                         <p class="content">{{post.body}}</p>

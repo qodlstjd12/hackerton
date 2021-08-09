@@ -65,7 +65,7 @@ class UserInfo(models.Model):
     user_description = models.TextField(default="잘 부탁드립니다!!")
     user_totaldonate = models.IntegerField(default=0, null=True)
     cash = models.IntegerField(null=True, default=0)
-    qua = models.CharField(null=True, max_length = 30, blank=True)
+    qua = models.CharField(null=True, max_length = 30, blank=True, default="no")
 
     def __str__(self):
         return self.user_email

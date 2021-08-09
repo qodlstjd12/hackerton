@@ -11,11 +11,6 @@ from list.models import Post
 
 import os
 
-def delete(request, id):
-    user = User.objects.get(id=id)
-    user.delete()
-    return redirect('user_info:home')
-
 def home(request):
     return render(request, 'index.html')
 
@@ -88,26 +83,6 @@ def mypage(request):
         userinfo.save()
         msg = "success"
     return render(request, 'mypage.html', {"money" : userinfo.cash,"success":msg ,'receivers':my_receiver ,"temperature" : str(round(0.1 * (userinfo.user_totaldonate / 1000),2))})
-# def cash_fill(request):
-#     if request.method == 'POST':
-#         user = CustomUser.objects.get(email=request.user.email)
-#         userinfo = UserInfo.objects.get(user_email=user)
-#         money = request.POST['mine']
-#         print(money)
-#         try:
-#             money = int(money)
-#         except:
-#             return render(request, 'mypage.html', {"error" : "failed"})
-
-#         try:
-#             save_money = int(userinfo.cash)
-#             userinfo.cash = money + save_money
-#             userinfo.user_totalcash += money
-#         except:
-#             userinfo.cash = money
-#         userinfo.save()
-#     return render(request, 'mypage.html', {"money" : userinfo.cash, "success": "success", "temperature" : str(0.1 * (userinfo.user_totalcash / 1000))})
-    
 
 def recentDetail(request, id):
     post = Post1.objects.get(id=id)
@@ -120,10 +95,16 @@ def recentWrite(request):
             post.writer = request.user
             post.post_time = timezone.now()
             post.photo=request.FILES.get('image')
-            path = str(post.photo.path).split('\\')
+            if str(post.photo) == "":
+                post.photo = None
+                path = []
+            else:
+                path = str(post.photo.path).split('\\')
+
             post.save()
-            t_path  = ''
             if path!=[]:
+                t_path  = ''
+            
                 for i in path:
                     if i == 'media':
                         t_path = t_path + i + '\\' + 'userinfo' + '\\'
@@ -136,6 +117,7 @@ def recentWrite(request):
                 else:
                     post.delete()
                     os.remove(t_path)
+                path = ""
                 return render(request, 'recentWrite.html', {"error" : "error"})
         return redirect('user_info:sponserpage')
     return render(request, 'recentWrite.html')
