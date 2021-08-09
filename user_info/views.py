@@ -15,7 +15,10 @@ import os
 
 def home(request):
     msg =""
-    return render(request, 'index.html', {'msg':msg})
+    if not request.user.is_authenticated:
+        return render(request, 'index.html', {'msg': msg})
+    real_user = UserInfo.objects.get(user_email=request.user.email)   
+    return render(request, 'index.html', {'msg':msg, 'qua':str(real_user.qua)})
 
 def login_view(request):
     if request.method == 'POST':
@@ -62,7 +65,7 @@ def verify(request):
         else:
             msg = "fail"
     return render(request, 'index.html', {'msg':msg})
-    
+
 def logout_view(request):
     auth.logout(request)
     return redirect('user_info:home')

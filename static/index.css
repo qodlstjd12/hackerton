@@ -15,6 +15,7 @@ body {
     width: 100vw;
     overflow-x: hidden;
 }
+
 .header1 {
     z-index: 9999;
     width: 70vw;
@@ -48,6 +49,7 @@ body {
     font-size: 1em;
     font-weight: 700;
 }
+
 .banner {
     width: 100vw;
     height: 540px;
@@ -181,7 +183,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 10000;
+    z-index: 5000;
     border-radius: 15px;
 }
 
@@ -202,17 +204,25 @@ body {
     top: 50%;
     left: 50%;
     width: 400px;
-    height: 250px;
+    height: 200px;
     margin: -125px 0 0 -200px;
     text-align: center;
     background: #fff;
 }
 
 .popHead {
+    display: flex;
+    justify-content: space-between;
     padding: 15px;
     background: #f14a60;
     color: #fff;
     font-size: 18px;
+}
+
+.popHead h2 {
+    font-size: 1em;
+    font-weight: 400;
+    cursor: pointer;
 }
 
 .popBody {
@@ -232,17 +242,8 @@ body {
     border: none;
 }
 
-.donateAmount {
-    width: 90%;
-    height: 20px;
-    border-bottom: solid 1px #ccc;
-    border-left: medium none;
-    border-right: medium none;
-    border-top: medium none;
-    font-size: 20px;
-}
-
-.donateAmount:focus {
-    outline: none;
-    height: 20px;
+.popBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
