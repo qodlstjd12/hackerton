@@ -90,13 +90,10 @@
             <div class="swiper-wrapper">
             {% for receiver in receivers %}
                 <div class="swiper-slide">
-
                     <h2>{{receiver.user_nickname}}</h2>
-                    {{receiver.id}}
                     <img src="{{receiver.user_image.url}}">
                     <h3>{{receiver.user_description}}</h3>
                     <button type="button" onclick="location.href = '{% url 'user_info:recentView' receiver.user_email %}'">근황보기</button>
- 
                 </div>
             {% endfor %}
             </div>

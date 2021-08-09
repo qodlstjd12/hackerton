@@ -45,11 +45,6 @@ def feed_Detail(request, id):
     post = Post.objects.get(id=id)
     return render(request, 'html/feedDetail.html', {'post':post})
 
-# def test(request):
-#     ret = gtd.detect_text("C:/Users/duddl/KakaoTalkdonate.jpg")
-#     print(ret)
-#     return render(request, 'html/test.html')
-#C:/Users/duddl/KakaoTalkdonate.jpg
 def delete(request, id):
     post = Post.objects.get(id=id)
     post.delete()
