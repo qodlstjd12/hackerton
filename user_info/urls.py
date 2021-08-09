@@ -11,6 +11,7 @@ urlpatterns=[
     path('signup', views.signup, name = 'signup'),
     path('logout_view/', views.logout_view, name="logout_view"),
 
+    path('verify/', views.verify, name='verify'),
     path('sponserpage/', views.sponserpage, name="sponserpage"),
     path('recentView/<str:email>', views.recentView, name="recentView"),
     path('recentDetail/<str:id>', views.recentDetail, name='recentDetail'),

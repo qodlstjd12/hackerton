@@ -35,6 +35,35 @@
         {{ message }}
     </div>
 {% endfor %}
+{% if msg == 'success' %}
+    <script>
+      alert("인증 성공!")
+    window.location.href = "{% url 'user_info:home' %}"
+    </script>
+{% elif msg == 'fail' %}
+    <script>
+      alert("인증 실패!")
+    window.location.href = "{% url 'user_info:home' %}"
+    </script>
+{% endif %}
+<div class="popCmmn">
+    <div class="popBg" data-num="1"></div>
+    <div class="popInnerBox">
+        <div class="popHead">
+            <h2></h2>
+            <h2>기초수급자 인증하기</h2>
+            <h2 class="close">X</h2></div>
+        <form action="{% url 'user_info:verify' %}" method='POST' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class="popBody">
+                <input name='image' type="file" class="donateAmount">
+            </div>
+            <div class="popFoot">
+                <button class="popCloseBtnCmmn" type="submit" data-num="1">인증</button>
+            </div>
+        </form>
+    </div>
+</div>
 <div class="header1">
     <ul>
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
@@ -43,6 +72,10 @@
         <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
         <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">FAQ</a></li>
         <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
+         <li>   <div class="btnBox">
+                <button type="button" class="donate" >인증</button>
+            </div>
+            </li>
         {% if not user.is_authenticated %}
             <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
         {% else %}
@@ -101,5 +134,25 @@
         유료직업소개사업등록번호 : (국내) 제000-00000-00000 | (국외) 000-0000-0000 | 사업자등록번호 : 0000-0000-0000
         © WhoWantLab, Inc.</h2>
 </div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        setPop();
+    });
 
+    function setPop() {
+        var popOpenBtn = $('.donate');
+
+        popOpenBtn.on('click', function () {
+            var clickNum = $(this).attr('data-num');
+
+            $('.popCmmn').fadeIn(200);
+        })
+
+        $('.popBg, .popCloseBtnCmmn, .close').on('click', function () {
+            $('.popCmmn').fadeOut(200);
+        })
+    }
+</script>
 </body>
+</html>

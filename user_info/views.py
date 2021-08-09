@@ -1,3 +1,4 @@
+from user_info import verifing
 from django.core import paginator
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
@@ -8,11 +9,13 @@ from .models import UserInfo, CustomUser, whodonate, Post1
 from .form import PostForm
 from .GoogleApi import google_api
 from list.models import Post
-
+from django.views.decorators.csrf import csrf_exempt
+from .verifing import ggoo
 import os
 
 def home(request):
-    return render(request, 'index.html')
+    msg =""
+    return render(request, 'index.html', {'msg':msg})
 
 def login_view(request):
     if request.method == 'POST':
@@ -27,6 +30,7 @@ def login_view(request):
     else:
         return render(request, 'login.html')
 
+@csrf_exempt
 def signup(request):
     if request.method == "POST":
         if request.POST["user_pw1"] == request.POST["user_pw2"]:
@@ -45,8 +49,20 @@ def signup(request):
         return render(request, 'signup.html')
     return render(request, 'signup.html')
 
-
-
+def verify(request):
+    if request.method=='POST':
+        img = request.FILES.get('image').read()
+        user = CustomUser.objects.get(email=request.user)
+        real_user = UserInfo.objects.get(user_email=request.user.email)
+        msg = ""
+        if ggoo(img,real_user.user_name):
+            real_user.qua = 'yes'
+            real_user.save()
+            msg = "success"
+        else:
+            msg = "fail"
+    return render(request, 'index.html', {'msg':msg})
+    
 def logout_view(request):
     auth.logout(request)
     return redirect('user_info:home')

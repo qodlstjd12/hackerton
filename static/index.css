@@ -173,3 +173,76 @@ body {
     font-size: 0.8em;
     font-width: 400;
 }
+
+.popCmmn {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    border-radius: 15px;
+}
+
+.popBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.popInnerBox {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 250px;
+    margin: -125px 0 0 -200px;
+    text-align: center;
+    background: #fff;
+}
+
+.popHead {
+    padding: 15px;
+    background: #f14a60;
+    color: #fff;
+    font-size: 18px;
+}
+
+.popBody {
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.popCloseBtnCmmn {
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    background: #f14a60;
+    color: #fff;
+    transition: all 0.3s;
+    border: none;
+}
+
+.donateAmount {
+    width: 90%;
+    height: 20px;
+    border-bottom: solid 1px #ccc;
+    border-left: medium none;
+    border-right: medium none;
+    border-top: medium none;
+    font-size: 20px;
+}
+
+.donateAmount:focus {
+    outline: none;
+    height: 20px;
+}
