@@ -11,6 +11,11 @@ from list.models import Post
 
 import os
 
+def delete(request, id):
+    user = User.objects.get(id=id)
+    user.delete()
+    return redirect('user_info:home')
+
 def home(request):
     return render(request, 'index.html')
 
