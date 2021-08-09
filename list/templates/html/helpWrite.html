@@ -10,7 +10,18 @@
   <title>후원 게시글 작성</title>
 </head>
 <body>
-  
+  {% if msg == 'Not_auth' %}
+    <script>
+      alert("로그인 후 이용가능합니다")
+      window.location.href = "{% url 'user_info:login_view' %}"
+    </script>
+  {% endif %}
+  {% if msg == 'Not_yes' %}
+    <script>
+      alert("해당 기능은 기초수급자만 이용가능합니다!")
+      window.location.href = "{% url 'user_info:home' %}"
+    </script>
+  {% endif %}
 <div class="header">
   <ul>
     <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>

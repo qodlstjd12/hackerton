@@ -20,13 +20,13 @@ def list_view(request):
 @csrf_exempt
 def helpWrite(request):
     if not request.user.is_authenticated:
-        messages.warning(request, "로그인부터 하고오세요")
-        return redirect('user_info:home')
+        msg = "Not_auth"
+        return render(request, 'html/helpWrite.html', {'msg' : msg})        
     
     userinfo = UserInfo.objects.get(user_email=request.user.email)
     if userinfo.qua != "yes":
-        messages.warning(request, "기초수급자만 글쓸수 있습니다^^")
-        return redirect('user_info:home')
+        msg = "Not_yes"
+        return render(request, 'html/helpWrite.html', {'msg' : msg})
 
     if request.method == 'POST':
         post = Post()
