@@ -39,7 +39,7 @@
                 {% else %}
                     <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                 {% endif %}
-                <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:profile_view'%}'">프로필 변경</button>
+                <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:profile_view'%}';">프로필 변경</button>
             </div>
             <h3>{{user_profile.user_email}}</h3>
             <h5 class="email">{{user_profile.user_description}}</h5>
@@ -70,7 +70,7 @@
     <div class="writeList">
         <div class="hTitleBox">
             <h2>후원 게시글</h2>
-            <button type="button" class="writeBtn" onclick="location.href = '{% url 'list:helpWrite'%}'">작성하기</button>
+            <button type="button" class="writeBtn" onclick="location.href = '{% url 'list:helpWrite'%}';">작성하기</button>
         </div>
         <div class="swiper-container mySwiper">
             <div class="swiper-wrapper">
@@ -82,7 +82,7 @@
                     <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
                     {% endif %}
                     <h3>{{post.title}}</h3>
-                    <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}'">내글보기</button>
+                    <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}';">내글보기</button>
                 </div>
                 {% endfor %}
             </div>
@@ -92,7 +92,7 @@
     <div class="writeList">
         <div class="hTitleBox">
             <h2>근황 게시글</h2>
-            <button type="button"  class="writeBtn" onclick="location.href = '{% url 'user_info:recentWrite'%}'">작성하기</button>
+            <button type="button"  class="writeBtn" onclick="location.href = '{% url 'user_info:recentWrite'%}';">작성하기</button>
         </div>
         <div class="swiper-container mySwiper">
             <div class="swiper-wrapper">
@@ -104,7 +104,7 @@
                         <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
                     {% endif %}
                     <h3>{{post.title}}</h3>
-                    <button type="button" onclick="location.href = '{% url 'user_info:recentDetail' post.id %}'">내글보기</button>
+                    <button type="button" onclick="location.href = '{% url 'user_info:recentDetail' post.id %}';">내글보기</button>
                 </div>
                 {% endfor %}
             </div>

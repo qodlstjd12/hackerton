@@ -102,11 +102,12 @@ def mypage(request):
         userinfo.user_totalcash += money
         userinfo.save()
         msg = "success"
-    return render(request, 'mypage.html', {"money" : userinfo.cash,"success":msg ,'receivers':my_receiver ,"temperature" : str(round(0.1 * (userinfo.user_totaldonate / 1000),2))})
+    return render(request, 'mypage.html', {"userinfo" : userinfo ,"money" : userinfo.cash,"success":msg ,'receivers':my_receiver ,"temperature" : str(round(0.1 * (userinfo.user_totaldonate / 1000),2))})
 
 def recentDetail(request, id):
     post = Post1.objects.get(id=id)
     return render(request, 'recentDetail.html', {'post':post})
+
 def recentWrite(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -141,10 +142,12 @@ def recentWrite(request):
                 return render(request, 'recentWrite.html', {"error" : "error"})
         return redirect('user_info:sponserpage')
     return render(request, 'recentWrite.html')
+
 def recentWriteUpdate(request, id):
     pass
 
 from django.core.paginator import Paginator
+
 def sponserpage(request):
     user = CustomUser.objects.get(email=request.user.email)
     whos = whodonate.objects.filter(whogetmoney=user)
@@ -184,3 +187,4 @@ def profile_update_view(request):
         user_profile.save()
         return redirect("user_info:mypage")
     return render(request, "profile.html")
+
