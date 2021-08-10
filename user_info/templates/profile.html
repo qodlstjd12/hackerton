@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'signup.css' %}">
+    <title>Updatr_Profile</title>
+</head>
+
+<body>
+<div class="LOGOBox">
+    <div class="LOGO"><a href = "{% url 'user_info:home' %}">Who<span>Want</span></a></div>
+</div>
+<form action="{% url 'user_info:profile_update_view' %}" method="POST">
+    {% csrf_token %}
+<div class="Box">
+    <table class="Login-form">
+        <h3>프로필 변경</h3>
+        {% if user_profile.user_image %}
+            <p>dkdkdkdkdkd</p>
+            <img style="width: 50%;" src="{{user_profile.user_image}}">
+        {% else %}
+            <img style="width: 50%;" src="{% static 'img/original.png' %}">
+        {% endif %}
+        <tr class="Login-table-content">
+            <td class="Login-table-text">
+                <span><b>상태<br>메세지</b></span>
+            </td>
+            <td class="Login-table-input">
+                <input placeholder="{{user_profile.user_description}}" type="text" name = "user_name">
+            </td>
+        </tr>
+        <tr class="Login-table-content">
+            <td class="Login-table-text">
+                <span><b>프로필 업로드</b></span>
+            </td>
+            <td class="Login-table-input">
+                <input class="attach" type="file" name = 'image'>
+            </td>
+        </tr>
+    </table>
+    <button type="submit" class="btn">프로필변경</button>
+</form>
+</div>
+
+</body>
+</html>

@@ -10,7 +10,8 @@ urlpatterns=[
     path('login', views.login_view, name = 'login_view'),
     path('signup', views.signup, name = 'signup'),
     path('logout_view/', views.logout_view, name="logout_view"),
-
+    path('profile_view/', views.profile_view, name='profile_view'),
+    path('profile_update_view/', views.profile_update_view, name='profile_update_view'),
     path('verify/', views.verify, name='verify'),
     path('sponserpage/', views.sponserpage, name="sponserpage"),
     path('recentView/<str:email>', views.recentView, name="recentView"),

@@ -149,13 +149,13 @@ def sponserpage(request):
     paginator = Paginator(posts, 8)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-
+    user_profile = UserInfo.objects.get(user_email = request.user)
     recent_posts = Post1.objects.filter(writer=request.user).order_by('-post_time')
     recent_paginator = Paginator(recent_posts, 8)
     recent_page = request.GET.get('page')
     recent_posts = recent_paginator.get_page(recent_page)
 
-    return render(request, 'sponserpage.html', {'whos' : whos, 'posts': posts, 'recent_posts':recent_posts})
+    return render(request, 'sponserpage.html', {'whos' : whos, 'posts': posts, 'recent_posts':recent_posts , 'user_profile':user_profile})
 
 def recentView(request, email):
     user = CustomUser.objects.get(email=email)
@@ -163,3 +163,11 @@ def recentView(request, email):
     posts = Post1.objects.filter(writer=user).order_by('post_time')
 
     return render(request, 'recentView.html', {'posts': posts, 'receiver' : userinfo})
+
+def profile_view(request):
+    user_profile = UserInfo.objects.get(user_email = request.user)
+    print(user_profile.user_image)
+    return render(request, "profile.html", {"user_profile" : user_profile})
+
+def profile_update_view(request, id):
+    pass

@@ -29,9 +29,14 @@
     </div>
 
     <div class="profile_box" align=middle>
-        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-        <p class="email">{{request.user.email}}</p>
-
+        {% if user_profile.user_image %}
+            <img src="{{user_profile.user_image}}">
+        {% else %}
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+        {% endif %}
+        <p class="email">{{user_profile.user_email}}</p>
+        <p class="email">{{user_profile.user_description}}</p>
+        <button type="button" class="write-btn" onclick="location.href = '{% url 'user_info:profile_view'%}'">프로필 변경하기</button>
         <div class="inner_box1">
          
             <table class="table_1" >
