@@ -13,6 +13,7 @@ body {
     align-items: center;
     min-height: 100vh;
     width: 100vw;
+    background: #f6f9f6;
 }
 
 .header {
@@ -48,234 +49,270 @@ body {
     font-weight: 700;
 }
 
-.profile_box{
-    width: 100%;
-    height: 180px;
-    background-color: #ffd0d6;
-}
-
-.profile_box .profile{
-    height: 70px;
-    border-radius: 50%;
-    margin-top: 15px;
-}
-
-
-.profile_box .nickname{
-    font-size: 18px;
-    color: white;
-    font-weight: bold;
-}
-
-.profile_box .email{
-    font-size: 15px;
-    color: white;
-}
-
-.inner_box1{
-    width: 71%;
-    height: 250px;
-    margin-top: 10px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 10px 10px 35px rgb(214, 214, 214);
-    float: left;
-    margin-left: 14.5%;
-    margin-right: 1%;
-}
-
-.table_1 p{
-    font-size: 16px;
-    font-weight: bold;
-}
-.table_1{
-    margin-top: 5px;
-    padding-top: 20px;
-}
-
-.inner_box1 img{
-    width: 60px;
-    height: auto;
-}
-
-.inner_box1 .first_img{
-    width: 100px;
-    text-align: center;
-}
-
-.inner_box1 .first_text{
-    width: 100px;
-}
-
-#contents{
-    width: 85%;
-    height: 120px;
-    position: relative;
-    overflow: auto;
-}
-
-#contents table{
-    height: 100px;
-    font-size: 14px;
-    table-layout: fixed; 
-    border-spacing: 0;
-}
-
-.bx_tb1{
-    zoom: 1;
-}
-
-#spon-date{
-    width: 150px;
-    text-align: center;
-    border-bottom: 1px solid gainsboro;
-}
-
-#spon-nickname{
-    width: 300px;
-    text-align: center;
-    height: 40px;
-    border-bottom: 1px solid gainsboro;
-}
-
-#spon-money{
-    width: 200px;
-    text-align: right;
-    border-bottom: 1px solid gainsboro;
-}
-
-.inner_box3{
-    width: 71%;
-    min-height: 340px;
-    height: auto;
-    margin-top: 10px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 10px 10px 35px rgb(214, 214, 214);
-    float: left;
-    margin-left: 14.5%;
-    margin-right: 1%;
-}
-
-
-.donate-title{
+.profileAndDonate{
     margin-top: 20px;
-    font-size: 16px;
-    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.donate-table{
+.userProfile {
+    width: 34vw;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
     align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 4px -4px black;
+    margin-bottom: 30px;
 }
 
-.image-card{
-    width: 250px;
-    height: 200px;
-    margin-top: 10px;
-    border: 1px solid gainsboro;
-    border-radius: 5px;
-    float: left;
-    margin-left: 5px;
+.userProfile .topBox{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.image-card img{
-    width: 250px;
-    height: 110px;
-    border-radius: 5px;
+.userProfile .topBox .hidden{
+    opacity: 0;
 }
 
-.image-card .title{
-    font-size: 14px;
-    margin: 5px;
-    font-weight: 600;
-    align-items: center;
-}
-.image-card .content{
-    font-size: 10px;
-    margin: 5px;
-}
-
-.image-card button{
-    width: 100px;
-    height: 25px;
-    background-color: #f14a60;
-    border: none;
-    color: white;
-    font-size: 12px;
-}
-
-.image-card button:hover{
-    width: 100px;
-    height: 25px;
-    background-color: #f0a1ac;
-    border: none;
-    color: white;
-    font-size: 12px;
-}
-
-
-/* 도와주세요 보여주세요 */
-
-.main{
-    width: 85%;
-    background: #ffffff;
-    padding-top: 15px;
-}
-
-.main label{
-    display: inline-block;
-    padding: 4px 19.7%;
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    color: #bbb;
-    border: 1px solid transparent;
-}
-
-.main label:hover{
+i::before {
     color: #f14a60;
-    cursor: pointer;
 }
 
-.main section{
+.userProfile h3 {
+    font-size: 1.2em;
+    font-weight: 800;
+}
+
+.userProfile img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.horizontalBox {
+    width: 18vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.horizontalBox h2 {
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.historyBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    max-height: 200px;
+}
+
+.historyBox::-webkit-scrollbar {
     display: none;
-    border-top:1px solid #ddd;
 }
 
-.main input{
-    display: none;
+.line {
+    width: 60%;
+    height: 2px;
+    background: #ccc;
+    border: 1px solid #ccc;
+    margin: 10px 0 10px 0;
 }
 
-.main input:checked + label{
-    color: #555;
-    border: 1px solid #ddd;
-    border-top: 2px solid #f14a60;
-    border-bottom: 1px solid #ffffff;
+.donateHistory {
+    width: 34vw;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    align-items: center;
+    box-shadow: 0 4px 4px -4px black;
+    margin-bottom: 30px;
 }
 
-#tab1:checked ~ #content1,
-#tab2:checked ~ #content2{
+.titleBox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.titleBox h2 {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.userProfile i:before {
+    font-size: 100px
+}
+
+.titleBox i:before {
+    margin: 0 10px 0 0;
+    font-size: 1.5em;
+}
+
+.titleText {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+.titleText h2 {
+    font-size: 1.2em;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.titleText h3 {
+    font-size: 1.5em;
+    font-weight: 400;
+    color: #f14a60;
+}
+
+.writeList {
+    width: 70vw;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    align-items: center;
+    box-shadow: 0 4px 4px -4px black;
+    margin-bottom: 30px;
+}
+
+.writeList h2 {
+    font-size: 1.3em;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide, .swiper-slide-active{
+    width: 200px !important;
+    height: 200px!important;
+    border: solid 1px #cccccc;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.swiper-slide img {
+    width: 100%;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.swiper-slide h3 {
+    height: 0;
+    font-size: 0.8em;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.swiper-slide button {
+    width: 60%;
+    height: 25px;
+    border-radius: 7px;
+    background: #f14a60;
+    color: white;
+    font-size: 1em;
+    font-weight: 400;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.hTitleBox{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hTitleBox h2{
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.writeBtn{
+    width: 75px;
+    height: 25px;
+    border-radius: 7px;
+    background: #f14a60;
+    color: white;
+    border: none;
+    font-weight: 700;
+}
+
+.footer {
+    width: 70vw;
+    height: 100px;
+    margin-top: 50px;
+}
+
+.footer .line {
     display: block;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    margin: 20px 0 20px 0;
 }
 
-.write-btn{
-    margin-top: 10px;
-    width: 100px;
-    height: 25px;
-    background-color: #cccccc;
-    border: none;
-    color: white;
-    font-size: 12px;
-}
-.profile_box i {
-    margin: 10px 0 10px 0 !important;
+.footer ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.profile_box i::before {
+.footer ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.footer .logo {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.footer ul li a span {
     color: #f14a60;
-    font-size: 50px;
 }
 
-.credit::before{
-    font-size: 20px !important;
+.footer .navItem {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.footer h2 {
+    color: #cccccc;
+    font-size: 0.8em;
+    font-width: 400;
 }

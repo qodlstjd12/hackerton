@@ -11,7 +11,7 @@
 
 <body>
 <div class="LOGOBox">
-    <div class="LOGO"><a href = "{% url 'user_info:home' %}">Who<span>Want</span></a></div>
+    <div class="LOGO"><a style = "text-decoration:none;" href = "{% url 'user_info:home' %}">Who<span>Want</span></a></div>
 </div>
 <form action="{% url 'user_info:signup' %}" method="POST">
     {% csrf_token %}

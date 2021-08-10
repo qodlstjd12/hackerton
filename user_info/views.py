@@ -169,8 +169,18 @@ def recentView(request, email):
 
 def profile_view(request):
     user_profile = UserInfo.objects.get(user_email = request.user)
-    print(user_profile.user_image)
     return render(request, "profile.html", {"user_profile" : user_profile})
 
-def profile_update_view(request, id):
-    pass
+def profile_update_view(request):
+    if request.method == 'POST':
+        user_profile = UserInfo.objects.get(user_email = request.user)
+        user_profile.user_description = request.POST['user_description']
+        try: 
+            user_profile.user_image.path 
+            os.remove(user_profile.user_image.path)
+        except:
+            pass
+        user_profile.user_image = request.FILES.get('image')
+        user_profile.save()
+        return redirect("user_info:mypage")
+    return render(request, "profile.html")

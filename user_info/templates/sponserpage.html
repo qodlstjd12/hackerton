@@ -8,146 +8,129 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{% static 'sponserpage.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
     <title>후원을 다이렉트로, 후원트</title>
 </head>
 <body>
-    <div class="header">
-        <ul>
-            <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
-            <li><a href="{% url 'list:helpWrite' %}" class="navItem">후원받기</a></li>
-            <li><a href="{% url 'market:market_view' %}" class="navItem">재능마켓</a></li>
-            <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
-            <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">FAQ</a></li>
-            <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
-            {% if not user.is_authenticated %}
-                <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
-            {% else %}
-                <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
-            {% endif %}
-        </ul>
-    </div>
-
-    <div class="profile_box" align=middle>
-        {% if user_profile.user_image %}
-            <img src="{{user_profile.user_image}}">
+<div class="header">
+    <ul>
+        <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
+        <li><a href="{% url 'list:helpWrite' %}" class="navItem">후원받기</a></li>
+        <li><a href="{% url 'market:market_view' %}" class="navItem">재능마켓</a></li>
+        <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
+        <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">FAQ</a></li>
+        <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
+        {% if not user.is_authenticated %}
+            <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
         {% else %}
-            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
         {% endif %}
-        <p class="email">{{user_profile.user_email}}</p>
-        <p class="email">{{user_profile.user_description}}</p>
-        <button type="button" class="write-btn" onclick="location.href = '{% url 'user_info:profile_view'%}'">프로필 변경하기</button>
-        <div class="inner_box1">
-         
-            <table class="table_1" >
-                <tr>
-                    <th colspan="2">
-                        <i class="fa fa-credit-card-alt credit" aria-hidden="true"></i>
-                        <p>&nbsp;&nbsp;후원 내역</p>
-                    </th>
-                </tr>
-                <tr>
-                    <td scope="col" class="first_text">
-                    </td>
-                </tr>
-            </table>
-    
-            <div id="contents">
-                <div class="bx_tb1">
-                        <table>
-                        {% for who in whos %}
-                        <tr>
-                            <td id="spon-date">
-                            {% if who.created_string == False %}
-                            {{who.created|date:'m월 d일'}}
-                            {% else %}
-                            {{who.created_string}}
-                            {% endif %}</h3>
-                            </td>
-                            <td id="spon-nickname">
-                                {{ who.whogivemoney }}
-                            </td>
-                            <td id="spon-money">
-                                {{ who.givemoney }}원
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-           
+    </ul>
+</div>
+<div class="contentBox">
+    <div class="profileAndDonate">
+        <div class="userProfile">
+            <div class="topBox">
+                <button class="writeBtn hidden">프로필 변경</button>
+                <!--        <i class="fa fa-user-circle-o" aria-hidden="true"></i>-->
+                {% if user_profile.user_image %}
+                    <img src="{{user_profile.user_image.url}}">
+                {% else %}
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                {% endif %}
+                <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:profile_view'%}'">프로필 변경</button>
+            </div>
+            <h3>{{user_profile.user_email}}</h3>
+            <h5 class="email">{{user_profile.user_description}}</h5>
+        </div>
+        <div class="donateHistory">
+            <div class="titleBox">
+                <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                <h2>후원받은 내역</h2>
+            </div>
+            <div class="historyBox">
+                {% for who in whos %}
+                <div class="horizontalBox">
+                    <h2>{% if who.created_string == False %}
+                        {{who.created|date:'m월 d일'}}
+                        {% else %}
+                        {{who.created_string}}
+                        {% endif %}</h2>
+                    <h2>{{ who.whogivemoney }}</h2>
+                    <h2>{{ who.givemoney }}원</h2>
                 </div>
+                {% endfor %}
+            </div>
+
+
             </div>
         </div>
-
-
-        <div class="inner_box3">
-            <p class="donate-title">작성게시글</p>
-            <div class="main">
-                <input id="tab1" type="radio" name="tabs" checked>
-                <label for="tab1">도와주세요</label>
-        
-                <input id="tab2" type="radio" name="tabs">
-                <label for="tab2">보여주세요</label>
-                <section id="content1">
+    </div>
+    <div class="writeList">
+        <div class="hTitleBox">
+            <h2>후원 게시글</h2>
+            <button type="button" class="writeBtn" onclick="location.href = '{% url 'list:helpWrite'%}'">작성하기</button>
+        </div>
+        <div class="swiper-container mySwiper">
+            <div class="swiper-wrapper">
                 {% for post in posts %}
-                    <div class="image-card">
-                        {% if post.thumbnail %}
+                <div class="swiper-slide">
+                    {% if post.thumbnail %}
                         <img src="{{post.thumbnail.url}}">
-                        {% else %}
-                        <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
-                        {% endif %}
-                        <p class="title">{{post.title}}</p>
-                        <p class="content">{{post.body}}</p>
-                        <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}'">자세히보기</button>
-                    </div>
+                    {% else %}
+                    <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
+                    {% endif %}
+                    <h3>{{post.title}}</h3>
+                    <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}'">내글보기</button>
+                </div>
                 {% endfor %}
-                    <button type="button" class="write-btn" onclick="location.href = '{% url 'list:helpWrite'%}'">글작성하기</button>
-                    <!-- 이전 페이지가 있을때만 보이도록 -->
-    {% if posts.has_previous %} 
-    <a href="?page=1">처음</a>
-    <a href="?page={{posts.previous_page_number}}">이전</a>
-    {% endif %}
-<!-- 현재 몇번째 페이지인지 -->
-    <span>{{posts.number}}</span>
-    <span>of</span>
-    <span>{{posts.paginator.num_pages}}</span>
-<!-- 다음 페이지가 있을때만 보이도록 -->
-    {% if posts.has_next %}
-    <a href="?page={{posts.next_page_number}}">다음</a>
-    <a href="?page={{posts.paginator.num_pages}}">마지막</a>
-    {% endif %}
-                </section>
+            </div>
+        </div>
+    </div>
 
-                <section id="content2">
+    <div class="writeList">
+        <div class="hTitleBox">
+            <h2>근황 게시글</h2>
+            <button type="button"  class="writeBtn" onclick="location.href = '{% url 'user_info:recentWrite'%}'">작성하기</button>
+        </div>
+        <div class="swiper-container mySwiper">
+            <div class="swiper-wrapper">
                 {% for post in recent_posts %}
-                    <div class="image-card">
+                <div class="swiper-slide">
                     {% if post.photo %}
                         <img src="{{post.photo.url}}">
                     {% else %}
                         <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
                     {% endif %}
-                        <p class="title">{{post.title}}</p>
-                        <p class="content">{{post.body}}</p>
-                        <button type="button" onclick="location.href = '{% url 'user_info:recentDetail' post.id %}'">자세히보기</button>
-                    </div>
+                    <h3>{{post.title}}</h3>
+                    <button type="button" onclick="location.href = '{% url 'user_info:recentDetail' post.id %}'">내글보기</button>
+                </div>
                 {% endfor %}
-                    <button type="button" class="write-btn" onclick="location.href = '{% url 'user_info:recentWrite'%}'">글작성하기</button>
-                    <!-- 이전 페이지가 있을때만 보이도록 -->
-                    <br>
-    {% if recent_posts.has_previous %} 
-    <a href="?page=1">처음</a>
-    <a href="?page={{recent_posts.previous_page_number}}">이전</a>
-    {% endif %}
-<!-- 현재 몇번째 페이지인지 -->
-    <span>{{recent_posts.number}}</span>
-    <span>of</span>
-    <span>{{recent_posts.paginator.num_pages}}</span>
-<!-- 다음 페이지가 있을때만 보이도록 -->
-    {% if recent_posts.has_next %}
-    <a href="?page={{recent_posts.next_page_number}}">다음</a>
-    <a href="?page={{recent_posts.paginator.num_pages}}">마지막</a>
-    {% endif %}
-                </section>
             </div>
         </div>
     </div>
+</div>
+<div class="footer">
+    <ul>
+        <li><a href="#" class="logo">WHO<span>WANT</span></a></li>
+        <li><a href="#" class="navItem">기업소개</a></li>
+        <li><a href="#" class="navItem">이용약관</a></li>
+        <li><a href="#" class="navItem">개인정보 처리방침</a></li>
+        <li><a href="#" class="navItem">고객센터</a></li>
+    </ul>
+    <span class="line"></span>
+    <h2>(주)후원트 (대표이사:후대표) | 대구광역시 수성구 범어천로20 두산위브더제니스 4202호 | 통신판매번호 : 00-00-00-00
+        유료직업소개사업등록번호 : (국내) 제000-00000-00000 | (국외) 000-0000-0000 | 사업자등록번호 : 0000-0000-0000
+        © WhoWantLab, Inc.</h2>
+</div>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        freeMode: true,
+    });
+</script>
 </body>
