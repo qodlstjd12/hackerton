@@ -57,7 +57,7 @@ class UserInfo(models.Model):
     user_nickname = models.CharField(null=True, max_length=10)
     user_email = models.CharField(null=True, max_length = 30)
     user_phone = models.CharField(null=True, max_length = 30)
-    user_image = models.ImageField(upload_to='userinfo/', default="static/profileimage.jpg")
+    user_image = models.ImageField(upload_to='userinfo/', default="static/img/original.png")
     user_name = models.CharField(null=True, max_length = 20)
     user_account_name = models.CharField(null=True, max_length = 20)
     user_account = models.CharField(null=True, max_length = 30)

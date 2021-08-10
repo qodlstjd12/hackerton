@@ -16,7 +16,7 @@
     {% endfor %}
     {% endif %}
 <div class="LOGOBox">
-    <div class="LOGO">Who<span>Want</span></div>
+    <div class="LOGO"><a style="text-decoration: none;" href="{% url 'user_info:home' %}">Who<span>Want</span></a></div>
 </div>
 <div class="Box">
     <form method="POST" action="{% url 'user_info:login_view' %}">
