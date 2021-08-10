@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'CS.css' %}">
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'CS.css' %}"> -->
     <title>1:1 문의하기</title>
 </head>
 <body>
@@ -34,13 +34,63 @@
         </ul>
     </div>
 <div class="inputArea">
-    <h2>문의하기</h2>
+    <div class="title-box">
+        <h2>문의하기</h2>
+    </div>
     <form action="{% url 'inquiry:CS' %}" method="POST">
         {% csrf_token %}
-        <textarea placeholder="제목." class="title" name="title"></textarea>
-        <textarea placeholder="내용을 입력해주세요." class="formText" name="body"></textarea>
+        <div class="under-box">
+            <table>
+                <tr>
+                    <td class="first">
+                        <div class="input-box">
+                            <p>제목</p>
+                            <textarea class="title" name="title"></textarea>
+                            <p>이메일</p>
+                            <textarea class="email" name="email"></textarea>
+                            <p>문의내용</p>
+                            <textarea class="formText" name="body"></textarea>
+                            <input type="submit" value="제출하기" class="csSubmit">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="explain-box" >
+                            <p class="title">1:1 문의 참조사항</p>
+                            <table>
+                                <tr>
+                                    <td class="first"><img src="{% static 'img/bulb.png'%}"></td>
+                                    <td><p>최대한 빠르게 답변해드리도록 하겠습니다.</p></td>
+                                </tr>
+                                <tr>
+                                    <td class="first"><img src="{% static 'img/bulb.png'%}"></td>
+                                    <td><p>욕설 및 비방글에 대해서는 답변을 드릴 수 없습니다.</p></td>
+                                </tr>
+                                <tr>
+                                    <td class="first"><img src="{% static 'img/bulb.png'%}"></td>
+                                    <td><p>문의하신 사항은 6시간 이내에 모두 답변 드리겠습니다.</p></td>
+                                </tr>
+                            </table>
+                            <table class="last">
+                                <tr>
+                                    <td><p>ADDRESS</p></td>
+                                    <td><p>대구광역시 수성구 범어천로20 두산위브더제니스 4202호</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>PHONE</p></td>
+                                    <td><p>053-810-0000</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>EMAIL</p></td>
+                                    <td><p>whowant@gmail.com</p></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     <div>
-        <input type="submit" value="제출하기" class="csSubmit">
+
     </div>
     </form>
 </div>

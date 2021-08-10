@@ -48,9 +48,6 @@ body {
     font-weight: 700;
 }
 
-h2 {
-    margin: 40px;
-}
 
 .inputArea {
     width: 70vw;
@@ -76,25 +73,127 @@ textarea::placeholder {
     font-weight: 700;
 }
 
+.title-box{
+    width: 90%;
+    height: 100px;
+    text-align: center;
+    align-items: center;
+    line-height: 100px;
+}
+
+.title-box h2{
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.under-box{
+    background-color: #f1f0f0;
+    width: 100%;
+    height: 500px;
+    line-height: 20px;
+}
+
+.under-box table{
+    width: 100%;
+}
+
+.under-box .first{
+    width: 60%;
+}
+
+.input-box{
+    height: 450px;
+    border-right: 2px solid rgb(228, 228, 228);
+}
+
+.input-box p{
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
 .title {
-    height: 25px;
-    font-size: 0.8rem;
-    font-weight: 300;
+    height: 35px;
+    width: 80%;
+    font-size: 15px;
+    border: none;
+    line-height: 35px;
+    margin-left: 30px;
+}
+
+.email {
+    height: 35px;
+    width: 80%;
+    font-size: 15px;
+    border: none;
+    line-height: 35px;
+    margin-left: 30px;
 }
 
 .formText {
-    height: 60vh;
-    font-size: 0.8rem;
+    height: 230px;
+    font-size: 15px;
     font-weight: 300;
+    border: none;
+    width: 80%;
+    margin-left: 30px;
 }
 
 .csSubmit {
-    width: 70vw;
-    height: 64px;
-    border-radius: 32px;
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
     background-color: #f14a60;
     color: white;
-    font-size: 20px;
+    font-size: 15px;
     border: none;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+.explain-box{
+    height: 500px;
+    border: 2px solid #f1f0f0;
+}
+
+.explain-box .title{
+    font-size: 22px;
+    font-weight: 700;
     margin-top: 50px;
+}
+
+
+.explain-box table{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 10px;
+}
+
+.explain-box td{
+    height: 35px;
+    font-size: 16px;
+}
+
+.explain-box table .first{
+    width: 40px;
+}
+
+.explain-box img{
+    width: 30px;
+    height: auto;
+}
+
+.explain-box .last{
+    margin-left: 6%;
+    margin-top: 70px;
+}
+
+.explain-box .last td{
+    height: 20px;
+}
+
+.explain-box .last td p{
+    font-size: 12px;
+    font-weight: 700;
 }
