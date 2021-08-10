@@ -11,6 +11,12 @@
 </head>
 <body>
 <div class="header">
+    {% if not user.is_authenticated %}
+        <script>
+            alert("로그인 후 이용해주세요");
+            window.location.href = "{% url 'user_info:login_view' %}";
+        </script>
+    {% endif %}
     <ul>
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
         <li><a href="{% url 'list:helpWrite' %}" class="navItem">후원받기</a></li>
