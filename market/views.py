@@ -38,3 +38,14 @@ def market_Delete(request, id):
     post = MarketPost.objects.get(id=id)
     post.delete()
     return redirect('market:market_view')
+
+def market_Update(request, id):
+    post = MarketPost.objects.get(id=id)
+    if request.method == 'POST':
+        post.title = request.POST['title']
+        post.body = request.POST['body']
+        post.post_time = timezone.now()
+        post.thumbnail = request.FILES.get('image')
+        post.save()
+        return redirect('market:market_view')
+    return render(request, 'marketUpdate.html', {'post':post})

@@ -29,7 +29,8 @@ def login_view(request):
             auth.login(request, user)
             return redirect('user_info:home')
         else:
-            return render(request, 'login.html', {'error': "username or passowrd is incorrect"})
+            msg = "error"
+            return render(request, 'login.html', {'msg':msg})
     else:
         return render(request, 'login.html')
 
@@ -140,6 +141,8 @@ def recentWrite(request):
                 return render(request, 'recentWrite.html', {"error" : "error"})
         return redirect('user_info:sponserpage')
     return render(request, 'recentWrite.html')
+def recentWriteUpdate(request, id):
+    pass
 
 from django.core.paginator import Paginator
 def sponserpage(request):

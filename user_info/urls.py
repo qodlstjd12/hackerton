@@ -14,7 +14,9 @@ urlpatterns=[
     path('profile_update_view/', views.profile_update_view, name='profile_update_view'),
     path('verify/', views.verify, name='verify'),
     path('sponserpage/', views.sponserpage, name="sponserpage"),
+
     path('recentView/<str:email>', views.recentView, name="recentView"),
     path('recentDetail/<str:id>', views.recentDetail, name='recentDetail'),
     path('recentWrite/', views.recentWrite, name="recentWrite"),
+    path('recentWriteUpdate/<str:id>', views.recentWriteUpdate, name="recentWriteUpdate"),
 ]

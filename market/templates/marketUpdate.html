@@ -1,0 +1,45 @@
+<!doctype html>
+{% load static %}
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'marketWrite.css'%}">
+    <title>재능 마켓 작성</title>
+</head>
+<body>
+<div class="header">
+    {% if not user.is_authenticated %}
+        <script>
+            alert("로그인 후 이용해주세요");
+            window.location.href = "{% url 'user_info:login_view' %}";
+        </script>
+    {% endif %}
+    <ul>
+        <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
+        <li><a href="{% url 'list:helpWrite' %}" class="navItem">후원받기</a></li>
+        <li><a href="{% url 'market:market_view' %}" class="navItem">재능마켓</a></li>
+        <li><a href="{% url 'inquiry:CS' %}" class="navItem">문의하기</a></li>
+        <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">FAQ</a></li>
+        <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
+        {% if not user.is_authenticated %}
+            <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
+        {% else %}
+            <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
+        {% endif %}
+    </ul>
+</div>
+<div class="inputArea">
+    <h2>재능 마켓 게시글 작성</h2>
+    <form action='{% url 'market:market_Update' post.id %}' method='POST' enctype='multipart/form-data'>
+        {% csrf_token %}
+        <textarea name="title" placeholder="제목." class="title">{{post.title}}</textarea>
+        <textarea name="body" placeholder="내용을 입력해주세요." class="formText">{{post.body}}</textarea>
+        <input name='image' type="file">
+        <input type="submit" value="제출하기" class="csSubmit">
+    </form>
+</div>
+</body>
+</html>

@@ -10,10 +10,11 @@
 </head>
 
 <body>
-    {% if messages %}
-    {% for message in messages %}
-        {{ message.message }}
-    {% endfor %}
+    {% if msg == 'error' %}
+    <script>
+        alert("이메일 또는 패스워드가 틀렸습니다.")
+        window.location.href = "{% url 'user_info:login_view' %}"
+    </script>
     {% endif %}
 <div class="LOGOBox">
     <div class="LOGO"><a style="text-decoration: none;" href="{% url 'user_info:home' %}">Who<span>Want</span></a></div>

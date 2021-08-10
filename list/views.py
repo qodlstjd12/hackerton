@@ -41,11 +41,22 @@ def helpWrite(request):
         form = PostForm()
         return render(request, 'html/helpWrite.html', {'post':form})
 
+def helpUpdate(request, id):
+    post = Post.objects.get(id=id)
+    if request.method == 'POST':
+        post.title = request.POST['title']
+        post.body = request.POST['body']
+        post.post_time = timezone.now()
+        post.thumbnail = request.FILES.get('images')
+        post.save()
+        return redirect('list:list_view')
+    return render(request, 'html/helpUpdate.html', {'post':post})
+
 def feed_Detail(request, id):
     post = Post.objects.get(id=id)
     return render(request, 'html/feedDetail.html', {'post':post})
 
-def delete(request, id):
+def helpDelete(request, id):
     post = Post.objects.get(id=id)
     post.delete()
     return redirect('list:list_view')

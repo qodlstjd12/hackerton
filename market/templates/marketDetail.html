@@ -55,7 +55,12 @@
             <img class="contentImg" src="{{post.thumbnail.url}}">
         </div>
         <div class="btnBox">
+        {% if post.writer == user %}
+            <button type="button" onclick="location.href = '{% url 'market:market_Update' post.id%}'">글 수정하기</button>
+            <button type="button" onclick="location.href = '{% url 'market:market_Delete' post.id%}'">글 삭제하기</button>            
+        {% endif %}
             <button type="button">신청하기</button>
+
         </div>
     </div>
 </div>
