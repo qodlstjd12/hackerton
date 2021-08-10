@@ -39,14 +39,28 @@
 </div>
 <div class="inputArea">
   <h2>후원 게시글 작성</h2>
-  <form action='{% url 'list:helpWrite' %}' method='POST' enctype='multipart/form-data'>
+  <form action="{% url 'list:helpWrite' %}" method='POST' enctype='multipart/form-data'>
     {% csrf_token %}
-    
-    <textarea placeholder="제목." class="title" name = 'title'></textarea>
-    <textarea placeholder="내용을 입력해주세요." class="formText" name = 'body'></textarea>
-    
-    <input type="file" name = 'images' multiple>
-    <input type="submit" value="제출하기" class="csSubmit">
+    <table class="text-box">
+      <tr class="top">
+        <td class="first"><p>제목</p></td>
+        <td><textarea class="title" name = 'title'></textarea></td>
+      </tr>
+      <tr>
+        <td class="first"><p>파일</p></td>
+        <td><input type="file" class="img" name = 'images' multiple></td>
+      </tr>
+      <tr class="bottom">
+        <td class="first"><p>내용</p></td>
+        <td class="content"><textarea class="formText" name = 'body'></textarea></td>
+      </tr>
+    </table>
+    <table class="button-box">
+      <tr>
+        <td><input type="submit" value="제출하기" class="csSubmit"></td>
+        <td><input type="submit" value="목록보기" class="csList"></td>
+      </tr>
+    </table>
 
   </form>
 </div>
