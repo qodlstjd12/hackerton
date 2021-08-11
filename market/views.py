@@ -1,8 +1,8 @@
-from user_info.models import CustomUser
+from user_info.models import CustomUser, UserInfo
 from django.core import paginator
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
-from .models import MarketPost
+from .models import MarketPost, Comment
 from django.utils import timezone
 from django.core.paginator import Paginator
 
@@ -16,9 +16,18 @@ def market_view(request):
 
     return render(request, 'market.html', {'posts':post})
 
+from django.shortcuts import get_object_or_404
+
 def market_Detail(request,id):
     post = MarketPost.objects.get(id=id)
-    return render(request, 'marketDetail.html', {'post':post})
+    user_info = UserInfo.objects.get(user_email = request.user)
+    
+    try:
+        comments = Comment.objects.get(id=id) 
+    except:
+        comments = None
+
+    return render(request, 'marketDetail.html', {"comments":comments, 'post':post, "user_info" : user_info})
 
 @csrf_exempt
 def market_Write(request):
@@ -26,7 +35,7 @@ def market_Write(request):
         post = MarketPost()
         post.title = request.POST.get('title')
         print(request.user)
-        post.writer= request.user
+        post.writer = request.user
         post.post_time = timezone.now()
         post.body = request.POST.get('body')
         post.thumbnail = request.FILES.get('image')
@@ -49,3 +58,16 @@ def market_Update(request, id):
         post.save()
         return redirect('market:market_view')
     return render(request, 'marketUpdate.html', {'post':post})
+
+def comment(request, id):
+    comments = Comment()
+    user_info = UserInfo.objects.get(user_email = request.user)
+    if request.method == 'POST':
+        comments.MarketPost_id = MarketPost.objects.get(id=id)
+        comments.writer = user_info.user_nickname
+        comments.body = request.POST['comment']
+        comments.user_url = user_info.user_image.url
+        comments.save()
+        
+
+    return redirect('market:market_Detail', id = id)

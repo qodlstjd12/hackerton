@@ -10,6 +10,11 @@
 </head>
 
 <body>
+{% if error == "error" %}
+<script>
+    alert("아이디가 중복되었습니다!");
+</script>
+{% endif %}
 <div class="LOGOBox">
     <div class="LOGO"><a style = "text-decoration:none;" href = "{% url 'user_info:home' %}">Who<span>Want</span></a></div>
 </div>

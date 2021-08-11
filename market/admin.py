@@ -1,5 +1,6 @@
-from market.models import MarketPost
+from market.models import MarketPost, Comment
 from django.contrib import admin
-from .models import MarketPost
-# Register your models here.
+
+
 admin.site.register(MarketPost)
+admin.site.register(Comment)

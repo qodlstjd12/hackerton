@@ -37,6 +37,13 @@ def login_view(request):
 @csrf_exempt
 def signup(request):
     if request.method == "POST":
+        
+        try:
+            if CustomUser.objects.get(email=request.POST['user_email']):
+                return render(request, 'signup.html', {"error" : "error"})
+        except:
+            pass
+        
         if request.POST["user_pw1"] == request.POST["user_pw2"]:
             user = CustomUser.objects.create_user(
                 email=request.POST['user_email'], password=request.POST['user_pw1'])

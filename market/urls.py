@@ -12,4 +12,5 @@ urlpatterns =[
     path('marketWrite/', views.market_Write, name='market_Write'),
     path('marketDelete/<str:id>', views.market_Delete, name='market_Delete'),
     path('marketUpdate/<str:id>',views.market_Update, name='market_Update'),
+    path('comment/<str:id>',views.comment, name='comment'),
 ]
