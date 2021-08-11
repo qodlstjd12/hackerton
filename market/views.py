@@ -21,11 +21,7 @@ from django.shortcuts import get_object_or_404
 def market_Detail(request,id):
     post = MarketPost.objects.get(id=id)
     user_info = UserInfo.objects.get(user_email = request.user)
-    
-    try:
-        comments = Comment.objects.get(id=id) 
-    except:
-        comments = None
+    comments = Comment.objects.filter(post=post)    
 
     return render(request, 'marketDetail.html', {"comments":comments, 'post':post, "user_info" : user_info})
 
@@ -60,14 +56,12 @@ def market_Update(request, id):
     return render(request, 'marketUpdate.html', {'post':post})
 
 def comment(request, id):
-    comments = Comment()
-    user_info = UserInfo.objects.get(user_email = request.user)
     if request.method == 'POST':
-        comments.MarketPost_id = MarketPost.objects.get(id=id)
-        comments.writer = user_info.user_nickname
-        comments.body = request.POST['comment']
-        comments.user_url = user_info.user_image.url
-        comments.save()
-        
+        comment = Comment.objects.create(
+            user = UserInfo.objects.get(user_email=request.user.email),
+            post = get_object_or_404(MarketPost, pk = id),
+            body = request.POST.get('comment'),
+            date = timezone.now(),
+        )
 
-    return redirect('market:market_Detail', id = id)
+    return redirect('market:market_Detail', id)
