@@ -76,16 +76,16 @@
         </form>
         <div class="commentArea">
             <div class="commentBox">
+                    {% for comment in comments %}
                 <div class="horizontalBox">
                     <!--        <i class="fa fa-user-circle-o" aria-hidden="true"></i>-->
-                    {% for comment in comments %}
                     <div class="verticalTextBox">
                         {% if comment.user.user_image %}
                             <img src="{{comment.user.user_image.url}}"class="userImg">
                         {% else %}
                             <img src="{% static 'img/original.png' %}"class="userImg">
                         {% endif %}
-                        <h2>{{comment.user}}</h2>
+                        <h2>{{comment.user.user_nickname}}</h2>
                     </div>
                     <div class="horizontalBox">
                         <div class="comment">{{ comment.body }}</div>
@@ -95,8 +95,8 @@
                             <h2>{{ comment.created_string }}</h2>
                         {% endif %}
                     </div>
-                    {% endfor %}
                 </div>
+                    {% endfor %}
             </div>
         </div>
     </div>
