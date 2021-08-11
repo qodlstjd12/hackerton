@@ -58,7 +58,7 @@
         <h2 class="contents">{{post.body}}</h2>
         <div class="imgBox">
             {% if post.thumbnail %}
-            <img class="contentImg" src="{{post.thumbnail.url}}">
+            <img style="width: 40%;" class="contentImg" src="{{post.thumbnail.url}}">
             {% endif %}
         </div>
         <div class="line"></div>
@@ -74,11 +74,12 @@
             <input type="text" class="commentInput" placeholder="댓글을 입력하세요.." onkeypress="JavaScript:press(this.form)" name ="comment">
         </div>
         </form>
+        {% for comment in comments %}
         <div class="commentArea">
             <div class="commentBox">
                 <div class="horizontalBox">
                     <!--        <i class="fa fa-user-circle-o" aria-hidden="true"></i>-->
-                    {% for comment in comments %}
+                    
                     <div class="verticalTextBox">
                         {% if comment.user.user_image %}
                             <img src="{{comment.user.user_image.url}}"class="userImg">
@@ -95,10 +96,11 @@
                             <h2>{{ comment.created_string }}</h2>
                         {% endif %}
                     </div>
-                    {% endfor %}
+                   
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 <div class="footer">
