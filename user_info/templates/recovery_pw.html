@@ -40,9 +40,24 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+
     $('.btn').click(function () {
-        alert('메일로 인증번호를 발송했습니다');
-        $('.authBox').css('display', 'flex');
+        $.ajax({
+            type: "POST",
+            url: "find/",
+            dataType: "json",
+            data: {
+                'email': $("#pw_form_email").val(),
+                'csrfmiddlewaretoken': '{{csrf_token}}',
+            },
+            success: function (response) {
+                alert('인증 메일을 발송했습니다.');
+                $('.authBox').css('display', 'flex');
+            },
+            error: function () {
+                alert('입력하신 정보를 확인해주세요.')
+            },
+        });
     });
 
     $('.authBtn').click(function () {
