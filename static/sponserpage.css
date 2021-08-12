@@ -49,11 +49,12 @@ body {
     font-weight: 700;
 }
 
-.profileAndDonate{
+.profileAndDonate {
     margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 70vw;
 }
 
 .userProfile {
@@ -70,13 +71,13 @@ body {
     margin-bottom: 30px;
 }
 
-.userProfile .topBox{
+.userProfile .topBox {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-.userProfile .topBox .hidden{
+.userProfile .topBox .hidden {
     opacity: 0;
 }
 
@@ -89,7 +90,7 @@ i::before {
     font-weight: 800;
 }
 
-.userProfile img{
+.userProfile img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -209,9 +210,9 @@ i::before {
     height: 100%;
 }
 
-.swiper-slide, .swiper-slide-active{
+.swiper-slide, .swiper-slide-active {
     width: 200px !important;
-    height: 200px!important;
+    height: 200px !important;
     border: solid 1px #cccccc;
     border-radius: 7px;
     display: flex;
@@ -250,19 +251,19 @@ i::before {
     margin-bottom: 10px;
 }
 
-.hTitleBox{
+.hTitleBox {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.hTitleBox h2{
+.hTitleBox h2 {
     font-size: 1.2em;
     font-weight: 700;
 }
 
-.writeBtn{
+.writeBtn {
     width: 75px;
     height: 25px;
     border-radius: 7px;
@@ -317,4 +318,9 @@ i::before {
     color: #cccccc;
     font-size: 0.8em;
     font-width: 400;
+}
+
+.userProfile .verticalTextBox {
+    display: flex;
+    flex-direction: column;
 }

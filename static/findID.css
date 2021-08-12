@@ -115,24 +115,35 @@ body {
 }
 
 a:link {
-    color : black;
-  }
-  a:visited {
-    color : black;
-  }
-  a:hover {
-    color : black;
-  }
-  a:active {
-    color : black
-  }
-  .popCmmn {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black
+}
+
+.title {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+
+.popCmmn {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 1000;
     border-radius: 15px;
 }
 
@@ -142,7 +153,6 @@ a:link {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1000;
     background: rgba(0, 0, 0, 0.7);
 }
 
@@ -154,17 +164,25 @@ a:link {
     top: 50%;
     left: 50%;
     width: 400px;
-    height: 250px;
+    height: 200px;
     margin: -125px 0 0 -200px;
     text-align: center;
     background: #fff;
 }
 
 .popHead {
+    display: flex;
+    justify-content: space-between;
     padding: 15px;
     background: #f14a60;
     color: #fff;
     font-size: 18px;
+}
+
+.popHead h2 {
+    font-size: 1em;
+    font-weight: 400;
+    cursor: pointer;
 }
 
 .popBody {
@@ -185,16 +203,54 @@ a:link {
 }
 
 .donateAmount {
-    width: 90%;
+    width: 40%;
     height: 20px;
     border-bottom: solid 1px #ccc;
     border-left: medium none;
     border-right: medium none;
     border-top: medium none;
     font-size: 20px;
+    margin-right: 10px;
 }
 
 .donateAmount:focus {
     outline: none;
     height: 20px;
+}
+
+.popBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.row, .justify-content-md-center {
+    display: flex;
+    flex-direction: column;
+    background: #acacff;
+}
+
+.authBox {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    height: 35px;
+}
+
+.authBox input {
+    border-bottom: #ccc 1px solid;
+    border-left: medium none;
+    border-right: medium none;
+    border-top: medium none;
+    font-size: 1em;
+    width: 250px;
+    margin-right: 10px;
+}
+
+.authBox button {
+    border-radius: 15px;
+    background: #f14a60;
+    color: white;
+    border: none;
+    font-weight: 400;
 }
