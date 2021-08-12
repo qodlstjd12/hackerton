@@ -146,8 +146,8 @@ AUTH_USER_MODEL = 'user_info.CustomUser'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.naver.com'
-EMAIL_HOST_USER = 'duddl6701@naver.com'
-EMAIL_HOST_PASSWORD = 'qudtlr15'
+EMAIL_HOST_USER = 'meotsa_server@naver.com'
+EMAIL_HOST_PASSWORD = 'hi_whowant'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-DEFAULT_FROM_MAIL = '<duddl6701@naver.com>'
+DEFAULT_FROM_MAIL = '<meotsa_server@naver.com>'
