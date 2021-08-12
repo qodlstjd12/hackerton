@@ -5,7 +5,7 @@ import re
 from google.cloud import vision
 from google.cloud.vision_v1 import types
 
-def google_api(t_path):
+def google_api(img):
 
     area = [
     "강원",
@@ -33,15 +33,8 @@ def google_api(t_path):
     client = vision.ImageAnnotatorClient()
 
     # The name of the image file to annotate
-    file_name = os.path.join(
-        os.path.dirname(__file__),
-        t_path)
 
-    # Loads the image into memory
-    with io.open(file_name, 'rb') as image_file:
-        content = image_file.read()
-
-    image = types.Image(content=content)
+    image = types.Image(content=img)
 
     # Performs label detection on the image file
     response = client.text_detection(image=image)
