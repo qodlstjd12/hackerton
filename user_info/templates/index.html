@@ -46,6 +46,11 @@
         alert("인증 실패!")
         window.location.href = "{% url 'user_info:home' %}"
     </script>
+{% elif msg == 'signup_success_but_email' %}
+    <script>
+        alert("회원가입 성공하셨습니다! 이제 이메일 인증을 완료해주시기 바랍니다")
+        window.location.href = "{% url 'user_info:mypage' %}"
+    </script>
 {% endif %}
 <div class="popCmmn">
     <div class="popBg" data-num="1"></div>

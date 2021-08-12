@@ -22,6 +22,12 @@
       window.location.href = "{% url 'user_info:home' %}"
     </script>
   {% endif %}
+  {% if msg == "Not_email_auth" %}
+    <script>
+      alert("이메일 인증후 이용가능합니다!")
+      window.location.href = "{% url 'user_info:mypage' %}"
+    </script>
+  {% endif %}
 <div class="header">
   <ul>
     <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>

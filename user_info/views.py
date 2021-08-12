@@ -77,8 +77,8 @@ def signup(request):
             user_contents.user_account = request.POST['user_acname']
             user_contents.user_account_name = request.POST['user_acnum']
             user_contents.save()
-
-            return render(request, 'index.html')
+            msg = "signup_success_but_email"
+            return render(request, 'index.html', {'msg': msg})
         return render(request, 'signup.html')
     return render(request, 'signup.html')
 def get_success_url(request):

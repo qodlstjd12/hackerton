@@ -23,11 +23,15 @@ def helpWrite(request):
         msg = "Not_auth"
         return render(request, 'html/helpWrite.html', {'msg' : msg})        
     
+    if not request.user.active:
+        msg = "Not_email_auth"
+        return render(request, 'html/helpWrite.html', {'msg' : msg})
+        
     userinfo = UserInfo.objects.get(user_email=request.user.email)
     if userinfo.qua != "yes":
         msg = "Not_yes"
         return render(request, 'html/helpWrite.html', {'msg' : msg})
-
+    
     if request.method == 'POST':
         post = Post()
         post.title = request.POST.get('title')
