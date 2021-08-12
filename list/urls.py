@@ -14,6 +14,6 @@ urlpatterns =[
     path('helpDelete/<str:id>', views.helpDelete, name='helpDelete'),
     
     path('feed_Deatil/<str:id>', views.feed_Detail, name='feed_Detail'),
-    path('donate/<str:id1><str:id2><str:id3>', views.donate, name='donate'),
+    path('donate/<str:id1>/<str:id2>/<str:id3>', views.donate, name='donate'),
 ]
 

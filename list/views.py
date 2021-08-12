@@ -74,6 +74,9 @@ def helpDelete(request, id):
 @csrf_exempt
 def donate(request, id1, id2, id3):
     if request.method == 'POST':
+        print(id1)
+        print(id2)
+        print(id3)
         donator = CustomUser.objects.get(id=id1)
         receiver = CustomUser.objects.get(id=id2)
         cash = int(request.POST.get('cash'))
