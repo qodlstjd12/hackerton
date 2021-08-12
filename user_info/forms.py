@@ -1,10 +1,4 @@
 from django import forms
-
-def save(self, commit=True):
-    user = super(CsRegisterForm, self).save(commit=False)
-    user.active = False
-    user.save()
-
 from .models import Post1
 
 class PostForm(forms.ModelForm):

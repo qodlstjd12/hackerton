@@ -29,4 +29,5 @@ urlpatterns=[
     path('recentDetail/<str:id>', views.recentDetail, name='recentDetail'),
     path('recentWrite/', views.recentWrite, name="recentWrite"),
     path('recentWriteUpdate/<str:id>', views.recentWriteUpdate, name="recentWriteUpdate"),
+    path('recentDelete/<str:id>', views.recentDelete, name="recentDelete"),    
 ]

@@ -201,11 +201,37 @@ def recentWrite(request):
     return render(request, 'recentWrite.html')
 
 def recentWriteUpdate(request, id):
-    pass
+    post = Post1.objects.get(id=id)
+    whos = whodonate.objects.filter(whogetmoney=request.user)
+    posts = Post.objects.filter(writer=request.user).order_by('-post_time')
+    recent_posts = Post1.objects.filter(writer=request.user).order_by('-post_time')
+    user_profile = UserInfo.objects.get(user_email = request.user)
+    msg = ""
+    if request.method == 'POST':
+        post.title = request.POST['title']
+        post.body = request.POST['body']
+        image = request.FILES.get('image')
+        if image:
+            img = request.FILES.get('image').read()
+            if google_api(img):
+                post.photo=image
+                post.save()
+                return redirect('user_info:sponserpage')
+            else:          
+                return render(request, 'recentWrite.html', {"error" : "error"})
+        post.save()
+        msg = "update_success"
+        return render(request, 'sponserpage.html', {'whos' : whos, 'posts': posts, 'recent_posts':recent_posts , 'user_profile':user_profile, 'msg':msg})
+    return render(request, 'recentWriteUpdate.html', {'post':post})
 
+def recentDelete(request, id):
+    post = Post1.objects.get(id=id)
+    post.delete()
+    return redirect('user_info:sponserpage')
 from django.core.paginator import Paginator
 
 def sponserpage(request):
+    msg = ""
     user = CustomUser.objects.get(email=request.user.email)
     whos = whodonate.objects.filter(whogetmoney=user)
     posts = Post.objects.filter(writer=request.user)
@@ -218,7 +244,7 @@ def sponserpage(request):
     recent_page = request.GET.get('page')
     recent_posts = recent_paginator.get_page(recent_page)
 
-    return render(request, 'sponserpage.html', {'whos' : whos, 'posts': posts, 'recent_posts':recent_posts , 'user_profile':user_profile})
+    return render(request, 'sponserpage.html', {'whos' : whos, 'posts': posts, 'recent_posts':recent_posts , 'user_profile':user_profile, 'msg':msg})
 
 def recentView(request, email):
     user = CustomUser.objects.get(email=email)
@@ -244,19 +270,6 @@ def profile_update_view(request):
         user_profile.save()
         return redirect("user_info:mypage")
     return render(request, "profile.html")
-
-# def findPW(request):
-#     msg = ""
-#     if request.method == 'POST':
-#         email = request.POST.get('email')
-#         try:
-#             user = CustomUser.objects.get(email = email)
-#             msg = user.password
-#             print(msg)
-#         except:
-#             msg = "error"
-#         return render(request, 'findPW.html', {'msg':msg})
-#     return render(request, 'findPW.html')
 
 from django.views.generic import View
 class RecoveryPwView(View):
@@ -285,7 +298,7 @@ def ajax_find_pw_view(request):
         target_user.save()
 
         send_mail(
-            '비밀번호 찾기 인증메일입니다.',
+            '[WhoWant] 비밀번호 찾기 인증메일입니다.',
             [email],
             html=render_to_string('recovery_email.html',{
                 'auth_num' : auth_num,

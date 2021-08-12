@@ -13,6 +13,12 @@
     <title>후원을 다이렉트로, 후원트</title>
 </head>
 <body>
+{% if msg == 'update_success' %}
+    <script>
+        alert("글 수정 성공!")
+        window.location.href = "{% url 'user_info:sponserpage' %}"
+    </script>
+{% endif %}
 <div class="header">
     <ul>
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
@@ -39,6 +45,9 @@
                 {% else %}
                     <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                 {% endif %}
+            {% if not user.active %}
+            <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:register_success' %}';">이메일 인증</button>            
+            {% endif %}
                 <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:profile_view'%}';">프로필 변경</button>
             </div>
             <h3>{{user_profile.user_email}}</h3>

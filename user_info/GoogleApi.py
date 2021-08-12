@@ -27,7 +27,7 @@ def google_api(img):
     "세종"
     ]
 
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:\\Users\\LGPC\\Desktop\\LikeLion\\hackerton\\resources\\dulcet-iterator-320723-e838186e72f3.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:\\Users\\duddl\\dulcet-iterator-320723-e838186e72f3.json"
 
     # Instantiates a client
     client = vision.ImageAnnotatorClient()

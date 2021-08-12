@@ -47,6 +47,12 @@
             <img class="contentImg" src="{{post.photo.url}}">
         </div>
     {% endif %}
+    <div class="btnBox">
+            {% if post.writer == user %}
+                <button type="button" onclick="location.href = '{% url 'user_info:recentWriteUpdate' post.id%}'">글 수정하기</button>
+                <button type="button" onclick="location.href = '{% url 'user_info:recentDelete' post.id%}'">글 삭제하기</button>
+            {% endif %}
+    </div>
     </div>
 </div>
 <div class="footer">
