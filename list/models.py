@@ -20,7 +20,7 @@ class Post(models.Model):
         return self.title
 
     def summary(self):
-        return self.body[:100]
+        return self.body[:50]
     @property
     def created_string(self):
         time = datetime.now(tz=timezone.utc) - self.post_time

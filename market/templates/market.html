@@ -40,7 +40,9 @@
 
 <div class="contentBox">
     <div class="makeDonate">
+        <div class="donate">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </div>
         <div class="verticalTextBox">
             <h2>도움을 주고싶나요?</h2>
             <h3>내가 가진 재능을 다른사람에게 공유해 주세요!</h3>
@@ -61,6 +63,7 @@
                     </h3>
                 </div>
             </div>
+            <h2> {{post.title}} </h2>
             <h2 class="contents">{{ post.body }}</h2>
             {% if post.thumbnail %}
                 <div class="imgBox">
@@ -107,8 +110,8 @@
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    $(".makeDonate").click(function () {
-        $(location).attr("href", "http://127.0.0.1:8000/market/marketWrite/");
+    $(".donate").click(function () {
+        $(location).attr("href", "{% url 'market:market_Write' %}");
     });
 </script>
 </body>
