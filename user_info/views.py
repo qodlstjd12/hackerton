@@ -94,26 +94,23 @@ def get_success_url(request):
                 'token': default_token_generator.make_token(request.user),
             }),
     )
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'msg':msg})
 #유저 메일 활성화
 def activate(request, uid64, token):
+    msg = ""
     try:
         uid = force_text(urlsafe_base64_decode(uid64))
         print(uid)
         current_user = CustomUser.objects.get(email=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist, ValidationError):
-        messages.error(request, '메일 인증에 실패했습니다.')
-        return redirect('user_info:login_view')
-
+        msg = "activate_error"
+        return render(request, 'index.html', {'msg': msg})
+    msg = "token_error"
     if default_token_generator.check_token(current_user, token):
         current_user.active = True
         current_user.save()
-
-        messages.info(request, '메일 인증이 완료 되었습니다. 회원가입을 축하드립니다!')
-        return redirect('user_info:login_view')
-
-    messages.error(request, '메일 인증에 실패했습니다.')
-    return redirect('user_info:login_view')
+        msg = "email_success"
+    return render(request, 'index.html', {'msg': msg})
 
 def verify(request):
     if request.method=='POST':

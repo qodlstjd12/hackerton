@@ -11,11 +11,14 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 def list_view(request):
+    msg = ""
+    if not request.user.active:
+        msg = "email_not_auth"
     post = Post.objects.all().order_by('-id')
     paginator = Paginator(post, 2)
     page = request.GET.get('page')
     post = paginator.get_page(page)
-    return render(request, 'html/feed.html', {'posts':post})
+    return render(request, 'html/feed.html', {'posts':post, 'msg': msg})
 
 @csrf_exempt
 def helpWrite(request):
@@ -26,7 +29,7 @@ def helpWrite(request):
     if not request.user.active:
         msg = "Not_email_auth"
         return render(request, 'html/helpWrite.html', {'msg' : msg})
-        
+
     userinfo = UserInfo.objects.get(user_email=request.user.email)
     if userinfo.qua != "yes":
         msg = "Not_yes"

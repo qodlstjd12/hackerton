@@ -1,3 +1,4 @@
+from django.contrib.auth.backends import RemoteUserBackend
 from user_info.models import CustomUser, UserInfo
 from django.core import paginator
 from django.shortcuts import redirect, render
@@ -9,12 +10,17 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 def market_view(request):
+    msg = ""
+    if not request.user.is_authenticated:
+        msg = 'Not_auth'
+    elif not request.user.active:
+        msg = "email_auth_error"
     post = MarketPost.objects.all().order_by('-id')
     paginator = Paginator(post, 3)
     page = request.GET.get('page')
     post = paginator.get_page(page)
 
-    return render(request, 'market.html', {'posts':post})
+    return render(request, 'market.html', {'posts':post, 'msg':msg})
 
 from django.shortcuts import get_object_or_404
 
