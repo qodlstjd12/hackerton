@@ -57,6 +57,7 @@ def login_view(request):
 
 @csrf_exempt
 def signup(request):
+    msg =""
     if request.method == "POST":
         
         try:
@@ -79,8 +80,19 @@ def signup(request):
             user_contents.save()
             msg = "signup_success_but_email"
             return render(request, 'index.html', {'msg': msg})
-        return render(request, 'signup.html')
+        msg = "NOTSAME_PW"
+        return render(request, 'signup.html', {'msg':msg})
     return render(request, 'signup.html')
+
+def delete(request):
+    user = CustomUser.objects.get(email=request.user.email)
+    user_info = UserInfo.objects.get(user_email = user.email)
+    auth.logout(request)
+    user_info.delete()
+    user.delete()
+    msg = "delete_success"
+    return render(request, 'index.html', {'msg':msg})
+
 def get_success_url(request):
     msg="sending"
     user = UserInfo.objects.get(user_email=request.user.email)

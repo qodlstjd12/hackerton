@@ -14,6 +14,10 @@
 <script>
     alert("아이디가 중복되었습니다!");
 </script>
+{% elif msg == 'NOTSAME_PW'%}
+<script>
+    alert("패스워드가 일치하지 않습니다.")
+</script>
 {% endif %}
 <div class="LOGOBox">
     <div class="LOGO"><a style = "text-decoration:none;" href = "{% url 'user_info:home' %}">Who<span>Want</span></a></div>

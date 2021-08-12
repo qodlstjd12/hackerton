@@ -55,6 +55,7 @@
             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
             {% endif %}
             <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:profile_view'%}';">프로필 변경</button>
+            <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:delete'%}';">회원 탈퇴</button>
         </div>
             {% if not user.active %}
             <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:register_success' %}';">이메일 인증</button>            

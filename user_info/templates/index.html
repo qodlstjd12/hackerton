@@ -69,6 +69,11 @@
         alert("토큰에러 또는 유저가 존재하지않거나..하는 에러")
         window.location.href = "{% url 'user_info:home' %}"
     </script>
+{% elif msg == 'delete_success'%}
+    <script>
+        alert("회원탈퇴 되었습니다. 그동안 감사했습니다!")
+        window.location.href = "{% url 'user_info:home' %}"        
+    </script>
 {% endif %}
 <div class="popCmmn">
     <div class="popBg" data-num="1"></div>

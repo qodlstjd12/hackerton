@@ -11,6 +11,7 @@ urlpatterns=[
     path('signup', views.signup, name = 'signup'),
     path('logout_view/', views.logout_view, name="logout_view"),
     path('findID/', views.findID, name='findID'),
+    path('delete/', views.delete, name = 'delete'),
     path('registerauth/', views.get_success_url, name='register_success'),
     path('activate/<str:uid64>/<str:token>/', views.activate, name='activate'),
 
