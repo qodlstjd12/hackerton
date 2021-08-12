@@ -323,3 +323,7 @@ body {
     flex-direction: row;
     justify-content: center;
 }
+
+.word{
+    margin: 0 20px 0 20px;
+}

@@ -228,6 +228,7 @@ i::before {
     border-bottom-left-radius: 0;
     object-fit: cover;
     margin-bottom: 15px;
+    max-height: 142px;
 }
 
 .swiper-slide h3 {
@@ -269,6 +270,7 @@ i::before {
     color: white;
     border: none;
     font-weight: 700;
+    margin-bottom: 10px;
 }
 
 .footer {

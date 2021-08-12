@@ -6,29 +6,30 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'mypage.css' %}">
+    <!--    <link rel="stylesheet" type="text/css" href="{% static 'mypage.css' %}">-->
+    <link rel="stylesheet" type="text/css" href="../../static/mypage.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
     <title>후원을 다이렉트로, 후원트</title>
 </head>
 <body>
-    {% if msg == "Do Login" %}
-    <script>
-        alert("로그인 후 이용해주세요");
-        window.location.href = "{% url 'user_info:login_view' %}";
-    </script>
-    {% endif %}
-    {% if error == "failed" %}
-    <script>
-        alert("올바른 금액을 작성해주세요.");
-    </script>
-    {% endif %}
-    {% if success == "success" %}
-    <script>
-        alert("충전에 성공하였습니다.");
-    </script>
-    {% endif %}
+<!--    {% if msg == "Do Login" %}-->
+<!--    <script>-->
+<!--        alert("로그인 후 이용해주세요");-->
+<!--        window.location.href = "{% url 'user_info:login_view' %}";-->
+<!--    </script>-->
+<!--    {% endif %}-->
+<!--    {% if error == "failed" %}-->
+<!--    <script>-->
+<!--        alert("올바른 금액을 작성해주세요.");-->
+<!--    </script>-->
+<!--    {% endif %}-->
+<!--    {% if success == "success" %}-->
+<!--    <script>-->
+<!--        alert("충전에 성공하였습니다.");-->
+<!--    </script>-->
+<!--    {% endif %}-->
 <div class="header">
     <ul>
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
@@ -38,9 +39,9 @@
         <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">FAQ</a></li>
         <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
         {% if not user.is_authenticated %}
-            <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
+        <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
         {% else %}
-            <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
+        <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
         {% endif %}
     </ul>
 </div>
@@ -50,16 +51,23 @@
             <button class="writeBtn hidden">프로필 변경</button>
             <!--        <i class="fa fa-user-circle-o" aria-hidden="true"></i>-->
             {% if userinfo.user_image %}
-            <img src="{{userinfo.user_image.url}}"class="userImg">
+            <img src="{{userinfo.user_image.url}}" class="userImg">
             {% else %}
             <i class="fa fa-user-circle-o" aria-hidden="true"></i>
             {% endif %}
-            <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:profile_view'%}';">프로필 변경</button>
-            <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:delete'%}';">회원 탈퇴</button>
+            <div class="verticalTextBox">
+                <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:profile_view'%}';">
+                    프로필 변경
+                </button>
+                <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:delete'%}';">회원 탈퇴
+                </button>
+            </div>
         </div>
-            {% if not user.active %}
-            <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:register_success' %}';">이메일 인증</button>            
-            {% endif %}
+        {% if not user.active %}
+        <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:register_success' %}';">이메일
+            인증
+        </button>
+        {% endif %}
 
         <h3>{{userinfo.user_email}}</h3>
     </div>
@@ -70,19 +78,19 @@
                 <div class="titleText">
                     <h2>당신의 보유 포인트</h2>
                     {% if money is 0 %}
-                        <h3>금액이 하나도 없어요!</h3>
+                    <h3>금액이 하나도 없어요!</h3>
                     {% else %}
-                        <h3>{{money}}</h3>
+                    <h3>{{money}}</h3>
                     {% endif %}
                 </div>
             </div>
-        <form action = "{% url 'user_info:mypage' %}" method="POST" >
-            {% csrf_token %}
-            <div class="inputArea">
-                <input type="number" placeholder="금액 입력" name = "mine" class="pointInput">
-                <button input="submit">충전하기</button>
-            </div>
-        </form>
+            <form action="{% url 'user_info:mypage' %}" method="POST">
+                {% csrf_token %}
+                <div class="inputArea">
+                    <input type="number" placeholder="금액 입력" name="mine" class="pointInput">
+                    <button input="submit">충전하기</button>
+                </div>
+            </form>
         </div>
         <div class="tempBox">
             <div class="titleBox">
@@ -102,18 +110,20 @@
     <div class="donateList">
         <div class="swiper-container mySwiper">
             <div class="swiper-wrapper">
-            {% for receiver in receivers %}
+                {% for receiver in receivers %}
                 <div class="swiper-slide">
                     <h2>{{receiver.user_nickname}}</h2>
                     {% if receiver.user_image %}
                     <img src="{{receiver.user_image.url}}">
                     {% else %}
                     <img src="{% static 'img/original.png' %}"
-                    {% endif %}
+                         {% endif %}
                     <h3>{{receiver.user_description}}</h3>
-                    <button type="button" onclick="location.href = '{% url 'user_info:recentView' receiver.user_email %}'">근황보기</button>
+                    <button type="button"
+                            onclick="location.href = '{% url 'user_info:recentView' receiver.user_email %}'">근황보기
+                    </button>
                 </div>
-            {% endfor %}
+                {% endfor %}
             </div>
         </div>
     </div>

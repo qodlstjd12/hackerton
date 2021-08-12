@@ -67,6 +67,12 @@ i {
     margin: 0 0 10px 0 !important;
 }
 
+
+.verticalTextBox {
+    display: flex;
+    flex-direction: column;
+}
+
 i::before {
     color: #f14a60;
     font-size: 50px;
@@ -227,6 +233,7 @@ i {
 .swiper-slide img {
     width: 100%;
     height: 50%;
+    max-height: 142px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 0;
@@ -322,13 +329,13 @@ i {
     margin-bottom: 30px;
 }
 
-.userProfile .topBox{
+.userProfile .topBox {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-.userProfile .topBox .hidden{
+.userProfile .topBox .hidden {
     opacity: 0;
 }
 
@@ -341,7 +348,7 @@ i::before {
     font-weight: 800;
 }
 
-.userProfile img{
+.userProfile img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -349,7 +356,7 @@ i::before {
     margin-bottom: 10px;
 }
 
-.writeBtn{
+.writeBtn {
     width: 75px;
     height: 25px;
     border-radius: 7px;
@@ -357,4 +364,5 @@ i::before {
     color: white;
     border: none;
     font-weight: 700;
+    margin-bottom: 10px;
 }

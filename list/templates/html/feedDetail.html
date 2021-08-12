@@ -27,7 +27,8 @@
         <form action="{% url 'list:donate' user.id post.writer.id post.id %}" method='POST'>
             {% csrf_token %}
             <div class="popBody">
-                <input name='cash' type="number" class="donateAmount"><h2>원</h2>
+                <input name='cash' type="number" class="donateAmount">
+                <h2>원</h2>
             </div>
             <div class="popFoot">
                 <button class="popCloseBtnCmmn" type="submit" data-num="1">확인</button>
@@ -44,9 +45,9 @@
         <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">FAQ</a></li>
         <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
         {% if not user.is_authenticated %}
-            <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
+        <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
         {% else %}
-            <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
+        <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
         {% endif %}
     </ul>
 </div>
@@ -68,33 +69,35 @@
                 <h2 class="userName">{{ post.writer }}</h2>
                 <h3 class="time">
                     {% if post.created_string == False %}
-                        {{ post.created|date:'m월 d일' }}
+                    {{ post.created|date:'m월 d일' }}
                     {% else %}
-                        {{ post.created_string }}
+                    {{ post.created_string }}
                     {% endif %}
                 </h3>
             </div>
         </div>
         <h2 class="contents">{{ post.body }}</h2>
         {% if post.thumbnail %}
-            <div class="imgBox">
-                <img class="contentImg" src="{{ post.thumbnail.url }}">
-            </div>
-                {% endif %}
-            <div class="btnBox">
+        <div class="imgBox">
+            <img class="contentImg" src="{{ post.thumbnail.url }}">
+        </div>
+        {% endif %}
+        <div class="btnBox">
             {% if post.writer == user %}
-                <button type="button" onclick="location.href = '{% url 'list:helpUpdate' post.id%}'">글 수정하기</button>
-                <button type="button" onclick="location.href = '{% url 'list:helpDelete' post.id%}'">글 삭제하기</button>
+            <button class="word" type="button" onclick="location.href = '{% url 'list:helpUpdate' post.id%}'">글 수정하기
+            </button>
+            <button class="word" type="button" onclick="location.href = '{% url 'list:helpDelete' post.id%}'">글 삭제하기
+            </button>
             {% else %}
-                <button type="button" class="donate">후원하기</button>
+            <button type="button" class="donate">후원하기</button>
             {% endif %}
-            </div>
+        </div>
     </div>
     {% comment %}
     <div class="info">
         <h2>거주지역 : 대구광역시</h2>
         <h2>분류 : 결식아동</h2>
-         <h2>매너온도 : 37.5</h2>
+        <h2>매너온도 : 37.5</h2>
         <h2>근황 작성도 : 100%</h2>
     </div>
     {% endcomment %}

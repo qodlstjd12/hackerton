@@ -14,10 +14,10 @@
 </head>
 <body>
 {% if msg == 'update_success' %}
-    <script>
-        alert("글 수정 성공!")
-        window.location.href = "{% url 'user_info:sponserpage' %}"
-    </script>
+<script>
+    alert("글 수정 성공!")
+    window.location.href = "{% url 'user_info:sponserpage' %}"
+</script>
 {% endif %}
 <div class="header">
     <ul>
@@ -28,9 +28,9 @@
         <li><a href="{% url 'inquiry:FAQ' %}" class="navItem">FAQ</a></li>
         <li><a href="{% url 'user_info:mypage' %}" class="navItem">마이페이지</a></li>
         {% if not user.is_authenticated %}
-            <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
+        <li><a href="{% url 'user_info:login_view' %} " class="navItem">Login</a></li>
         {% else %}
-            <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
+        <li><a href="{% url 'user_info:logout_view' %}" class="navItem">Logout</a></li>
         {% endif %}
     </ul>
 </div>
@@ -41,15 +41,25 @@
                 <button class="writeBtn hidden">프로필 변경</button>
                 <!--        <i class="fa fa-user-circle-o" aria-hidden="true"></i>-->
                 {% if user_profile.user_image %}
-                    <img src="{{user_profile.user_image.url}}">
+                <img src="{{user_profile.user_image.url}}">
                 {% else %}
-                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                 {% endif %}
-            {% if not user.active %}
-            <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:register_success' %}';">이메일 인증</button>            
-            {% endif %}
-                <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:profile_view'%}';">프로필 변경</button>
-                <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:spon_delete'%}';">회원 탈퇴</button>
+                {% if not user.active %}
+                <button class="writeBtn" type="button"
+                        onclick="location.href = '{% url 'user_info:register_success' %}';">이메일 인증
+                </button>
+                {% endif %}
+                <div class="verticalTextBox">
+                    <button class="writeBtn" type="button"
+                            onclick="location.href = '{% url 'user_info:profile_view'%}';">
+                        프로필 변경
+                    </button>
+                    <button class="writeBtn" type="button"
+                            onclick="location.href = '{% url 'user_info:spon_delete'%}';">회원
+                        탈퇴
+                    </button>
+                </div>
             </div>
             <h3>{{user_profile.user_email}}</h3>
             <h5 class="email">{{user_profile.user_description}}</h5>
@@ -74,52 +84,54 @@
             </div>
 
 
-            </div>
         </div>
     </div>
-    <div class="writeList">
-        <div class="hTitleBox">
-            <h2>후원 게시글</h2>
-            <button type="button" class="writeBtn" onclick="location.href = '{% url 'list:helpWrite'%}';">작성하기</button>
-        </div>
-        <div class="swiper-container mySwiper">
-            <div class="swiper-wrapper">
-                {% for post in posts %}
-                <div class="swiper-slide">
-                    {% if post.thumbnail %}
-                        <img src="{{post.thumbnail.url}}">
-                    {% else %}
-                    <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
-                    {% endif %}
-                    <h3>{{post.title}}</h3>
-                    <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}';">내글보기</button>
-                </div>
-                {% endfor %}
+</div>
+<div class="writeList">
+    <div class="hTitleBox">
+        <h2>후원 게시글</h2>
+        <button type="button" class="writeBtn" onclick="location.href = '{% url 'list:helpWrite'%}';">작성하기</button>
+    </div>
+    <div class="swiper-container mySwiper">
+        <div class="swiper-wrapper">
+            {% for post in posts %}
+            <div class="swiper-slide">
+                {% if post.thumbnail %}
+                <img src="{{post.thumbnail.url}}">
+                {% else %}
+                <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
+                {% endif %}
+                <h3>{{post.title}}</h3>
+                <button type="button" onclick="location.href = '{% url 'list:feed_Detail' post.id%}';">내글보기</button>
             </div>
+            {% endfor %}
         </div>
     </div>
+</div>
 
-    <div class="writeList">
-        <div class="hTitleBox">
-            <h2>근황 게시글</h2>
-            <button type="button"  class="writeBtn" onclick="location.href = '{% url 'user_info:recentWrite'%}';">작성하기</button>
-        </div>
-        <div class="swiper-container mySwiper">
-            <div class="swiper-wrapper">
-                {% for post in recent_posts %}
-                <div class="swiper-slide">
-                    {% if post.photo %}
-                        <img src="{{post.photo.url}}">
-                    {% else %}
-                        <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
-                    {% endif %}
-                    <h3>{{post.title}}</h3>
-                    <button type="button" onclick="location.href = '{% url 'user_info:recentDetail' post.id %}';">내글보기</button>
-                </div>
-                {% endfor %}
+<div class="writeList">
+    <div class="hTitleBox">
+        <h2>근황 게시글</h2>
+        <button type="button" class="writeBtn" onclick="location.href = '{% url 'user_info:recentWrite'%}';">작성하기
+        </button>
+    </div>
+    <div class="swiper-container mySwiper">
+        <div class="swiper-wrapper">
+            {% for post in recent_posts %}
+            <div class="swiper-slide">
+                {% if post.photo %}
+                <img src="{{post.photo.url}}">
+                {% else %}
+                <img src="http://www.billking.co.kr/index/skin/board/basic_support/img/noimage.gif">
+                {% endif %}
+                <h3>{{post.title}}</h3>
+                <button type="button" onclick="location.href = '{% url 'user_info:recentDetail' post.id %}';">내글보기
+                </button>
             </div>
+            {% endfor %}
         </div>
     </div>
+</div>
 </div>
 <div class="footer">
     <ul>

@@ -313,3 +313,11 @@ body {
     font-size: 0.8em;
     font-width: 400;
 }
+
+.commentArea .horizontalBox .verticalTextBox h2{
+    word-break: break-all;
+}
+
+.commentArea .horizontalBox .verticalTextBox{
+    width: 80px;
+}
