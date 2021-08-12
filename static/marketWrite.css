@@ -49,19 +49,56 @@ body {
 }
 
 h2 {
-    margin: 40px;
+    margin: 35px;
+    font-size: 28px;
+    font-weight: 800;
 }
 
 .inputArea {
-    width: 70vw;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.inputArea .text-box{
+  width: 70vw;
+  border-collapse: collapse;
+}
+
+.inputArea .text-box tr{
+  height: 60px;
+}
+
+.inputArea .text-box .first{
+  width: 15%;
+  background-color: #f1f0f0;
+}
+
+.inputArea .text-box .first p{
+  margin-left: 30px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
 .inputArea form {
     width: 100%;
+}
+
+.inputArea .text-box .top td{
+  border-top: 2.5px solid black;
+}
+
+.inputArea .text-box .bottom{
+  border-bottom: 2.5px solid black;
+}
+
+.inputArea .text-box td{
+  border-bottom: 2px solid rgb(228, 228, 228);
+}
+
+.inputArea .text-box .content{
+  height: 440px;
 }
 
 textarea {
@@ -77,24 +114,57 @@ textarea::placeholder {
 }
 
 .title {
-    height: 25px;
     font-size: 0.8rem;
     font-weight: 300;
+    height: 35px;
+    width: 500px;
+    border: 2px solid rgb(236, 236, 236);
+    margin-left: 10px;
+}
+
+.img{
+  margin-left: 12px;
 }
 
 .formText {
-    height: 60vh;
+    width: 900px;
+    height: 400px;
     font-size: 0.8rem;
     font-weight: 300;
+    border: 2px solid rgb(236, 236, 236);
+    margin-left: 12px;
+}
+
+.button-box{
+  margin-top: 50px;
+  width: 330px;
+  height: 50px;
+  align-items: center;
+  text-align: center;
+  margin-left: 37%;
+}
+
+.button-box td{
+  border: none;
 }
 
 .csSubmit {
-    width: 70vw;
-    height: 64px;
-    border-radius: 32px;
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
     background-color: #f14a60;
     color: white;
     font-size: 20px;
     border: none;
-    margin-top: 50px;
+}
+
+.csList{
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
+    background-color: white;
+    color: #f14a60;
+    font-size: 20px;
+    font-weight: 700;
+    border: 3px solid #f14a60;
 }
