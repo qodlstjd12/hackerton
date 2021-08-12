@@ -61,7 +61,7 @@
             <img style="width: 40%;" class="contentImg" src="{{post.thumbnail.url}}">
             {% endif %}
         </div>
-                    {% if post.writer == user%}
+            {% if post.writer == user%}
                 <button type="button" onclick="location.href = '{% url 'market:market_Update' post.id%}'">글 수정하기</button>
                 <button type="button" onclick="location.href = '{% url 'market:market_Delete' post.id%}'">글 삭제하기</button>
             {% endif %}

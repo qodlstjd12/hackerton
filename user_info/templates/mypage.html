@@ -105,7 +105,11 @@
             {% for receiver in receivers %}
                 <div class="swiper-slide">
                     <h2>{{receiver.user_nickname}}</h2>
+                    {% if receiver.user_image %}
                     <img src="{{receiver.user_image.url}}">
+                    {% else %}
+                    <img src="{% static 'img/original.png' %}"
+                    {% endif %}
                     <h3>{{receiver.user_description}}</h3>
                     <button type="button" onclick="location.href = '{% url 'user_info:recentView' receiver.user_email %}'">근황보기</button>
                 </div>
