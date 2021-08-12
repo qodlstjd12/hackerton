@@ -235,6 +235,8 @@ a:active {
     flex-direction: row;
     width: 300px;
     height: 35px;
+
+    display: none;
 }
 
 .authBox input {
