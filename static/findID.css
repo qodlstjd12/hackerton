@@ -235,6 +235,8 @@ a:active {
     flex-direction: row;
     width: 300px;
     height: 35px;
+
+    display: none;
 }
 
 .authBox input {
@@ -253,4 +255,23 @@ a:active {
     color: white;
     border: none;
     font-weight: 400;
+}
+
+.newPw{
+    display: flex;
+    height: 300px;
+    flex-direction: column;
+    width: 300px;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.newPw input {
+    border-bottom: #ccc 1px solid;
+    border-left: medium none;
+    border-right: medium none;
+    border-top: medium none;
+    font-size: 1em;
+    width: 250px;
+    margin-right: 10px;
 }
