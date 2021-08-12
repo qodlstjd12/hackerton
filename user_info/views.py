@@ -1,16 +1,24 @@
+from django.core.exceptions import PermissionDenied, ValidationError
 from user_info import verifing
 from django.core import paginator
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils import timezone  # pub_date를 위해 import
-from django.contrib import auth
+from django.contrib import auth, messages
 from .models import UserInfo, CustomUser, whodonate, Post1
-from .form import PostForm
+from .forms import CustomSetPasswordForm, PostForm, RecoveryPwForm
 from .GoogleApi import google_api
 from list.models import Post
 from django.views.decorators.csrf import csrf_exempt
 from .verifing import ggoo
+
+
+from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
+from django.contrib.auth.tokens import default_token_generator
+
 import os
 
 def home(request):
@@ -19,6 +27,19 @@ def home(request):
         return render(request, 'index.html', {'msg': msg})
     real_user = UserInfo.objects.get(user_email=request.user.email)   
     return render(request, 'index.html', {'msg':msg, 'qua':str(real_user.qua)})
+
+def findID(request):
+    msg = ""
+    if request.method == 'POST':
+        phone = request.POST.get('phone')
+        try:
+            user = UserInfo.objects.get(user_phone = phone)
+            msg = user.user_email
+        except:
+            msg = "error"
+        return render(request, 'findID.html', {'msg':msg})
+    return render(request, 'findID.html')
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -56,9 +77,43 @@ def signup(request):
             user_contents.user_account = request.POST['user_acname']
             user_contents.user_account_name = request.POST['user_acnum']
             user_contents.save()
+
             return render(request, 'index.html')
         return render(request, 'signup.html')
     return render(request, 'signup.html')
+def get_success_url(request):
+    msg="sending"
+    user = UserInfo.objects.get(user_email=request.user.email)
+    send_mail(
+        '[WhoWant] {}님의 회원가입 인증메일 입니다.'.format(user.user_name),
+            [user.user_email],
+            html=render_to_string('register_email.html', {
+                'user': request.user,
+                'uid': urlsafe_base64_encode(force_bytes(request.user)).encode().decode(),
+                'domain': request.META['HTTP_HOST'],
+                'token': default_token_generator.make_token(request.user),
+            }),
+    )
+    return render(request, 'index.html')
+#유저 메일 활성화
+def activate(request, uid64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uid64))
+        print(uid)
+        current_user = CustomUser.objects.get(email=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist, ValidationError):
+        messages.error(request, '메일 인증에 실패했습니다.')
+        return redirect('user_info:login_view')
+
+    if default_token_generator.check_token(current_user, token):
+        current_user.active = True
+        current_user.save()
+
+        messages.info(request, '메일 인증이 완료 되었습니다. 회원가입을 축하드립니다!')
+        return redirect('user_info:login_view')
+
+    messages.error(request, '메일 인증에 실패했습니다.')
+    return redirect('user_info:login_view')
 
 def verify(request):
     if request.method=='POST':
@@ -195,3 +250,89 @@ def profile_update_view(request):
         return redirect("user_info:mypage")
     return render(request, "profile.html")
 
+# def findPW(request):
+#     msg = ""
+#     if request.method == 'POST':
+#         email = request.POST.get('email')
+#         try:
+#             user = CustomUser.objects.get(email = email)
+#             msg = user.password
+#             print(msg)
+#         except:
+#             msg = "error"
+#         return render(request, 'findPW.html', {'msg':msg})
+#     return render(request, 'findPW.html')
+
+from django.views.generic import View
+class RecoveryPwView(View):
+    template_name = 'recovery_pw.html'
+    recovery_pw = RecoveryPwForm
+    
+    def get(self, request):
+        if request.method == 'GET':
+            form = self.recovery_pw(None)
+            return render(request, self.template_name, {'form_pw': form})
+
+from .helper import email_auth_num, send_mail
+from django.template.loader import render_to_string
+from django.core.serializers.json import DjangoJSONEncoder
+import json
+
+def ajax_find_pw_view(request):
+    email = request.POST.get('email')
+    print(email)
+    target_user = CustomUser.objects.get(email = email)
+    print(target_user.email)
+    if target_user:
+        auth_num = email_auth_num()
+        target_user.auth = auth_num
+        print(target_user.auth)
+        target_user.save()
+
+        send_mail(
+            '비밀번호 찾기 인증메일입니다.',
+            [email],
+            html=render_to_string('recovery_email.html',{
+                'auth_num' : auth_num,
+            }),
+        )
+    return HttpResponse(json.dumps({"result": target_user.email}, cls=DjangoJSONEncoder), content_type = "application/json")
+
+def auth_confirm_view(request):
+    print('여기')
+    user_email = request.POST.get('email')
+    print(user_email)
+    input_auth_num = request.POST.get('input_auth_num')
+    print(input_auth_num)
+    target_user = CustomUser.objects.get(email=user_email, auth=input_auth_num)
+    target_user.auth=""
+    target_user.save()
+    print(1)
+    request.session['auth'] = target_user.email
+
+    return HttpResponse(json.dumps({"result": target_user.email}, cls=DjangoJSONEncoder), content_type = "application/json")
+
+def auth_pw_reset_view(request):
+    if request.method == 'GET':
+        if not request.session.get('auth', False):
+            raise PermissionDenied
+    
+    if request.method == 'POST':
+        session_user = request.session['auth']
+        current_user = CustomUser.objects.get(email = session_user)
+
+        auth.login(request, current_user)
+
+        reset_password_form = CustomSetPasswordForm(request.user, request.POST)
+
+        if reset_password_form.is_valid():
+            user = reset_password_form.save()
+            messages.success(request, "비밀번호 변경완료! 변경된 비밀번호로 로그인하세요.")
+            auth.logout(request)
+            return redirect('user_info:login_view')
+        else:
+            auth.logout(request)
+            request.session['auth'] = session_user
+    else:
+        reset_password_form = CustomSetPasswordForm(request.user)
+    return render(request, 'password_reset.html', {'form':reset_password_form})

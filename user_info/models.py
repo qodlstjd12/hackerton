@@ -43,6 +43,8 @@ from django.utils import timezone
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
+    auth = models.CharField(max_length=10, verbose_name="인증번호", null=True)
+    active = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -56,7 +58,7 @@ class CustomUser(AbstractUser):
 class UserInfo(models.Model):
     user_nickname = models.CharField(null=True, max_length=10)
     user_email = models.CharField(null=True, max_length = 30)
-    user_phone = models.CharField(null=True, max_length = 30)
+    user_phone = models.CharField(null=True, max_length = 30, unique=True)
     user_image = models.ImageField(upload_to='userinfo/', blank=True, null=True)
     user_name = models.CharField(null=True, max_length = 20)
     user_account_name = models.CharField(null=True, max_length = 20)

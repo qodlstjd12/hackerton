@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'findID.css' %}">
+    <title>Update_Profile</title>
+</head>
+
+<body>
+<div class="popCmmn">
+    <div class="popBg" data-num="1"></div>
+    <div class="popInnerBox">
+        <div class="popHead">
+            <h2></h2>
+            {% if msg != 'error'%}
+                <h2>아이디는 {{msg}} 입니다. </h2>
+            {% else %}
+                <h2>해당 번호로 가입된 아이디는 없습니다. </h2>
+            {% endif %}
+            <h2 class="close">X</h2></div>
+    </div>
+</div>
+<div class="LOGOBox">
+    <div class="LOGO"><a style="text-decoration: none;" href = "{% url 'user_info:home' %}">Who<span>Want</span></a></div>
+</div>
+<div class="Box">
+    <form action="{% url 'user_info:findID' %}" method="POST">
+        {% csrf_token %}
+    <table class="Login-form">
+        <h3>아이디 찾기!</h3>
+        <tr class="Login-table-content">
+            <td class="Login-table-text">
+                <span><b>cell-phone</b></span>
+            </td>
+            <td class="Login-table-input">
+                <input placeholder="본인의 휴대전화번호를 입력해주세요!" type="text" name = "phone">
+            </td>
+        </tr>
+    </table>
+    <button type="submit" class="btn">검색</button>
+    </form>
+</div>
+
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        setPop();
+    });
+
+    function setPop() {
+        var popOpenBtn = $('.btn');
+
+        popOpenBtn.on('click', function () {
+            var clickNum = $(this).attr('data-num');
+            $('.popCmmn').fadeIn(200);
+        })
+
+        $('.popBg, .close').on('click', function () {
+            $('.popCmmn').fadeOut(200);
+        })
+    }
+</script>
+</html>

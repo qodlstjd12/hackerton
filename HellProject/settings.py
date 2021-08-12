@@ -144,15 +144,10 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user_info.CustomUser'
 
-EMAIL_HOST = 'smtp.gmail.com'
-# 메일을 호스트하는 서버
-EMAIL_PORT = '587'
-# gmail과의 통신하는 포트
-EMAIL_HOST_USER = 'atting7220@gmail.com'
-# 발신할 이메일
-EMAIL_HOST_PASSWORD = 'qkr04637220'
-# 발신할 메일의 비밀번호
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.naver.com'
+EMAIL_HOST_USER = 'duddl6701@naver.com'
+EMAIL_HOST_PASSWORD = 'qudtlr15'
 EMAIL_USE_TLS = True
-# TLS 보안 방법
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-# 사이트와 관련한 자동응답을 받을 이메일 주소,'webmaster@localhost'
+EMAIL_PORT = 587
+DEFAULT_FROM_MAIL = '<duddl6701@naver.com>'
