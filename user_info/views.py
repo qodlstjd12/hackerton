@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone  # pub_date를 위해 import
 from django.contrib import auth, messages
 from .models import UserInfo, CustomUser, whodonate, Post1
-from .forms import CustomSetPasswordForm, PostForm, RecoveryPwForm
+from .forms import CustomSetPasswordForm, PostForm, RecoveryIdForm, RecoveryPwForm
 from .GoogleApi import google_api
 from list.models import Post
 from django.views.decorators.csrf import csrf_exempt
@@ -299,6 +299,20 @@ from .helper import email_auth_num, send_mail
 from django.template.loader import render_to_string
 from django.core.serializers.json import DjangoJSONEncoder
 import json
+
+class RecoveryIdView(View):
+    template_name = 'recovery_id.html'
+    recovery_id = RecoveryIdForm
+
+    def get(self, request):
+        if request.method=='GET':
+            form_id = self.recovery_id(None)
+        return render(request, self.template_name, { 'form_id':form_id, })
+def ajax_find_id_view(request):
+    phone = request.POST.get('phone')
+    user = UserInfo.objects.get(user_phone=phone)
+
+    return HttpResponse(json.dumps({"result_id": user.user_email}, cls=DjangoJSONEncoder), content_type = "application/json")
 
 def ajax_find_pw_view(request):
     email = request.POST.get('email')

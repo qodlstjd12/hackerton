@@ -16,7 +16,8 @@ urlpatterns=[
     path('registerauth/', views.get_success_url, name='register_success'),
     path('activate/<str:uid64>/<str:token>/', views.activate, name='activate'),
 
-
+    path('recovery/id/find/', views.ajax_find_id_view, name='ajax_id'),
+    path('recovery/id/', views.RecoveryIdView.as_view(), name='recovery_id'),
     path('recovery/pw/', views.RecoveryPwView.as_view(), name='recovery_pw'),
     path('recovery/pw/find/', views.ajax_find_pw_view, name='ajax_pw'),
     path('recovery/pw/auth/', views.auth_confirm_view, name='recovery_auth'),

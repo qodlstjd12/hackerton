@@ -6,7 +6,21 @@ class PostForm(forms.ModelForm):
         model = Post1
         fields = ['title', 'body']
 
+class RecoveryIdForm(forms.Form):
+    phone = forms.CharField(
+        widget=forms.TextInput,
+    )
+    class Meta:
+        fields = ['phone']
 
+    def __init__(self, *args, **kwargs):
+        super(RecoveryIdForm, self).__init__(*args, **kwargs)
+        self.fields['phone'].label = '휴대전화번호'
+        self.fields['phone'].widget.attrs.update({
+            # 'placeholder': '이름을 입력해주세요',
+            'class': 'form-control',
+            'id': 'form_phone',
+        })
 
 class RecoveryPwForm(forms.Form):
     email = forms.EmailField(
