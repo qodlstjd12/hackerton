@@ -1,3 +1,4 @@
+import re
 from django.core.exceptions import PermissionDenied, ValidationError
 from user_info import verifing
 from django.core import paginator
@@ -53,7 +54,8 @@ def login_view(request):
             msg = "error"
             return render(request, 'login.html', {'msg':msg})
     else:
-        return render(request, 'login.html')
+        msg =""
+        return render(request, 'login.html', {'msg':msg})
 
 @csrf_exempt
 def signup(request):
@@ -347,9 +349,9 @@ def auth_pw_reset_view(request):
 
         if reset_password_form.is_valid():
             user = reset_password_form.save()
-            messages.success(request, "비밀번호 변경완료! 변경된 비밀번호로 로그인하세요.")
+            msg = "success"
             auth.logout(request)
-            return redirect('user_info:login_view')
+            return render(request, 'login.html', {'msg': msg})
         else:
             auth.logout(request)
             request.session['auth'] = session_user

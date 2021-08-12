@@ -15,6 +15,11 @@
         alert("이메일 또는 패스워드가 틀렸습니다.")
         window.location.href = "{% url 'user_info:login_view' %}"
     </script>
+    {% elif msg == 'success'%}
+    <script>
+        alert("비밀번호 변경완료! 변경된 비밀번호로 로그인하세요.")
+        window.location.href = "{% url 'user_info:login_view' %}"
+    </script>
     {% endif %}
 <div class="LOGOBox">
     <div class="LOGO"><a style="text-decoration: none;" href="{% url 'user_info:home' %}">Who<span>Want</span></a></div>
@@ -55,29 +60,6 @@
             </td>
         </tr>
     </table>
-    <table class="site-img" align="center" style="padding-top: 40px; ">
-        <tr>
-            <td>
-                <a href="#">
-                    <img src="https://pbs.twimg.com/profile_images/770139154898382848/ndFg-IDH_400x400.jpg"
-                         class="google">
-                </a>
-            </td>
-            <td>
-                <a href="#">
-                    <img src="https://cdn.clien.net/web/api/file/F03/11045351/24f6c4fc41e4e6.png?w=500&h=1000"
-                         class="kakao">
-                </a>
-            </td>
-            <td>
-                <a href="#">
-                    <img src="https://play-lh.googleusercontent.com/Kbu0747Cx3rpzHcSbtM1zDriGFG74zVbtkPmVnOKpmLCS59l7IuKD5M3MKbaq_nEaZM=s360-rw"
-                         class="google">
-                </a>
-            </td>
-        </tr>
-    </table>
-
 </div>
 
 </body>

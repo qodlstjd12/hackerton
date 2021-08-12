@@ -1,5 +1,4 @@
 from datetime import timedelta
-from django.contrib import messages
 from django.http.response import HttpResponse
 from .models import Post, Photo
 from .forms import PostForm
