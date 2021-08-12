@@ -84,8 +84,9 @@
             {% if post.writer == user %}
                 <button type="button" onclick="location.href = '{% url 'list:helpUpdate' post.id%}'">글 수정하기</button>
                 <button type="button" onclick="location.href = '{% url 'list:helpDelete' post.id%}'">글 삭제하기</button>
-            {% endif %}
+            {% else %}
                 <button type="button" class="donate">후원하기</button>
+            {% endif %}
             </div>
     </div>
     {% comment %}

@@ -74,6 +74,11 @@
         alert("회원탈퇴 되었습니다. 그동안 감사했습니다!")
         window.location.href = "{% url 'user_info:home' %}"        
     </script>
+{% elif msg == 'spon_delete'%}
+    <script>
+        alert("회원탈퇴 되었습니다. WhoWant가 필요없는 삶을 기도합니다!")
+        window.location.href = "{% url 'user_info:home' %}"        
+    </script>
 {% endif %}
 <div class="popCmmn">
     <div class="popBg" data-num="1"></div>

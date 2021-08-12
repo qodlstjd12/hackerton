@@ -230,6 +230,18 @@ def recentDelete(request, id):
     return redirect('user_info:sponserpage')
 from django.core.paginator import Paginator
 
+def spon_delete(request):
+    user = CustomUser.objects.get(email = request.user.email)
+    whos = whodonate.objects.filter(whogetmoney=user)
+    user_info = UserInfo.objects.get(user_email=request.user.email)
+    for who in whos:
+        who.delete()
+    auth.logout(request)
+    user_info.delete()
+    user.delete()
+    msg = 'spon_delete'
+    return render(request, 'index.html', {'msg':msg})
+
 def sponserpage(request):
     msg = ""
     user = CustomUser.objects.get(email=request.user.email)

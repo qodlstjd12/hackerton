@@ -49,6 +49,7 @@
             <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:register_success' %}';">이메일 인증</button>            
             {% endif %}
                 <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:profile_view'%}';">프로필 변경</button>
+                <button class="writeBtn" type="button" onclick="location.href = '{% url 'user_info:spon_delete'%}';">회원 탈퇴</button>
             </div>
             <h3>{{user_profile.user_email}}</h3>
             <h5 class="email">{{user_profile.user_description}}</h5>

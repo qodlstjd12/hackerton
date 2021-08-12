@@ -12,8 +12,10 @@ urlpatterns=[
     path('logout_view/', views.logout_view, name="logout_view"),
     path('findID/', views.findID, name='findID'),
     path('delete/', views.delete, name = 'delete'),
+    path('spon_delete/',views.spon_delete, name="spon_delete"),
     path('registerauth/', views.get_success_url, name='register_success'),
     path('activate/<str:uid64>/<str:token>/', views.activate, name='activate'),
+
 
     path('recovery/pw/', views.RecoveryPwView.as_view(), name='recovery_pw'),
     path('recovery/pw/find/', views.ajax_find_pw_view, name='ajax_pw'),
