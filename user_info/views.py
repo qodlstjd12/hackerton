@@ -177,31 +177,17 @@ def recentWrite(request):
             post = form.save(commit=False)
             post.writer = request.user
             post.post_time = timezone.now()
-            post.photo=request.FILES.get('image')
-            if str(post.photo) == "":
-                post.photo = None
-                path = []
-            else:
-                path = str(post.photo.path).split('\\')
-
-            post.save()
-            if path!=[]:
-                t_path  = ''
+            image = request.FILES.get('image')
             
-                for i in path:
-                    if i == 'media':
-                        t_path = t_path + i + '\\' + 'userinfo' + '\\'
-                    elif i.find('jpg') != -1 :
-                        t_path = t_path + i
-                    else:    
-                        t_path = t_path + i + '\\'
-                if google_api(t_path):
+            if image:
+                img = request.FILES.get('image').read()
+                if google_api(img):
+                    post.photo=image
+                    post.save()
                     return redirect('user_info:sponserpage')
                 else:
-                    post.delete()
-                    os.remove(t_path)
-                path = ""
-                return render(request, 'recentWrite.html', {"error" : "error"})
+                    return render(request, 'recentWrite.html', {"error" : "error"})
+        post.save()
         return redirect('user_info:sponserpage')
     return render(request, 'recentWrite.html')
 
