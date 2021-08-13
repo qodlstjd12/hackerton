@@ -352,7 +352,7 @@ def auth_pw_reset_view(request):
     if request.method == 'GET':
         if not request.session.get('auth', False):
             raise PermissionDenied
-    
+        
     if request.method == 'POST':
         session_user = request.session['auth']
         current_user = CustomUser.objects.get(email = session_user)

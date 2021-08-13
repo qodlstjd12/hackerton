@@ -145,9 +145,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'user_info.CustomUser'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.naver.com'
-EMAIL_HOST_USER = 'meotsa_server@naver.com'
-EMAIL_HOST_PASSWORD = 'hi_whowant'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'kt01024124898@gmail.com'
+EMAIL_HOST_PASSWORD = 'qkr04637220!'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-DEFAULT_FROM_MAIL = '<meotsa_server@naver.com>'
+DEFAULT_FROM_MAIL = '<kt01024124898@gmail.com>'
