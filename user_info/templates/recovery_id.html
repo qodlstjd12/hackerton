@@ -1,32 +1,41 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'findID.css' %}">
     <title>Document</title>
 </head>
+<div class="LOGOBox">
+    <div class="LOGO"><a style="text-decoration: none;" href="{% url 'user_info:home' %}">Who<span>Want</span></a>
+    </div>
+</div>
+
 <body>
-    <div class="col-12">
+    <div class="Box">
         {% csrf_token %}
         <!--이메일-->
-        <div class="mb-4 md-form">
-            <label name="label_phone" for="{{ form_phone.phone.id_for_label }}"><i
-                    class="fas fa-envelope"></i>&nbsp;&nbsp;{{ form_phone.label }}</label>
-                휴대폰 번호 : {{ form_id.phone }}
-            <small class="form-text text-muted">
-                등록하신 번호와 일치하는 메일을 찾습니다.
-            </small>
-        </div>
+        <table class = "Login-form">
+            <h3>아이디 찾기!</h3>
+            <tr class="Login-table-content">
+                <td class="Login-table-text">
+                    <span><b>{{form_id.phone.label}}</b></span>
+                </td>
+                <td class="Login-table-input">
+                    {{form_id.phone}}
+                </td>
+            </tr>
+        </table>
+        <button id="find_id" type="submit" class="btn">확인!</button>    
 
-        <!-- <br><button type="submit" class="btn btn-dark" name="recovery_id">아이디찾기</button> -->
-        <div style="padding-top:10px;" class="row justify-content-md-center">
-            <button id="find_id" class="btn btn-red" style="opacity: 90%; font-size: 16px;" name="recovery_id"><i class="fas fa-search"></i>&nbsp;&nbsp;아이디찾기</button><br><br>
-        </div>
         <br>
         <div id="result_id"></div>
     </div>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/js/mdb.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/js/mdb.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -62,8 +71,5 @@
     <h5>회원님의 아이디는 <strong>{{ result_id }}</strong>입니다.</h5>
     {% endif %} -->
 </body>
-</html>
-                
-                            
 
-                        
+</html>
