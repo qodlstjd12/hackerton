@@ -11,7 +11,8 @@
     <title>후원을 다이렉트로, 후원트</title>
 </head>
 <body>
-{% if msg == 'email_auth_error' %}
+
+{% if msg == 'email_auth_error' or not user.active %}
     <script>
       alert("이메일 인증후 이용가능합니다!")
       window.location.href = "{% url 'user_info:mypage' %}"

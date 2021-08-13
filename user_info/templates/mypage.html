@@ -14,22 +14,22 @@
     <title>후원을 다이렉트로, 후원트</title>
 </head>
 <body>
-<!--    {% if msg == "Do Login" %}-->
-<!--    <script>-->
-<!--        alert("로그인 후 이용해주세요");-->
-<!--        window.location.href = "{% url 'user_info:login_view' %}";-->
-<!--    </script>-->
-<!--    {% endif %}-->
-<!--    {% if error == "failed" %}-->
-<!--    <script>-->
-<!--        alert("올바른 금액을 작성해주세요.");-->
-<!--    </script>-->
-<!--    {% endif %}-->
-<!--    {% if success == "success" %}-->
-<!--    <script>-->
-<!--        alert("충전에 성공하였습니다.");-->
-<!--    </script>-->
-<!--    {% endif %}-->
+    {% if msg == "Do Login" %}
+    <script>
+        alert("로그인 후 이용해주세요");
+        window.location.href = "{% url 'user_info:login_view' %}";
+    </script>
+    {% endif %}
+    {% if error == "failed" %}
+    <script>
+        alert("올바른 금액을 작성해주세요.");
+    </script>
+    {% endif %}
+    {% if success == "success" %}
+    <script>
+        alert("충전에 성공하였습니다.");
+    </script>
+    {% endif %}
 <div class="header">
     <ul>
         <li><a href="{% url 'user_info:home' %}" class="logo">WHO<span>WANT</span></a></li>
@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div class="inputArea">
-                <button type="button">후원하러 가기</button>
+                <button type="button" onclick="location.href = '{% url 'list:list_view' %}' ">후원하러 가기</button>
             </div>
         </div>
     </div>
