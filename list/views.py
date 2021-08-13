@@ -84,7 +84,9 @@ def donate(request, id1, id2, id3):
         receiver_info = UserInfo.objects.get(user_email=receiver.email)
 
         if cash > int(donator_info.cash):
-            return HttpResponse("돈 더 충전하고 오세요")
+            msg = "not_enough_money"
+            post = Post.objects.get(id=id3)
+            return render(request, 'html/feedDetail.html', {'msg':msg, 'post':post})
 
         relation = whodonate.objects.create(
             whogetmoney= receiver.email,

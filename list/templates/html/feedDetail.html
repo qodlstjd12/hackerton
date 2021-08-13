@@ -17,6 +17,12 @@
 </head>
 
 <body>
+{% if msg == 'not_enough_money' %}
+    <script>
+        alert("금액이 부족합니다.")
+        window.location.href = "{% url 'list:feed_Detail' post.id %}"
+    </script>
+{% endif %}
 <div class="popCmmn">
     <div class="popBg" data-num="1"></div>
     <div class="popInnerBox">
