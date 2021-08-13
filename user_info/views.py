@@ -128,7 +128,14 @@ def activate(request, uid64, token):
 
 def verify(request):
     if request.method=='POST':
-        img = request.FILES.get('image').read()
+        img = request.FILES.get('image')
+        if img:
+            img = img.read()
+        else:
+            msg = "fail"
+            return render(request, 'index.html', {'msg':msg})
+
+            
         user = CustomUser.objects.get(email=request.user)
         real_user = UserInfo.objects.get(user_email=request.user.email)
         msg = ""
