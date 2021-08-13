@@ -11,7 +11,12 @@
 
 </head>
 <body>
-
+{% if not user.active %}
+    <script>
+      alert("이메일 인증후 이용가능합니다!")
+      window.location.href = "{% url 'user_info:home' %}"
+    </script>
+  {% endif %}
 {% if error == "error" %}
 <script>
     alert("사진에 개인정보 감지되었습니다. 전화번호 및 이름, 지역과 관련된 정보를 제외하고 업로드해주세요!");
@@ -47,12 +52,17 @@
             <tr>
                 <td class="first"><p>파일</p></td>
                 <td><input class="attach" type="file" name = 'image'></td>
+
             </tr>
             <tr class="bottom">
                 <td class="first"><p>내용</p></td>
                 <td class= "content"><textarea class="formText" name = 'body'></textarea></td>
             </tr>
         </table>
+        <a href= "{% static 'img/pass_bill.jpg' %}" download>통과하는 영수증 샘플</a>
+        <br>
+        <a href= "{% static 'img/nonpass_bill.jpg' %}" download>실패하는 영수증 샘플</a>                
+                
         <table class="button-box">
             <tr>
                 <td><input type="submit" value="작성하기" class="diarySubmit"></td>

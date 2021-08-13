@@ -41,12 +41,12 @@
 {% endfor %}
 {% if msg == 'success' %}
     <script>
-        alert("인증 성공!")
+        alert("(성공) 기초수급자임을 확인하였습니다!")
         window.location.href = "{% url 'user_info:home' %}"
     </script>
 {% elif msg == 'fail' %}
     <script>
-        alert("인증 실패!")
+        alert("(실패) 회원가입 정보의 이름과 서류의 성명이 다릅니다.")
         window.location.href = "{% url 'user_info:home' %}"
     </script>
 {% elif msg == 'sending' %}
