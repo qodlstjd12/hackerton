@@ -88,6 +88,7 @@
             <h2>기초수급자 인증하기</h2>
             <h2 class="close">X</h2>
         </div>
+        <a href="{% static 'img/기초수급자증명서샘플.jpg' %}" download>(홍길동) 샘플다운로드</a>
         <form action="{% url 'user_info:verify' %}" method='POST' enctype='multipart/form-data'>
             {% csrf_token %}
             <div class="popBody">
