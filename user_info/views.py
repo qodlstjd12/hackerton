@@ -43,6 +43,8 @@ def findID(request):
 
 
 def login_view(request):
+
+
     if request.method == 'POST':
         username = request.POST["userid"]
         password = request.POST["userpw"]
@@ -57,14 +59,21 @@ def login_view(request):
         msg =""
         return render(request, 'login.html', {'msg':msg})
 
+num1 = 0
+
+
 @csrf_exempt
 def signup(request):
     msg =""
+    global num1
+
+    num1 += 1
+
     if request.method == "POST":
         
         try:
             if CustomUser.objects.get(email=request.POST['user_email']):
-                return render(request, 'signup.html', {"error" : "error"})
+                return render(request, 'signup.html', {"error" : "error", "num" : num1})
         except:
             pass
         
@@ -81,10 +90,10 @@ def signup(request):
             user_contents.user_account_name = request.POST['user_acnum']
             user_contents.save()
             msg = "signup_success_but_email"
-            return render(request, 'index.html', {'msg': msg})
+            return render(request, 'index.html', {'msg': msg , "num" : num1})
         msg = "NOTSAME_PW"
-        return render(request, 'signup.html', {'msg':msg})
-    return render(request, 'signup.html')
+        return render(request, 'signup.html', {'msg':msg, "num" : num1})
+    return render(request, 'signup.html', {"num" : num1})
 
 def delete(request):
     user = CustomUser.objects.get(email=request.user.email)

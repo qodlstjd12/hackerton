@@ -66,10 +66,10 @@
         </div>
         {% if post.writer == user%}
         <div class="btnBox">
-            <button class="writeBtn" type="button" onclick="location.href = '{% url 'market:market_Update' post.id%}'">글
+            <button class="writeBtn" type="button" onclick="location.href = '{% url 'market:market_Update' post.id%}'">
                 수정하기
             </button>
-            <button class="writeBtn" type="button" onclick="location.href = '{% url 'market:market_Delete' post.id%}'">글
+            <button class="writeBtn" type="button" onclick="location.href = '{% url 'market:market_Delete' post.id%}'">
                 삭제하기
             </button>
         </div>
