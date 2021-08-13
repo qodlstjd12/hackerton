@@ -18,7 +18,6 @@ body {
 .header {
     width: 70vw;
     height: 50px;
-    margin-bottom: 20px
 }
 
 .header ul {
@@ -49,61 +48,128 @@ body {
     font-weight: 700;
 }
 
-h2 {
-    text-align: center;
+.inputArea h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: 800;
 }
 
-.underLine {
-    size: 10px;
+.inputArea p{
+    margin-bottom: 27px;
+    font-size: 14px;
 }
 
 .inputArea {
-    width: 70vw;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
 
+.inputArea .text-box{
+  width: 70vw;
+  border-collapse: collapse;
+}
+
+.inputArea .text-box .first{
+  width: 15%;
+  background-color: #f1f0f0;
+}
+
+.inputArea .text-box .first p{
+  margin-left: 30px;
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 18px;
+  margin-bottom: 18px;
 }
 
 .inputArea form {
     width: 100%;
 }
 
+.inputArea .text-box .top td{
+  border-top: 2.5px solid black;
+}
+
+.inputArea .text-box .bottom{
+  border-bottom: 2.5px solid black;
+}
+
+.inputArea .text-box td{
+  border-bottom: 2px solid rgb(228, 228, 228);
+}
+
+.inputArea .text-box .content{
+  height: 440px;
+}
+
 textarea {
     width: 100%;
     resize: none;
-    border: none;
-    font-size: 1rem;
-    margin-top: 20px;
+    font-size: 1em;
+    font-weight: 700;
+}
 
+textarea::placeholder {
+    font-size: 1em;
+    font-weight: 700;
 }
 
 .title {
-    height: 35px;
-    font-size: 0.8rem;
+    font-size: 16px;
+    line-height: 30px;
     font-weight: 300;
+    height: 35px;
+    width: 500px;
+    border: 2px solid rgb(236, 236, 236);
+    margin-left: 10px;
+}
 
+.attach{
+  margin-left: 12px;
 }
 
 .formText {
-    height: 60vh;
-    font-size: 0.8rem;
+    width: 900px;
+    height: 400px;
+    font-size: 16px;
     font-weight: 300;
+    border: 2px solid rgb(236, 236, 236);
+    margin-left: 12px;
 }
 
-.attach {
-    margin: 10px 5px;
+.button-box{
+  margin-top: 50px;
+  width: 330px;
+  height: 50px;
+  align-items: center;
+  text-align: center;
+  margin-left: 37%;
+}
 
+.button-box td{
+  border: none;
 }
 
 .diarySubmit {
-    width: 70vw;
-    height: 64px;
-    border-radius: 32px;
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
     background-color: #f14a60;
     color: white;
     font-size: 20px;
     border: none;
-    margin: 50px 0 50px 0;
+}
+
+.diaryReturn{
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
+    background-color: white;
+    color: #f14a60;
+    font-size: 20px;
+    font-weight: 700;
+    border: 3px solid #f14a60;
 }
