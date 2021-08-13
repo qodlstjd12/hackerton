@@ -36,7 +36,9 @@
 
 <div class="contentBox">
     <div class="makeDonate">
+        <div class = "go">
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </div>
         <div class="verticalTextBox">
             <h2>후원이 필요 하신가요?</h2>
             <h3>사진과 사연을 통해 후원 요청글을 등록해 보세요!</h3>
@@ -101,5 +103,13 @@
         유료직업소개사업등록번호 : (국내) 제000-00000-00000 | (국외) 000-0000-0000 | 사업자등록번호 : 0000-0000-0000
         © WhoWantLab, Inc.</h2>
 </div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".go").click(function () {
+        $(location).attr("href", "{% url 'list:helpWrite' %}");
+    });
+</script>
+
 </body>
-</html>
+</html>vvv

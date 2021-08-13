@@ -64,7 +64,7 @@ class UserInfo(models.Model):
     user_account_name = models.CharField(null=True, max_length = 20)
     user_account = models.CharField(null=True, max_length = 30)
     user_totalcash = models.IntegerField(null=True, default=0)
-    user_description = models.TextField(default="도외주세요!")
+    user_description = models.TextField(default="도와주세요!")
     user_totaldonate = models.IntegerField(default=0, null=True)
     cash = models.IntegerField(null=True, default=0)
     qua = models.CharField(null=True, max_length = 30, blank=True, default="no")

@@ -40,7 +40,8 @@
 
 <div class="inputArea">
     <h2>당신의 따뜻했던 경험들</h2>
-    <p>후원금을 어떻게 사용했는지 자세히 작성해 주세요. 피후원자님의 매너온도 평가요소로 사용됩니다. <br>
+    <br>
+    <p>후원금을 어떻게 사용했는지 자세히 작성해 주세요. <br>
         개인정보는 걱정마세요! WHOWANT AI 후원이가 피후원자님의 개인정보를 지켜줍니다!</p>
     <form action="{% url 'user_info:recentWrite' %}" method='POST' enctype='multipart/form-data'>
         {% csrf_token %}
@@ -59,6 +60,9 @@
                 <td class= "content"><textarea class="formText" name = 'body'></textarea></td>
             </tr>
         </table>
+        <br>
+        <p>멋사분들이 쉽게 저희 웹사이트를 이용할 수 있게 아래의 샘플사진을 준비하였습니다!</p>
+        <p>다음과 같은 영수증 샘플사진을 통하여 개인정보(전화번호, 주소 등)이 있을 때와 없을 때를<br> 확인해보면서 진행하면 저희 웹사이트 후원이(AI)의 능력을 확인해보세요!</p>
         <a href= "{% static 'img/pass_bill.jpg' %}" download>통과하는 영수증 샘플</a>
         <br>
         <a href= "{% static 'img/nonpass_bill.jpg' %}" download>실패하는 영수증 샘플</a>                

@@ -88,7 +88,8 @@
             <h2>기초수급자 인증하기</h2>
             <h2 class="close">X</h2>
         </div>
-        <a href="{% static 'img/기초수급자증명서샘플.jpg' %}" download>(홍길동) 샘플다운로드</a>
+        <a href="{% static 'img/기초수급자증명서샘플.jpg' %}" download>샘플다운로드</a>
+        <p>회원가입시 이름을 홍길동으로 진행하시거나<br> 이미지를 회원님의 이름으로 수정 후 진행해주세요!</p>
         <form action="{% url 'user_info:verify' %}" method='POST' enctype='multipart/form-data'>
             {% csrf_token %}
             <div class="popBody">

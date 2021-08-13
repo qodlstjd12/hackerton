@@ -7,13 +7,28 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--    <link rel="stylesheet" type="text/css" href="{% static 'mypage.css' %}">-->
-    <link rel="stylesheet" type="text/css" href="../../static/mypage.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'mypage.css'%}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+    <script language='javascript'>
+
+    function noEvent() {
+        if (event.keyCode == 116) {
+            event.keyCode= 2;
+            return false;
+        }
+        else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82))
+        {
+            return false;
+        }
+    }
+    document.onkeydown = noEvent;
+    
+    </script>
     <title>후원을 다이렉트로, 후원트</title>
 </head>
-<body>
+<body oncontextmenu="return false">
     {% if msg == "Do Login" %}
     <script>
         alert("로그인 후 이용해주세요");
