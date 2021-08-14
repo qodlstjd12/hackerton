@@ -35,10 +35,26 @@
     <h2>재능 마켓 게시글 작성</h2>
     <form action='{% url 'market:market_Update' post.id %}' method='POST' enctype='multipart/form-data'>
         {% csrf_token %}
-        <textarea name="title" placeholder="제목." class="title">{{post.title}}</textarea>
-        <textarea name="body" placeholder="내용을 입력해주세요." class="formText">{{post.body}}</textarea>
-        <input name='image' type="file">
-        <input type="submit" value="제출하기" class="csSubmit">
+        <table class="text-box">
+            <tr class="top">
+                <td class="first"><p>제목</p></td>
+                <td><textarea name="title" class="title">{{post.title}}</textarea></td>
+            </tr>
+            <tr>
+                <td class="first"><p>파일</p></td>
+                <td><input class="img" name='image' type="file" multiple></td>
+            </tr>
+            <tr class="bottom">
+                <td class="first"><p>내용</p></td>
+                <td class="content"><textarea name="body"  class="formText">{{post.body}}</textarea></td>
+            </tr>
+        </table>
+        <table class="button-box">
+            <tr>
+                <td><input type="submit" value="제출하기" class="csSubmit"></td>
+                <td><input type="submit" value="목록보기" class="csList"></td>
+            </tr>
+        </table>
     </form>
 </div>
 </body>
