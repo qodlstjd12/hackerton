@@ -90,7 +90,7 @@
 ![image](https://user-images.githubusercontent.com/58176152/130038126-ca60587e-a49e-4b32-9729-744a79451c44.png)
 ## 절차 4
 ![image](https://user-images.githubusercontent.com/58176152/130038137-2c1f3dab-094c-4736-a779-fd8a42f0defb.png)
-## AJAX는 프론트에서 처리했습니다.
+## AJAX 요청은 프론트에서 처리했습니다.
 
     $('.btn').click(function () {
         $.ajax({
