@@ -64,7 +64,12 @@
 
 # 후원을 받았으면 그 후원금을 어떤 곳에 썼는지 피후원자가 직접 글을 쓸 수 있습니다.
 ![image](https://user-images.githubusercontent.com/58176152/130034382-25747b40-bb56-4654-b215-2ea25e13753b.png)
-## 중요한 점은 영수증을 등록할 때 개인정보가 다수 발견된다면
+## 중요한 점은 영수증을 등록할 때 개인정보 (전화번호, 휴대폰 전화번호, 이름) 등이 다수 발견된다면 
 ![image](https://user-images.githubusercontent.com/58176152/130034813-b8bc9a66-1b0e-4007-871a-3bc0dfe25a11.png)
-## 그렇지 않은 영수증은 글이 등록되어
+## 그렇지 않은 영수증은 아래와 같이 글이 등록됩니다.
 ![image](https://user-images.githubusercontent.com/58176152/130035029-82f722eb-a936-4365-8dc6-54ab0d39f61c.png)
+
+## Google Vision API를 통해 텍스트 검출하기 전, 정규표현식을 사용하여 걸렀습니다.
+![image](https://user-images.githubusercontent.com/58176152/130035427-1a79da6d-823e-4b02-8e0d-6928ef010ed7.png)
+
+# 이상으로 WhoWant Readme 마치도록 하겠습니다!
