@@ -17,7 +17,7 @@
 ## 샘플 서류입니다. 해당 사진을 업로드하면 홍길동으로 가입된 현재 아이디는 피후원인으로서 글을 등록할 수 있게됩니다.
 ## 인증 과정은 Google Vision API를 통해 텍스트를 검출하여 진행합니다.
 ![vr](https://user-images.githubusercontent.com/58176152/130026100-6137ee56-7ba8-45eb-a55b-639761fe03e1.jpg)
-# ㅇㅇ
+# 해당 views.py입니다.
 
     '''
     def verify(request):
