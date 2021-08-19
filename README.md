@@ -51,7 +51,7 @@
 ![qq5](https://user-images.githubusercontent.com/58176152/130032618-2f32d0bb-850e-4196-8c29-3289c9fbb803.png)
 
 ![image](https://user-images.githubusercontent.com/58176152/130033167-d42a4075-b394-40bf-b976-22341ae6071d.png)
-## 만원을 후원한 후, 후원자의 마이페이지와 피후원자의 마이페이지, 그리고 근황 기능을 보여드리고 마치겠습니다!
+## 만원을 후원한 후, 후원자의 마이페이지와 피후원자의 마이페이지, 그리고 근황 기능, 아이디 비밀번호 찾기 기능을 보여드리고 마치겠습니다!
 
 ## 후원자의 마이페이지
 ![image](https://user-images.githubusercontent.com/58176152/130033370-dd74300e-c3f1-4699-8bf5-3049b3ced15c.png)
@@ -72,5 +72,66 @@
 
 ## Google Vision API를 통해 텍스트 검출하기 전, 정규표현식을 사용하여 걸렀습니다.
 ![image](https://user-images.githubusercontent.com/58176152/130035427-1a79da6d-823e-4b02-8e0d-6928ef010ed7.png)
+
+# 아이디 찾기 / 비밀번호 찾기
+### 두 기능 모두 한 HTML에서 추가적인 HTML View를 띄워야했기에 AJAX 비동기 통신이 요구되었습니다.
+## ID 찾기
+## 절차 1
+![image](https://user-images.githubusercontent.com/58176152/130037945-4454f7b7-04c9-4ca3-a25e-42bc66122f03.png)
+## 절차 2
+![image](https://user-images.githubusercontent.com/58176152/130037957-9e8b0d1a-fb56-4aa6-a2ca-624ae59a0a0b.png)
+
+## PW 찾기
+## 절차 1
+![image](https://user-images.githubusercontent.com/58176152/130038011-b5751db0-ac2d-4c28-9704-55349d6fa8f3.png)
+## 절차 2
+![image](https://user-images.githubusercontent.com/58176152/130038246-ee1cf92d-0550-4ff7-b796-12311cee4827.png)
+## 절차 3
+![image](https://user-images.githubusercontent.com/58176152/130038126-ca60587e-a49e-4b32-9729-744a79451c44.png)
+## 절차 4
+![image](https://user-images.githubusercontent.com/58176152/130038137-2c1f3dab-094c-4736-a779-fd8a42f0defb.png)
+## AJAX는 프론트에서 처리했습니다.
+
+    $('.btn').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "find/",
+            dataType: "json",
+            data: {
+                'email': $("#pw_form_email").val(),
+                'csrfmiddlewaretoken': '{{csrf_token}}',
+            },
+            success: function (response) {
+                alert('인증 메일을 발송했습니다.');
+                $('.authBox').css('display', 'flex');
+            },
+            error: function () {
+                alert('입력하신 정보를 확인해주세요.')
+            },
+        });
+    });
+
+    $('.authBtn').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "auth/",
+            dataType: "json",
+            data: {
+                'email': $('#pw_form_email').val(),
+                'input_auth_num': $('.authInput').val(),
+                'csrfmiddlewaretoken': '{{csrf_token}}',
+            },
+            success: function (response) {
+                window.location.href = "{% url 'user_info:recovery_pw_reset' %}";
+            },
+            error: function () {
+                if ($('#input_auth_num').val() == "") {
+                    alert('회원님의 이메일로 전송된 인증번호를 입력해주세요.');
+                } else {
+                    alert('인증번호가 일치하지 않습니다.');
+                }
+            },
+        });
+    })
 
 # 이상으로 WhoWant Readme 마치도록 하겠습니다!
