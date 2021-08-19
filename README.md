@@ -10,6 +10,7 @@
 ### 문의하기, FAQ를 제외한 모든 기능 역시 이메일 인증 절차를 거친 뒤 이용할 수 있습니다.
 ### 이메일 인증을 클릭하면 마찬가지로 alert창이 뜨고 회원가입했을때의 이메일에 메일을 발송합니다.
 ![이멜](https://user-images.githubusercontent.com/58176152/130024085-e56febe7-6eeb-4786-8479-bc95d2eab3d2.png)
+## 인증 메일
 ![emailverifing](https://user-images.githubusercontent.com/58176152/130024962-43dcf125-c11f-471a-8b16-b88051077236.png)
 ### 인증하기를 클릭하면 User DB의 Boolean Field인 active가 활성화되며 템플릿에 성공적으로 접근할 수 있습니다.
 ## 피후원자는 메인페이지의 [인증] 기능을 통해 기초수급자 서류의 성명과 일치하는지에 대한 인증을 해야합니다
