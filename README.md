@@ -18,8 +18,6 @@
 ## 인증 과정은 Google Vision API를 통해 텍스트를 검출하여 진행합니다.
 ![vr](https://user-images.githubusercontent.com/58176152/130026100-6137ee56-7ba8-45eb-a55b-639761fe03e1.jpg)
 # 해당 views.py입니다.
-
-    '''
     def verify(request):
     if request.method=='POST':
         img = request.FILES.get('image')
@@ -38,4 +36,35 @@
         else:
             msg = "fail"
     return render(request, 'index.html', {'msg':msg})
-    '''
+
+### 피후원자 인증 후 피후원자의 마이페이지
+![피마페](https://user-images.githubusercontent.com/58176152/130031605-b56ed171-b63b-4377-a1b2-84b06d4fd09e.png)
+
+## 피후원자는 후원글을 등록하여 후원을 기다립니다.
+![helpwrite](https://user-images.githubusercontent.com/58176152/130031822-0e186c32-d572-42e8-ba37-800dd7502863.png)
+## 글을 등록했습니다.
+![qq4](https://user-images.githubusercontent.com/58176152/130032373-155e59e9-9ee6-4b74-a8cc-761d777a0493.png)
+
+## 그럼 이제 후원자의 입장에서 보겠습니다!
+### 후원을 하기 위해 30000원을 충전했습니다. 충전은 숫자를 적고 충전하기를 누르면 바로 cash가 쌓이는 방식으로 구현했습니다.
+![qq5](https://user-images.githubusercontent.com/58176152/130032618-2f32d0bb-850e-4196-8c29-3289c9fbb803.png)
+
+![image](https://user-images.githubusercontent.com/58176152/130033167-d42a4075-b394-40bf-b976-22341ae6071d.png)
+## 만원을 후원한 후, 후원자의 마이페이지와 피후원자의 마이페이지, 그리고 근황 기능을 보여드리고 마치겠습니다!
+
+## 후원자의 마이페이지
+![image](https://user-images.githubusercontent.com/58176152/130033370-dd74300e-c3f1-4699-8bf5-3049b3ced15c.png)
+### 마음의 온도는 1000원 후원당 0.1도씩 올라가도록 했습니다.
+### 그리고 자신이 후원했던 사람들의 근황을 볼 수 있습니다.
+
+## 피후원자의 마이페이지
+![image](https://user-images.githubusercontent.com/58176152/130033746-bec8e7fb-a972-4817-a419-d0243b8d3d5a.png)
+### 후원받을때마다 우측의 거래내역이 쌓이게 됩니다. 누가 후원했는지 알 수 있습니다.
+### 후원 게시글은 자신이 올렸던 후원글이 자동으로 등록됩니다.
+
+# 후원을 받았으면 그 후원금을 어떤 곳에 썼는지 피후원자가 직접 글을 쓸 수 있습니다.
+![image](https://user-images.githubusercontent.com/58176152/130034382-25747b40-bb56-4654-b215-2ea25e13753b.png)
+## 중요한 점은 영수증을 등록할 때 개인정보가 다수 발견된다면
+![image](https://user-images.githubusercontent.com/58176152/130034813-b8bc9a66-1b0e-4007-871a-3bc0dfe25a11.png)
+## 그렇지 않은 영수증은 글이 등록되어
+![image](https://user-images.githubusercontent.com/58176152/130035029-82f722eb-a936-4365-8dc6-54ab0d39f61c.png)
